@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+		<title>JavaScript Speed Tests</title>
+
+		<link rel="stylesheet" href="flora/flora.all.css" type="text/css" media="print, projection, screen">
+		<link rel="stylesheet" href="style.css" type="text/css" media="print, projection, screen">
+		<link rel="stylesheet" href="recipes.css" type="text/css" media="print, projection, screen">
+		
+		<script src="jquery-1.2.js"></script>
+		<script src="jquery.color.js"></script>
+		<script src="jquery.dimensions.js"></script>
+		<script src="ui/ui.mouse.js"></script>
+		<script src="ui/ui.resizable.js"></script>
+		<script src="ui/ui.tabs.js"></script>
+		<script src="ui/ui.accordion.js"></script>
+		<script src="jquery.chili.js"></script>
+		<script src="recipes.js"></script>
+		<script src="MochiKit.js"></script>
+		<script src="PlotKit.js"></script>
+		<script src="results.js"></script>
+	</head>
+	<body class="flora">
+		<h1>JavaScript Speed Tests</h1>
+
+		<div id="main">
+			<ul>
+				<li><a href="#core"><span>Core</span></a></li>
+				<li><a href="#object"><span>Objects</span></a></li>
+				<li><a href="#real"><span>Real-World</span></a></li>
+			</ul>
+			<div id="core"><div class="sidebar ui-wrapper ui-resizable">
+				<div class='ui-resizable-w ui-resizable-handle'></div> 
+				<ul class="ui-accordion-container"></ul>
+			</div><div class="wrap"><h2></h2><div></div><ul class="engines"><li class="key">Time (ms) vs. Complexity (# of Iterations)</li><li><b>Key:</b></li></ul><div class="javascript"></div></div></div>
+			<div id="object"><div class="sidebar ui-wrapper ui-resizable">
+				<div class='ui-resizable-w ui-resizable-handle'></div> 
+				<ul class="ui-accordion-container"></ul>
+			</div><div class="wrap"><h2></h2><div></div><ul class="engines"><li class="key">Time (ms) vs. Complexity (# of Iterations)</li><li><b>Key:</b></li></ul><div class="javascript"></div></div></div>
+			<div id="real"><div class="sidebar ui-wrapper ui-resizable">
+				<div class='ui-resizable-w ui-resizable-handle'></div> 
+				<ul class="ui-accordion-container"></ul>
+			</div><div class="wrap"><h2></h2><div></div><ul class="engines"><li class="key">Time (ms) vs. Complexity (# of Iterations)</li><li><b>Key:</b></li></ul><div class="javascript"></div></div></div>
+		</div>
+	</body>
+</html>

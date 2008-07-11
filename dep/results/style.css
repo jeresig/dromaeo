@@ -1,0 +1,180 @@
+body {
+		font-size: 16px; /* @ EOMB */
+		text-align: center;
+}
+* html body {
+	font-size: 100%; /* @ IE */
+}
+body * {
+	font-size: 87.5%;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+}
+body * * {
+	font-size: 100%;
+}
+
+.ui-accordion-container {
+	width: 200px;
+	height: 427px;
+	overflow: hidden;
+}
+
+.ui-accordion-container li {
+	background: #FFF;
+}
+
+.ui-accordion-container li div {
+	overflow: auto;
+}
+
+#main {
+	width: 800px;
+	height: 480px;
+	margin: 0 auto;
+	text-align: left !important;
+}
+
+.ui-tabs-nav {
+	/*background: rgb(255,245,227);*/
+}
+
+.ui-tabs-container {
+	height: 434px;
+	position: relative;
+	padding-top: 0px !important;
+	padding-bottom: 18px !important;
+}
+
+.sidebar {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 427px;
+	_height: 452px;
+	width: 200px;
+	background: rgb(217,246,214);
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	padding: 10px 10px 15px 15px;
+	z-index: 100;
+	overflow: hidden;
+}
+
+.sidebar.hide {
+	padding: 10px 0 15px 0;
+	width: 5px;
+}
+
+.sidebar.hide .ui-accordion-container {
+	display: none;
+}
+
+.ui-accordion-container li ul {
+	margin: 0 !important;
+	padding: 10px 0 0 21px;
+}
+
+.ui-accordion-container li ul li {
+	padding: 3px 0 3px 4px;
+	margin: 0 8px 0 0;
+	font-size: 12px;
+	background: none;
+}
+
+.ui-accordion-container li ul li:hover {
+	background: none;
+}
+
+.ui-accordion-container li ul li a {
+	color: #000;
+	text-decoration: none;
+	border-bottom: 1px solid #AAA;
+	outline: none;
+}
+
+.ui-accordion-container li ul li.active {
+	background: rgb(217,246,214);
+	background-image: none;
+}
+
+.ui-accordion-container li ul li a:hover {
+	color: #666;
+	background: none;
+}
+
+ul.ui-accordion-container li a.ui-accordion-link {
+	margin-left: 3px;
+}
+
+ul.engines {
+	width: 325px;
+	text-align: left;
+	margin: 0 auto;
+	list-style: none;
+	padding: 0;
+	font-size: 11px;
+	overflow: auto;
+}
+
+ul.engines li {
+	float: left;
+	margin-right: 15px;
+}
+
+ul.engines li span {
+	display: block;
+	float: left;
+	width: 11px;
+	height: 11px;
+	margin-right: 5px;
+}
+
+div.wrap {
+	width: 560px;
+	text-align: center;
+}
+
+div.wrap h2 {
+	margin-left: 30px;
+	text-align: left;
+	position: relative;
+}
+
+div.wrap h2 a {
+	position: absolute;
+	top: 0px;
+	right: 15px;
+	font-size: 11px;
+	color: #000;
+}
+
+.ui-resizable-handle {
+	cursor: pointer !important;
+}
+
+div.javascript {
+	text-align: left;
+	width: 495px;
+	height: 390px;
+	overflow: auto;
+	margin-left: 30px;
+	margin-right: 10px;
+	font-family: Courier New !important;
+	background: #282828;
+	color: #F3F3FF;
+	padding: 0 10px;
+	display: none;
+}
+
+div.hide div.javascript {
+	width: 100%;
+}
+
+li.key {
+	width: 100%;
+	text-align: center;
+	margin: 5px 0 15px 0 !important;
+	padding: 0;
+	color: #666;
+}

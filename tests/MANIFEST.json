@@ -1,0 +1,123 @@
+{
+"3d-cube": {
+	file: "3d-cube.js",
+	name: "Rotating 3D Cube",
+	origin: ["Simon Speich", "http://www.speich.net/computer/moztesting/3d.htm"],
+	desc: "Rotating the individual pixels of a cube. No rendering done.",
+	tags: ["object", "array", "property", "math"]
+},
+"3d-morph": {
+	file: "3d-morph.js",
+	name: "3D Mesh Transformation",
+	origin: ["WebKit", "http://webkit.org/misc/morph.html"],
+	desc: "Transforming the points of a matrix. No rendering done.",
+	tags: ["array", "looping", "math"]
+},
+"access-binary-trees": {
+	file: "access-binary-trees.js",
+	name: "Traversing Binary Trees",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Moving through an object representation of a binary tree.",
+	tags: ["object", "recursion"]
+},
+"access-fannkuch": {
+	file: "access-fannkuch.js",
+	name: "Fannkuch",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Figure out the number of ways in which a set of numbers can be manipulated.",
+	tags: ["array", "looping"]
+},
+"access-nbody": {
+	file: "access-nbody.js",
+	name: "N-Body Rotation and Gravity",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Compute the location of multiple planets based upon rotation and gravity.",
+	tags: ["object", "property", "looping", "math"]
+},
+"access-nsieve": {
+	file: "access-nsieve.js",
+	name: "Prime Number Computation",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Compute the number of prime numbers in a specific range of numbers.",
+	tags: ["looping", "array"]
+},
+"bitops-nsieve-bits": {
+	file: "bitops-nsieve-bits.js",
+	name: "Prime Number Computation (2)",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Compute the number of prime numbers in a specific range of numbers using bit operations.",
+	tags: ["looping", "bitops", "array"]
+},
+"controlflow-recursive": {
+	file: "controlflow-recursive.js",
+	name: "Recursive Number Calculation",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Compute various numbers in a recursive manner.",
+	tags: ["recursion"]
+},
+"math-partial-sums": {
+	file: "math-partial-sums.js",
+	name: "Partial Sum Calculation",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Calculate the partial sum of a few different number series.",
+	tags: ["math","looping"]
+},
+"math-spectral-norm": {
+	file: "math-spectral-norm.js",
+	name: "Spectral Norm of a Matrix",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Calculate the spectral norm of a matrix of numbers.",
+	tags: ["array","looping","math"]
+},
+"string-base64": {
+	file: "string-base64.js",
+	name: "Base 64 Encoding and Decoding",
+	origin: ["John Resig", "http://mozilla.com/"],
+	desc: "Encode and decode a random string to base 64.",
+	tags: ["string","array","looping","bitops"]
+},
+"string-fasta": {
+	file: "string-fasta.js",
+	name: "DNA Sequence Alignment",
+	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
+	desc: "Find DNA matches within a larger sequence.",
+	tags: ["string","object","looping"]
+}
+/*
+"core-eval": {
+	file: "core-eval.js",
+	name: "Code Evaluation",
+	origin: ["John Resig", "http://mozilla.com/"],
+	desc: "Microtests of code evaluation (eval, new Function).",
+	tags: ["eval","microtest"]
+},
+"object-array": {
+	file: "object-array.js",
+	name: "Arrays",
+	origin: ["John Resig", "http://mozilla.com/"],
+	desc: "Microtests of arrays (construction, methods, access).",
+	tags: ["array","microtest"]
+},
+"object-regexp": {
+	file: "object-regexp.js",
+	name: "Regular Expressions",
+	origin: ["John Resig", "http://mozilla.com/"],
+	desc: "Microtests of regular expressions (construction, matching, replace).",
+	tags: ["regexp","microtest"]
+},
+"object-string": {
+	file: "object-string.js",
+	name: "Strings",
+	origin: ["John Resig", "http://mozilla.com/"],
+	desc: "Microtests of strings (concatenation, methods).",
+	tags: ["string","microtest"]
+},
+"real-packer": {
+	file: "real-packer.js",
+	name: "Script Unpacking",
+	origin: ["John Resig", "http://mozilla.com/"],
+	desc: "Decompressing and evaluation scripts run through Dean Edwards' Packer.",
+	tags: ["regexp","string","eval","looping"]
+}
+*/
+}

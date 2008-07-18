@@ -82,7 +82,7 @@
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Find DNA matches within a larger sequence.",
 	tags: ["string","object","looping"]
-}
+},
 /*
 "core-eval": {
 	file: "core-eval.js",
@@ -120,4 +120,137 @@
 	tags: ["regexp","string","eval","looping"]
 }
 */
+"dom-attr": {
+	file: "dom-attr.html",
+	name: "DOM Attributes",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-attr-jquery": {
+	file: "dom-attr-jquery.html",
+	name: "DOM Attributes (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-attr-prototype": {
+	file: "dom-attr-prototype.html",
+	name: "DOM Attributes (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-event-jquery": {
+	file: "dom-event-jquery.html",
+	name: "DOM Events (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-event-prototype": {
+	file: "dom-event-prototype.html",
+	name: "DOM Events (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-modify": {
+	file: "dom-modify.html",
+	name: "DOM Modification",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-modify-jquery": {
+	file: "dom-modify-jquery.html",
+	name: "DOM Modification (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-modify-prototype": {
+	file: "dom-modify-prototype.html",
+	name: "DOM Modification (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query": {
+	file: "dom-query.html",
+	name: "DOM Query",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query-jquery": {
+	file: "dom-query-jquery.html",
+	name: "DOM Query (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query-prototype": {
+	file: "dom-query-prototype.html",
+	name: "DOM Query (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query-dojo": {
+	file: "dom-query-dojo.html",
+	name: "DOM Query (Dojo)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query-ext": {
+	file: "dom-query-ext.html",
+	name: "DOM Query (ExtJS)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query-mootools": {
+	file: "dom-query-mootools.html",
+	name: "DOM Query (Mootools)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-query-yui": {
+	file: "dom-query-yui.html",
+	name: "DOM Query (Yahoo UI)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-style-jquery": {
+	file: "dom-style-jquery.html",
+	name: "DOM Style (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-style-prototype": {
+	file: "dom-style-prototype.html",
+	name: "DOM Style (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-traverse-jquery": {
+	file: "dom-traverse-jquery.html",
+	name: "DOM Traversal (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+},
+"dom-traverse-prototype": {
+	file: "dom-traverse-prototype.html",
+	name: "DOM Traversal (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "",
+	tags: ["dom"]
+}
 }

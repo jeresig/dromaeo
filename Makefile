@@ -15,11 +15,12 @@ web: ${TESTS}
 	@@ for i in ${TESTS}; do \
 		echo "Converting $${i} to web test..."; \
 		cat dep/web/test-head.js "$${i}" dep/web/test-tail.js | \
-			sed "s/startTest.\(.*\).;/startTest\(\1 `svn info "$${i}" | grep Rev: | sed s/.*Rev:/,/`\);/" > ${WEB}"/$${i}"; \
+			sed "s/startTest.\(.*\).;/startTest\(\1 `git show --abbrev-commit "$${i}" | grep commit | grep \\.\\.\\. | sed s/commit./,\'/ | sed s/[.][.][.]/\'/`\);/" > ${WEB}"/$${i}"; \
 	done
 	@@ for i in ${HTMLTESTS}; do \
 		echo "Converting $${i} to web test..."; \
-		cat "$${i}" | sed "s/startTest.\(.*\).;/startTest\(\1 `svn info "$${i}" | grep Rev: | sed s/.*Rev:/,/`\);/" > ${WEB}"/$${i}"; \
+		cat "$${i}" | \
+			sed "s/startTest.\(.*\).;/startTest\(\1 `git show --abbrev-commit "$${i}" | grep commit | grep \\.\\.\\. | sed s/commit./,\'/ | sed s/[.][.][.]/\'/`\);/" > ${WEB}"/$${i}"; \
 	done
 
 perf: ${TESTS}

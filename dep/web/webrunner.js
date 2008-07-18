@@ -278,6 +278,9 @@
 						iframe.style.height = "1px";
 						iframe.style.width = "1px";
 						iframe.src = "tests/" + test.file;
+						iframe.onload = function(){
+							initTest( name );
+						};
 						document.body.appendChild( iframe );
 					
 					// Otherwise we're loading a pure-JS test
@@ -520,8 +523,7 @@
 		if ( update )
 			per = 1;
 
-		testElems[data.curID].html("<b>" + tests[data.curID].name + " <small>v" +
-			data.version + "</small>:</b> <div class='bar'><div style='width:" +
+		testElems[data.curID].html("<b>" + tests[data.curID].name + ":</b> <div class='bar'><div style='width:" +
 			per + "%;'>" + (per >= 100 ? "<span>" +
 			testSummary[data.curID].toFixed(2) + "ms</span>" : "") + "</div></div>");
 

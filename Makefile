@@ -1,4 +1,4 @@
-RUNNER = dep/runner.js
+RUNNER = dep/run/runner.js
 TESTS = tests/*.js
 HTMLTESTS = tests/*.html
 RESULTS = results

@@ -86,7 +86,7 @@
 			setTimeout(function(){
 				// run tests
 				try {
-					if ( doShark ) {
+					if ( doShark(name) ) {
 						connectShark();
 						startShark();
 					}
@@ -95,7 +95,7 @@
 					fn();
 					var cur = (new Date()).getTime();
 
-					if ( doShark ) {
+					if ( doShark(name) ) {
 						stopShark();
 						disconnectShark();
 					}
@@ -103,7 +103,7 @@
 					// For making Median and Variance
 					times.push( cur - start );
 				} catch( e ) {
-					alert("FAIL " + name + " " + num);
+					alert("FAIL " + name + " " + num + e);
 					return;
 				}
 
@@ -229,10 +229,25 @@
 		/./;
 
 	// To enable shark debugging add &shark to the end of the URL
-	var doShark = false;
-	for ( var i = 0; i < parts.length; i++ )
-		if ( parts[i] == "shark" )
-			doShark = true;
+	var doShark = function(name) { return false; };
+	for ( var i = 0; i < parts.length; i++ ) {
+		var m = /^shark(?:=(.*))?$/.exec(parts[i]);
+		if (m) {
+			if (m[1] === undefined) {
+				doShark = function(name) { return true; };
+			}
+			else {
+				var sharkMatch = new RegExp(m[1]);
+				doShark = function(name) {
+					return sharkMatch.test(name);
+				};
+			}
+		}
+
+		m = /^numTests=(\d+)$/.exec(parts[i]);
+		if (m)
+			numTests = Number(m[1]);
+	}
 
 	jQuery(function(){
 		var id = search.match(/id=([\d,]+)/);

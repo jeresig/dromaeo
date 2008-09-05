@@ -462,10 +462,10 @@
 				// Skip results that we're filtering out
 				if ( !filter.test(result) )
 					continue;
-	
+
 				var tmp = processWinner(results[result].total);
 
-				output += "<tr><th class='name'>" + result + "</th>";
+				output += "<tr><th class='name'><span>&#9654; </span><a href='' onclick='return toggleResults(this);'>" + tests[result].name + "</a></th>";
 				for ( var run in runs ) {
 					var mean = results[result].total[run].mean;
 					var error = results[result].total[run].error;
@@ -479,6 +479,15 @@
 				
 				showWinner(tmp);
 				output += "</tr>";
+
+				var _tests = results[result].tests, _data = _tests[run], _num = _data.length;
+				for ( var i = 0; i < _num; i++ ) {
+					output += "<tr class='onetest hidden'><td><small>" + _data[i].name + "</small></td>";
+					for ( var run in runs ) {
+						output += "<td>" + (_tests[run][i].mean - 0).toFixed(2) + "<small>ms &#177;" + (_tests[run][i].error - 0).toFixed(2) + "%</small></td>";
+					}
+					output += "<td></td></tr>";
+				}
 			}
 	
 			for ( var run in runs )
@@ -505,6 +514,22 @@
 			}
 		}
 	}
+
+	this.toggleResults = function(elem){
+		var span = elem.previousSibling;
+
+		elem.blur();
+		elem = elem.parentNode.parentNode.nextSibling;
+
+		span.innerHTML = elem.className.indexOf("hidden") < 0 ? "&#9654; " : "&#9660; ";
+
+		while ( elem && elem.className.indexOf("onetest") >= 0 ) {
+			elem.className = "onetest" + (elem.className.indexOf("hidden") >= 0 ? " " : " hidden");
+			elem = elem.nextSibling;
+		}
+
+		return false;
+	};
 
 	function updateTime(){
 		time -= timePerTest;

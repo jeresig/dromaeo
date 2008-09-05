@@ -68,6 +68,8 @@ a 				{font: normal  "Arial", sans-serif; color: #f9f2a1; }
 
 table.results	{text-align: center; margin: 0px auto; padding: 0px; background: none;}
 table.results td, table.results th 			{padding: 2px;}
+table.results tr.onetest td, table.results tr.onetest th 			{padding: 0px;}
+table.results tr.hidden { display: none; }
 #info			{margin-bottom: 10px;}
 table.results .winner			{background: #58bd79;}
 .name			{font-weight: bold;}

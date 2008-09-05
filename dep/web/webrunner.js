@@ -566,7 +566,8 @@
 		var ret = {
 			winner: min,
 			diff: -1 * Math.round((1 - (min2Val / minVal)) * 100),
-			tie: (minVal + (minVal * (data[min].error / 100)) + (min2Val * (data[min2].error / 100))) >= min2Val
+			//tie: (minVal + (minVal * (data[min].error / 100)) + (min2Val * (data[min2].error / 100))) >= min2Val
+			tie: Math.floor(minVal) == Math.floor(min2Val)
 		};
 
 		ret.tie = ret.tie || ret.diff == 0;

@@ -409,7 +409,10 @@
 
 					var total = results[curID].total[result.run_id];
 					for ( var type in total )
-						total[type] += parseFloat(result[type]);
+						if ( type == "error" )
+							total.error += (parseFloat(result.error) / 100) * parseFloat(result.mean);
+						else
+							total[type] += parseFloat(result[type]);
 				}
 			}
 		}
@@ -467,14 +470,14 @@
 
 				output += "<tr><th class='name'><span>&#9654; </span><a href='' onclick='return toggleResults(this);'>" + tests[result].name + "</a></th>";
 				for ( var run in runs ) {
-					var mean = results[result].total[run].mean;
-					var error = results[result].total[run].error;
+					var mean = results[result].total[run].mean - 0;
+					var error = results[result].total[run].error - 0;
 	
 					runs[run].num++;
 					runs[run].mean += mean;
-					runs[run].error += error;
+					runs[run].error += (error / 100) * mean;
 		
-					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>ms &#177;" + error.toFixed(2) + "%</small></td>";
+					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>ms &#177;" + ((error / mean) * 100).toFixed(2) + "%</small></td>";
 				}
 				
 				showWinner(tmp);
@@ -497,7 +500,7 @@
 
 			output += "<tr><th class='name'>Total:</th>";
 			for ( var run in runs )
-				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>ms &#177;" + runs[run].error.toFixed(2) + "%</small></th>";
+				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>ms &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
 			showWinner(tmp);
 			output += "</tr>";
 
@@ -591,8 +594,7 @@
 		var ret = {
 			winner: min,
 			diff: -1 * Math.round((1 - (min2Val / minVal)) * 100),
-			//tie: (minVal + (minVal * (data[min].error / 100)) + (min2Val * (data[min2].error / 100))) >= min2Val
-			tie: Math.floor(minVal) == Math.floor(min2Val)
+			tie: minVal + data[min].error + data[min2].error >= min2Val
 		};
 
 		ret.tie = ret.tie || ret.diff == 0;

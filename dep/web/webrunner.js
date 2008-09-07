@@ -467,14 +467,16 @@
 
 				var tmp = processWinner(results[result].total);
 
-				output += "<tr><th class='name'><span>&#9654; </span><a href='' onclick='return toggleResults(this);'>" + tests[result].name + "</a></th>";
+				output += "<tr><th class='name'><span onclick='toggleResults(this.nextSibling);'>&#9654; </span>" +
+					"<a href='' onclick='return toggleResults(this);'>" + tests[result].name + "</a></th>";
+
 				for ( var run in runs ) {
 					var mean = results[result].total[run].mean - 0;
 					var error = results[result].total[run].error - 0;
 	
 					runs[run].num++;
 					runs[run].mean += mean;
-					runs[run].error += (error / 100) * mean;
+					runs[run].error += error;
 		
 					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>ms &#177;" + ((error / mean) * 100).toFixed(2) + "%</small></td>";
 				}
@@ -492,9 +494,6 @@
 				}
 			}
 	
-			for ( var run in runs )
-				runs[run].error /= runs[run].num;
-
 			var tmp = processWinner(runs);
 
 			output += "<tr><th class='name'>Total:</th>";

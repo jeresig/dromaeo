@@ -22,15 +22,13 @@
 			setTimeout( init, 100 );
 
 		testName = name;
-		if ( !filter.test(testName) ) return;
+		if ( !queues[testName] ) return;
 		testID = testName;
 		testNames[testID] = testName;
 		testVersions[testID] = version || 0;
 		testSummary[testID] = testDone[testID] = testNum[testID] = 0;
 
-		makeElem(testID);
-
-		queue.push(function(){
+		queues[testID].push(function(){
 			summary = 0;
 			dequeue();
 		});
@@ -38,8 +36,8 @@
 
 	// Anything that you want to have run in order, but not actually test
 	this.prep = function(fn){
-		if ( !filter.test(testName) ) return;
-		queue.push(function(){
+		if ( !queues[testName] ) return;
+		queues[testID].push(function(){
 			fn();
 			dequeue();
 		});
@@ -47,9 +45,9 @@
 
 	// End the tests and finalize the report
 	this.endTest = function(){
-		if ( !filter.test(testName) ) return;
+		if ( !queues[testName] ) return;
 		// Save the summary output until all the test are complete
-		queue.push(function(){
+		queues[testID].push(function(){
 			dequeue();
 		});
 	};
@@ -59,7 +57,8 @@
 	//  num = The 'length' of the test (length of string, # of tests, etc.)
 	//  fn = A function holding the test to run
 	this.test = function(name, num, fn){
-		if ( !filter.test(testName) ) return;
+		if ( !queues[testName] ) return;
+		// Save the summary output until all the test are complete
 		var curTest = testName, curID = testID;
 
 		if ( !nameDone[name] )
@@ -74,7 +73,7 @@
 		testNum[curID]++;
 
 		// Don't execute the test immediately
-		queue.push(function(){
+		queues[testID].push(function(){
 			title = name;
 			var times = [], start, pos = 0;
 			
@@ -205,6 +204,7 @@
 	
 	// Queue of functions to run
 	var queue = [];
+	var queues = {};
 	
 
 	
@@ -258,7 +258,9 @@
 			names = [];
 
 			for ( var name in tests )
-				names.push( name );
+				// Don't load tests that we aren't looking for
+				if ( filter.test( name ) )
+					names.push( name );
 
 			names = names.sort(function(a, b){
 				return tests[a].name < tests[b].name ?  -1 :
@@ -280,11 +282,11 @@
 			} else {
 				for ( var i = 0; i < names.length; i++ ) (function(name){
 					var test = tests[name];
+
+					queues[name] = [];
+					makeElem(name);
+					initTest(name);
 					
-					// Don't load tests that we aren't looking for
-					if ( !filter.test( name ) )
-						return;
-							
 					totalTests++;
 					
 					// Check if we're loading an HTML file
@@ -293,16 +295,11 @@
 						iframe.style.height = "1px";
 						iframe.style.width = "1px";
 						iframe.src = "tests/" + test.file;
-						iframe.onload = function(){
-							initTest( name );
-						};
 						document.body.appendChild( iframe );
 					
 					// Otherwise we're loading a pure-JS test
 					} else {
-						jQuery.getScript("tests/" + test.file, function(){
-							initTest( name );
-						});
+						jQuery.getScript("tests/" + test.file);
 					}
 				})(names[i]);
 			}
@@ -339,6 +336,10 @@
 	
 	// Run once all the test files are fully loaded
 	function init(){
+		for ( var n = 0; n < names.length; n++ ) {
+			queue = queue.concat( queues[ names[n] ] );
+		}
+
 		totalTime = time;
 		time += timePerTest;
 		updateTime();

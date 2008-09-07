@@ -443,8 +443,7 @@
 				// testDone, testNum, testSummary
 				testDone[ result ] = numTests - 1;
 				testNum[ result ] = 1;
-				var mean = parseFloat(item.mean);
-				testSummary[ result ] = (testSummary[ result ] || 0) + mean;
+
 				updateTestPos( item );
 			}
 

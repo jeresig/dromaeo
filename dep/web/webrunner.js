@@ -462,7 +462,7 @@
 
 			for ( var result in results ) {
 				// Skip results that we're filtering out
-				if ( !filter.test(result) )
+				if ( !filter.test(result) || !tests[result] )
 					continue;
 
 				var tmp = processWinner(results[result].total);

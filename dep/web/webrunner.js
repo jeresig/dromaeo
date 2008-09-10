@@ -363,10 +363,10 @@
 	function initTest(curID){
 		$("<div class='result-item'></div>")
 			.append( testElems[ curID ] )
-			.append( "<p>" + tests[ curID ].desc + "<br/><a href='" + 
-				tests[ curID ].origin[1] + "'>Origin</a>, <a href='tests/" +
-				tests[ curID ].file + "'>Source</a>, <b>Tests:</b> " +
-				tests[ curID ].tags.join(", ") + "</p>" )
+			.append( "<p>" + (tests[curID] ? tests[ curID ].desc : "") + "<br/><a href='" + 
+				(tests[curID] && tests[curID].origin ? tests[ curID ].origin[1] : "") + "'>Origin</a>, <a href='tests/" +
+				(tests[curID] ? tests[ curID ].file : "") + "'>Source</a>, <b>Tests:</b> " +
+				(tests[curID] && tests[curID].tags ? tests[ curID ].tags.join(", ") : "") + "</p>" )
 			.append( "<ol class='results'></ol>" )
 			.appendTo("#main");
 	}
@@ -463,13 +463,14 @@
 
 			for ( var result in results ) {
 				// Skip results that we're filtering out
-				if ( !filter.test(result) || !tests[result] )
+				if ( !filter.test(result) )
 					continue;
 
+				var name = tests[result] ? tests[result].name : result;
 				var tmp = processWinner(results[result].total);
 
 				output += "<tr><th class='name'><span onclick='toggleResults(this.nextSibling);'>&#9654; </span>" +
-					"<a href='' onclick='return toggleResults(this);'>" + tests[result].name + "</a></th>";
+					"<a href='' onclick='return toggleResults(this);'>" + name + "</a></th>";
 
 				for ( var run in runs ) {
 					var mean = results[result].total[run].mean - 0;
@@ -544,7 +545,7 @@
 	
 	function logTest(data){
 		// Keep a running summary going
-		testSummary[data.curID] += parseFloat(data.mean);
+		testSummary[data.curID] = (testSummary[data.curID] || 0) + parseFloat(data.mean);
 		maxTotal += parseFloat(data.mean);
 
 		testDone[data.curID]--;
@@ -565,7 +566,8 @@
 		if ( update )
 			per = 1;
 
-		testElems[data.curID].html("<b>" + tests[data.curID].name + ":</b> <div class='bar'><div style='width:" +
+		testElems[data.curID].html("<b>" + (tests[data.curID] ? tests[data.curID].name : data.curID) +
+			":</b> <div class='bar'><div style='width:" +
 			per + "%;'>" + (per >= 100 ? "<span>" +
 			testSummary[data.curID].toFixed(2) + "ms</span>" : "") + "</div></div>");
 
@@ -616,6 +618,6 @@
 				next.css("display", display == 'none' ? 'block' : 'none');
 			});
 
-		updateTestPos({curID: testID, collection: tests[testID].name, version: testVersions[testID]}, true);
+		updateTestPos({curID: testID, collection: tests[testID] ? tests[testID].name : testID, version: testVersions[testID]}, true);
 	}
 })();

@@ -5,7 +5,7 @@ var ret;
 
 // TESTS: String concatenation
 
-for ( var num = 500; num <= 4000; num *= 2 ) (function(num){
+for ( var num = 20000; num <= 160000; num *= 2 ) (function(num){
 
 	test( "Concat String", num, function(){
 		var str = "";
@@ -23,21 +23,21 @@ for ( var num = 500; num <= 4000; num *= 2 ) (function(num){
 
 	test( "Concat String from charCode", num, function(){
 		var str = "";
-		for ( var i = 0; i < num; i++ )
+		for ( var i = 0; i < num / 2; i++ )
 			str += String.fromCharCode(97);
 		ret = str;
 	});
 
 	test( "Array String Join", num, function(){
 		var str = [];
-		for ( var i = 0; i < num; i++ )
+		for ( var i = 0; i < num / 2; i++ )
 			str.push("a");
 		ret = str.join("");
 	});
 
 })(num);
 
-var ostr = [], tmp, num = 50;
+var ostr = [], tmp, num = 5000, tmpstr;
 
 for ( var i = 0; i < 16384; i++ )
 	ostr.push( String.fromCharCode( (25 * Math.random()) + 97 ) );
@@ -46,20 +46,30 @@ ostr = ostr.join("");
 
 var str;
 
-for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
+for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 	prep(function(){
 		str = new String(ostr);
 	});
 
 	// TESTS: split
-/* This test makes Safari sad :-(
 	test( "String Split", i, function(){
 		ret = str.split("");
 	});
-*/
+
+	prep(function(){
+		tmpstr = str;
+		tmpstr += tmpstr;
+		tmpstr += tmpstr;
+		tmpstr += tmpstr;
+		tmpstr += tmpstr;
+	});
 
 	test( "String Split on Char", i, function(){
-		ret = str.split("a");
+		ret = tmpstr.split("a");
+	});
+
+	prep(function(){
+		str += str;
 	});
 
 	// TESTS: characters
@@ -78,7 +88,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 			ret = str[0];
 			ret = str[str.length - 1];
 			ret = str[ 15000 ];
-			ret = str[ 12000 ];
+			ret = str[ 10000 ];
+			ret = str[ 5000 ];
 		}
 	});
 
@@ -87,7 +98,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 			ret = str.charCodeAt(0);
 			ret = str.charCodeAt(str.length - 1);
 			ret = str.charCodeAt( 15000 );
-			ret = str.charCodeAt( 12000 );
+			ret = str.charCodeAt( 10000 );
+			ret = str.charCodeAt( 5000 );
 		}
 	});
 
@@ -108,19 +120,6 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 			ret = str.lastIndexOf("b");
 			ret = str.lastIndexOf("c");
 			ret = str.lastIndexOf("d");
-		}
-	});
-
-	// TESTS: length
-
-	test( "length", i, function(){
-		for ( var j = 0; j < num; j++ ) {
-			ret = str.length;
-			ret = str.length;
-			ret = str.length;
-			ret = str.length;
-			ret = str.length;
-			ret = str.length;
 		}
 	});
 
@@ -166,30 +165,14 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	// TESTS: toLower/UpperCase
 
 	test( "toLowerCase", i, function(){
-		for ( var j = 0; j < num; j++ ) {
+		for ( var j = 0; j < num / 1000; j++ ) {
 			ret = str.toLowerCase();
 		}
 	});
 
 	test( "toUpperCase", i, function(){
-		for ( var j = 0; j < num; j++ ) {
+		for ( var j = 0; j < num / 1000; j++ ) {
 			ret = str.toUpperCase();
-		}
-	});
-
-	// TESTS: toString
-
-	test( "toString", i, function(){
-		for ( var j = 0; j < num; j++ ) {
-			ret = str.toString();
-		}
-	});
-
-	// TESTS: valueOf
-
-	test( "valueOf", i, function(){
-		for ( var j = 0; j < num; j++ ) {
-			ret = str.valueOf();
 		}
 	});
 
@@ -197,7 +180,7 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 
 	test( "comparing", i, function(){
 		var tmp = str + "a";
-		for ( var j = 0; j < num; j++ ) {
+		for ( var j = 0; j < num / 1000; j++ ) {
 			ret = str == tmp;
 			ret = str < tmp;
 			ret = str > tmp;

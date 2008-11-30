@@ -7,7 +7,7 @@ window.onload = function(){
 startTest("dom-modify-jquery");
 
 // Try to force real results
-var ret, tmp, div, a;
+var ret, tmp, div, a, dd;
 
 var html = document.body.innerHTML,
 	elem = document.createElement("div"),
@@ -18,6 +18,7 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
 		a = jQuery("a");
+		dd = jQuery("dd");
 		div = jQuery("div");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
@@ -31,7 +32,7 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 	*/
 
 	test("jQuery - html()", num, function(){
-		a.html( elemStr );
+		dd.html( elemStr );
 	});
 
 	test("jQuery - before()", num, function(){

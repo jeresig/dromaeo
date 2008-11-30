@@ -12,7 +12,7 @@ var elems = [];
 var htmlstr = document.body.innerHTML;
 var div = document.createElement("div");
 
-for ( var i = 0; i < 16384; i++ )
+for ( var i = 0; i < 1024; i++ )
         str += String.fromCharCode( (25 * Math.random()) + 97 );
 
 for ( var num = 100; num <= 800; num *= 2 ) (function(num){
@@ -27,10 +27,12 @@ for ( var num = 100; num <= 800; num *= 2 ) (function(num){
 			ret = document.createTextNode(str);
 	});
 
+	/* Need a better way to test this
 	test( "removeChild", num, function(){
 		while ( document.body.firstChild )
 			document.body.removeChild( document.body.firstChild );
 	});
+	*/
 
 	test( "innerHTML", num, function(){
 		document.body.innerHTML = htmlstr;
@@ -57,11 +59,7 @@ for ( var num = 100; num <= 800; num *= 2 ) (function(num){
 		for ( var i = 0; i < elems.length; i++ )
 			document.body.insertBefore( elems[i], document.body.firstChild );
 	});
-	
-	prep(function(){
-		str += str;
-		htmlstr += htmlstr;
-	});
+
 })(num);
 
 endTest();

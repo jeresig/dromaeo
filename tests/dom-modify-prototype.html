@@ -7,7 +7,7 @@ window.onload = function(){
 startTest("dom-modify-prototype");
 
 // Try to force real results
-var ret, tmp, div, a;
+var ret, tmp, div, a, dd;
 
 var html = document.body.innerHTML,
 	elem = document.createElement("div"),
@@ -18,6 +18,7 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
 		a = $$("a");
+		dd = $$("dd");
 		div = $$("div");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
@@ -31,7 +32,7 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 	*/
 
 	test("Prototype - update()", num, function(){
-		a.invoke("update", elemStr);
+		dd.invoke("update", elemStr);
 	});
 	
 	test("Prototype - before", num, function(){

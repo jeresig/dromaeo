@@ -8,7 +8,7 @@
 	var numTests = 5;
 	
 	// The type of run that we're doing (options are "runs/s" or "ms")
-	var runStyle = "ms";
+	var runStyle = "runs/s";
 	
 	// A rough estimate, in seconds, of how long it'll take each test
 	// iteration to run
@@ -461,7 +461,7 @@
 			updateTime();
 
 			$("#overview input").remove();
-			$("#timebar").html("<span><strong>" + parseFloat(maxTotal).toFixed(2) + "</strong>ms (Total)</span>");
+			$("#timebar").html("<span><strong>" + parseFloat(maxTotal).toFixed(2) + "</strong>" + runStyle + " (Total)</span>");
 		} else {
 			// Remove results where there is only one comparison set
 			for ( var id in results ) {
@@ -573,6 +573,7 @@
 
 		testDone[data.curID]--;
 		updateTestPos(data);
+console.log( data );
 
 		testElems[data.curID].next().next().append("<li><b>" + data.name + 
 			":</b> " + parseFloat(data.mean).toFixed(2) + "<small>" + runStyle + " &#177;" + data.error.toFixed(2) + "%</small></li>");

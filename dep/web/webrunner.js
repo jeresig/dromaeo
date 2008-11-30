@@ -377,6 +377,7 @@
 		var results = {};
 		var runs = {};
 		var output = "";
+		var excluded = [];
 		var overview = document.getElementById("overview");
 
 		for ( var d = 0; d < datas.length; d++ ) {
@@ -399,16 +400,18 @@
 			for ( var i = 0; i < data.results.length; i++ ) {
 				var result = data.results[i];
 				var curID = result.collection;
+				
+				result.version += data.style;
 
 				if ( !results[curID] )
 					results[curID] = {tests:{}, total:{}, version: result.version};
 
-				if ( !results[curID].total[result.run_id] ) {
-					results[curID].total[result.run_id] = {max:0, mean:0, median:0, min:0, deviation:0, error:0};
-					results[curID].tests[result.run_id] = [];
-				}
-
 				if ( results[curID].version == result.version ) {
+					if ( !results[curID].total[result.run_id] ) {
+						results[curID].total[result.run_id] = {max:0, mean:0, median:0, min:0, deviation:0, error:0};
+						results[curID].tests[result.run_id] = [];
+					}
+					
 					result.error = ((((result.deviation / Math.sqrt(result.runs)) * tDistribution) / result.mean) * 100) || 0;
 					results[curID].tests[result.run_id].push( result );
 
@@ -460,6 +463,22 @@
 			$("#overview input").remove();
 			$("#timebar").html("<span><strong>" + parseFloat(maxTotal).toFixed(2) + "</strong>ms (Total)</span>");
 		} else {
+			// Remove results where there is only one comparison set
+			for ( var id in results ) {
+				var num = 0;
+				
+				for ( var ntest in results[id].tests ) {
+					num++;
+					if ( num > 1 )
+						break;
+				}
+				
+				if ( num <= 1 ) {
+					excluded.push( id );
+					delete results[id];
+				}
+			}
+		
 			output += "<tr><td></td>";
 			for ( var run in runs )
 				output += "<th><a href='?id=" + run + "'>" + runs[run].name + "</a></th>";
@@ -509,7 +528,7 @@
 			output += "</tr>";
 
 			overview.className = "";
-			overview.innerHTML = "<div class='resultwrap'><table class='results'>" + output + "</table></div>";
+			overview.innerHTML = "<div class='resultwrap'><table class='results'>" + output + "</table>" + (excluded.length ? "<div style='text-align:left;'><small><b>Excluded Tests:</b> " + excluded.sort().join(", ") + "</small></div>" : "") + "</div>";
 		}
 		
 		function showWinner(tmp){

@@ -573,7 +573,6 @@
 
 		testDone[data.curID]--;
 		updateTestPos(data);
-console.log( data );
 
 		testElems[data.curID].next().next().append("<li><b>" + data.name + 
 			":</b> " + parseFloat(data.mean).toFixed(2) + "<small>" + runStyle + " &#177;" + data.error.toFixed(2) + "%</small></li>");

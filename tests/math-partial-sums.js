@@ -31,8 +31,7 @@ startTest("math-partial-sums");
 
 for ( var i = 1024; i <= 8192; i *= 2 ) (function(i){
 	test( "Partial Sums", i, function(){
-		for (var i = 1024; i <= 16384; i *= 2)
-			partial(i);
+		partial(i);
 	});
 })(i);
 

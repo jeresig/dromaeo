@@ -7,7 +7,7 @@ window.onload = function(){
 startTest("dom-traverse-jquery");
 
 // Try to force real results
-var ret, tmp, div;
+var ret, tmp, div, dd;
 
 var html = document.body.innerHTML;
 
@@ -15,6 +15,7 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
 		div = jQuery("div");
+		dd = jQuery("dd");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
@@ -33,7 +34,7 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 	});
 
 	test("jQuery - prevAll", num, function(){
-		ret = div.prevAll().length;
+		ret = dd.prevAll().length;
 	});
 
 	test("jQuery - next", num, function(){
@@ -41,11 +42,11 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 	});
 
 	test("jQuery - nextAll", num, function(){
-		ret = div.nextAll().length;
+		ret = dd.nextAll().length;
 	});
 
 	test("jQuery - siblings", num, function(){
-		ret = div.siblings().length;
+		ret = dd.siblings().length;
 	});
 
 	test("jQuery - children", num, function(){

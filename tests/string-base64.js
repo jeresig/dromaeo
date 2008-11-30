@@ -120,18 +120,17 @@ startTest("string-base64");
 
 var str = [];
 
-for ( var i = 0; i < 8192; i++ )
+for ( var i = 0; i < 4096; i++ )
         str.push( String.fromCharCode( (25 * Math.random()) + 97 ) );
 
 str = str.join("");
 
 var base64;
 
-for ( var i = 2048; i <= 16384; i *= 2 ) (function(i){
+for ( var i = 1024; i <= 8192; i *= 2 ) (function(i){
 
 	test( "Convert String to Base 64", i, function(){
-		for ( var i = 8192; i <= 16384; i *= 2 )
-			base64 = toBase64(str);
+		base64 = toBase64(str);
 	});
 
 	prep(function(){
@@ -140,8 +139,7 @@ for ( var i = 2048; i <= 16384; i *= 2 ) (function(i){
 	});
 
 	test( "Convert Base 64 to String", i, function(){
-		for ( var i = 8192; i <= 16384; i *= 2 )
-			base64ToString(base64);
+		base64ToString(base64);
 	});
 
 	// Double the string

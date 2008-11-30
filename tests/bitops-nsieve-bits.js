@@ -24,7 +24,7 @@ function primes(isPrime, n) {
 
 startTest("bitops-nsieve-bits");
 
-for ( var i = 2; i <= 5; i++ ) (function(i){
+for ( var i = 0; i <= 3; i++ ) (function(i){
 	test( "N-Sieve Bits", i, function(){
 		var isPrime = new Array((10000<<i)+31>>5);
 		primes(isPrime, i);

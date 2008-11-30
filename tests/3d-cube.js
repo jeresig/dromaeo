@@ -327,8 +327,7 @@ function Init(CubeSize) {
 
 for ( var i = 20; i <= 160; i *= 2 ) (function(i){
 	test("Rotate 3D Cube", i, function(){
-		for ( var i = 20; i <= 160; i *= 2 )
-			Init(i);
+		Init(20);
 	});
 })(i);
 

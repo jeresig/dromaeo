@@ -21,50 +21,6 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		document.body.appendChild( div );
 	});
 
-	test( "firstChild", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			var cur = document.body.firstChild;
-			while ( cur )
-				cur = cur.firstChild;
-			ret = cur;
-		}
-	});
-
-	test( "lastChild", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			var cur = document.body.lastChild;
-			while ( cur )
-				cur = cur.lastChild;
-			ret = cur;
-		}
-	});
-
-	test( "nextSibling", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			var cur = document.body.firstChild;
-			while ( cur )
-				cur = cur.nextSibling;
-			ret = cur;
-		}
-	});
-
-	test( "previousSibling", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			var cur = document.body.lastChild;
-			while ( cur )
-				cur = cur.previousSibling;
-			ret = cur;
-		}
-	});
-
-	test( "childNodes", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			var nodes = document.body.childNodes;
-			for ( var j = 0; j < nodes.length; j++ )
-				ret = nodes[j];
-		}
-	});
-
 	test( "getElementById", num, function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elem = document.getElementById("test" + num);
@@ -78,28 +34,28 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "getElementsByTagName('div')", num, function(){
+	test( "getElementsByTagName(div)", num, function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("div");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName('p')", num, function(){
+	test( "getElementsByTagName(p)", num, function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("p");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName('a')", num, function(){
+	test( "getElementsByTagName(a)", num, function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("a");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName('*')", num, function(){
+	test( "getElementsByTagName(*)", num, function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("*");
 			ret = elems[elems.length-1].nodeType;
@@ -125,21 +81,6 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 			ret = document.getElementsByName("test");
 		}
 	});
-
-	if ( document.getElementsByClassName ) {
-		test( "getElementsByClassName", num, function(){
-			for ( var i = 0; i < num; i++ ) {
-				var elems = document.getElementsByClassName("test" + num);
-				ret = elems[elems.length-1].nodeType;
-			}
-		});
-
-		test( "getElementsByClassName (not in document)", num, function(){
-			for ( var i = 0; i < num; i++ ) {
-				ret = document.getElementsByClassName("test").length == 0;
-			}
-		});
-	}
 
 })(num);
 

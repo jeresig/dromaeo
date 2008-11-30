@@ -20,7 +20,7 @@ function morph(a,f) {
     
 for ( var size = 30; size <= 240; size *= 2 ) (function(size){
 	prep(function(){
-		nz = nx = size;
+		nz = nx = size / 3;
 	});
 
 	test("Mesh Transform", size, function(){

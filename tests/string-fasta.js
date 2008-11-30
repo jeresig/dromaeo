@@ -82,15 +82,15 @@ var ret;
 
 for ( var n = 2; n <= 16; n *= 2 ) (function(n){
 	test( "Homo sapiens alu", n, function(){
-		ret = fastaRepeat(2*n*100000, ALU);
+		ret = fastaRepeat(2*n*10000, ALU);
 	});
 	
 	test( "IUB ambiguity codes", n, function(){
-		ret = fastaRandom(3*n*1000, IUB);
+		ret = fastaRandom(3*n*100, IUB);
 	});
 	
 	test( "Homo sapiens frequency", n, function(){
-		ret = fastaRandom(5*n*1000, HomoSap);
+		ret = fastaRandom(5*n*100, HomoSap);
 	});
 })(n);
 

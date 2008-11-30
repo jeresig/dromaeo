@@ -157,7 +157,7 @@ var ret;
 
 for ( var n = 2; n <= 16; n *= 2 ) (function(n){
 	test( "N-Body", n, function(){
-		for ( var n = 3; n <= 24; n *= 2 ) {
+		for ( var n = 3; n <= 6; n *= 2 ) {
 		var bodies = new NBodySystem( Array(
 		   Sun(),Jupiter(),Saturn(),Uranus(),Neptune()
 		));

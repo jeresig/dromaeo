@@ -1,18 +1,18 @@
 (function(){
-
-	// A rough estimate, in seconds, of how long it'll take each test
-	// iteration to run
-	var timePerTest = 0.5;
 	
 	// Populated from: http://www.medcalc.be/manual/t-distribution.php
 	// 95% confidence for N - 1 = 4
 	var tDistribution = 2.776;
 	
-	// The minimum number of individual test iterations to do
+	// The number of individual test iterations to do
 	var numTests = 5;
-
-	// Re-run tests above a specific error threshold (in %)
-	var errorThreshold = 5;
+	
+	// The type of run that we're doing (options are "runs/s" or "ms")
+	var runStyle = "ms";
+	
+	// A rough estimate, in seconds, of how long it'll take each test
+	// iteration to run
+	var timePerTest = runStyle === "runs/s" ? 1 : 0.5;
 	
 	// Initialize a batch of tests
 	//  name = The name of the test collection
@@ -75,7 +75,7 @@
 		// Don't execute the test immediately
 		queues[testID].push(function(){
 			title = name;
-			var times = [], start, pos = 0;
+			var times = [], start, pos = 0, cur;
 			
 			if ( !fn ) {
 				fn = num;
@@ -89,10 +89,23 @@
 						connectShark();
 						startShark();
 					}
-
+					
 					start = (new Date()).getTime();
-					fn();
-					var cur = (new Date()).getTime();
+					
+					if ( runStyle === "runs/s" ) {
+						var runs = 0;
+						
+						cur = (new Date()).getTime();
+						
+						while ( (cur - start) < 1000 ) {
+							fn();
+							cur = (new Date()).getTime();
+							runs++;
+						}
+					} else {
+						fn();
+						cur = (new Date()).getTime();
+					}
 
 					if ( doShark(name) ) {
 						stopShark();
@@ -100,7 +113,11 @@
 					}
 					
 					// For making Median and Variance
-					times.push( cur - start );
+					if ( runStyle === "runs/s" ) {
+						times.push( (runs * 1000) / (cur - start) );
+					} else {
+						times.push( cur - start );
+					}
 				} catch( e ) {
 					alert("FAIL " + name + " " + num + e);
 					return;
@@ -117,30 +134,15 @@
 				} else {
 					var data = compute( times, numTests );
 
-					if ( data.error > errorThreshold && pos < numTests * 2 ) {
-						var minDiff = data.mean - data.min;
-						var maxDiff = data.max - data.mean;
-
-						if ( minDiff > maxDiff ) {
-							times.shift();
-						} else {
-							times.pop();
-						}
-
-						if ( pos < numTests * 2 )
-							setTimeout( arguments.callee, 1 );
-
-					} else {
-						data.curID = curID;
-						data.collection = testNames[curID];
-						data.version = testVersions[curID];
-						data.name = title;
-						data.scale = num;
-				
-						logTest(data);
-				
-						dequeue();
-					}
+					data.curID = curID;
+					data.collection = testNames[curID];
+					data.version = testVersions[curID];
+					data.name = title;
+					data.scale = num;
+			
+					logTest(data);
+			
+					dequeue();
 				}
 			}, 1);
 		});
@@ -316,7 +318,7 @@
 			time = 0;
 			
 			$("#overview input").remove();
-			$("#timebar").html("<span><strong>" + parseFloat(maxTotal).toFixed(2) + "</strong>ms (Total)</span>");
+			$("#timebar").html("<span><strong>" + parseFloat(maxTotal).toFixed(2) + "</strong>" + runStyle + " (Total)</span>");
 	
 			if ( dataStore && dataStore.length ) {
 				$("body").addClass("alldone");
@@ -324,7 +326,7 @@
 				jQuery.ajax({
 					type: "POST",
 					url: "store.php",
-					data: "data=" + encodeURIComponent(JSON.stringify(dataStore)),
+					data: "data=" + encodeURIComponent(JSON.stringify(dataStore)) + "&style=" + runStyle,
 					success: function(id){
 						var url = window.location.href.replace(/\?.*$/, "") + "?id=" + id;
 						div.html("Results saved. You can access them at a later time at the following URL:<br/><strong><a href='" + url + "'>" + url + "</a></strong></div>");
@@ -379,6 +381,8 @@
 
 		for ( var d = 0; d < datas.length; d++ ) {
 			var data = datas[d];
+			
+			runStyle = data.style;
 
 			if ( datas.length == 1 ) {
 				$("#overview").before("<div class='results'>Viewing test run #" + id +
@@ -480,7 +484,7 @@
 					runs[run].mean += mean;
 					runs[run].error += error;
 		
-					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>ms &#177;" + ((error / mean) * 100).toFixed(2) + "%</small></td>";
+					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>" + runStyle + " &#177;" + ((error / mean) * 100).toFixed(2) + "%</small></td>";
 				}
 				
 				showWinner(tmp);
@@ -490,7 +494,7 @@
 				for ( var i = 0; i < _num; i++ ) {
 					output += "<tr class='onetest hidden'><td><small>" + _data[i].name + "</small></td>";
 					for ( var run in runs ) {
-						output += "<td>" + (_tests[run][i].mean - 0).toFixed(2) + "<small>ms &#177;" + (_tests[run][i].error - 0).toFixed(2) + "%</small></td>";
+						output += "<td>" + (_tests[run][i].mean - 0).toFixed(2) + "<small>run/s &#177;" + (_tests[run][i].error - 0).toFixed(2) + "%</small></td>";
 					}
 					output += "<td></td></tr>";
 				}
@@ -500,7 +504,7 @@
 
 			output += "<tr><th class='name'>Total:</th>";
 			for ( var run in runs )
-				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>ms &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
+				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + runStyle + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
 			showWinner(tmp);
 			output += "</tr>";
 
@@ -552,7 +556,7 @@
 		updateTestPos(data);
 
 		testElems[data.curID].next().next().append("<li><b>" + data.name + 
-			":</b> " + parseFloat(data.mean).toFixed(2) + "<small>ms &#177;" + data.error.toFixed(2) + "%</small></li>");
+			":</b> " + parseFloat(data.mean).toFixed(2) + "<small>" + runStyle + " &#177;" + data.error.toFixed(2) + "%</small></li>");
 
 		dataStore.push(data);
 	}
@@ -569,7 +573,7 @@
 		testElems[data.curID].html("<b>" + (tests[data.curID] ? tests[data.curID].name : data.curID) +
 			":</b> <div class='bar'><div style='width:" +
 			per + "%;'>" + (per >= 100 ? "<span>" +
-			testSummary[data.curID].toFixed(2) + "ms</span>" : "") + "</div></div>");
+			testSummary[data.curID].toFixed(2) + runStyle + "</span>" : "") + "</div></div>");
 
 		if ( per >= 100 && testSummary[data.curID] > 0 ) {
 			testElems[data.curID].parent().addClass("done");

@@ -39,8 +39,8 @@
 		$data = $json->decode(str_replace('\\"', '"', $_REQUEST['data']));
 
 		if ( $data ) {
-		mysql_query( sprintf("INSERT into runs VALUES(NULL,'%s','%s',NOW());",
-			$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR']) );
+		mysql_query( sprintf("INSERT into runs VALUES(NULL,'%s','%s',NOW(),'%s');",
+			$_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR'], str_replace(';', "", $_REQUEST['style'])) );
 
 		$id = mysql_insert_id();
 

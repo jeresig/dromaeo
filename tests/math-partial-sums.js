@@ -29,7 +29,7 @@ function partial(n){
 
 startTest("math-partial-sums");
 
-for ( var i = 1024; i <= 8192; i *= 2 ) (function(i){
+for ( var i = 512; i <= 4096; i *= 2 ) (function(i){
 	test( "Partial Sums", i, function(){
 		partial(i);
 	});

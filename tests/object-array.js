@@ -4,31 +4,20 @@ var ret = [], tmp, num = 500;
 
 for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 
+	i = 131072 / 128;
+
 	// TESTS: Array Building
 
 	test("Array Construction, []", i, function(){
-		for ( var j = 0; j < num; j++ ) {
+		for ( var j = 0; j < i * 15; j++ ) {
 			ret = [];
 			ret.length = i;
 		}
 	});
 
 	test("Array Construction, new Array()", i, function(){
-		for ( var j = 0; j < num; j++ )
+		for ( var j = 0; j < i * 10; j++ )
 			ret = new Array(i);
-	});
-
-	test("Array Construction, push", i, function(){
-		ret = [];
-		for ( var j = 0; j < i; j++ )
-			ret.push(j);
-	});
-
-	i /= 128;
-
-	test("Array Deconstruction, pop", i, function(){
-		for ( var j = 0; j < i; j++ )
-			tmp = ret.pop();
 	});
 
 	test("Array Construction, unshift", i, function(){
@@ -37,20 +26,34 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 			ret.unshift(j);
 	});
 
-	test("Array Deconstruction, shift", i, function(){
-		for ( var j = 0; j < i; j++ )
-			tmp = ret.shift();
-	});
-
 	test("Array Construction, splice", i, function(){
 		ret = [];
 		for ( var j = 0; j < i; j++ )
 			ret.splice(0,0,j);
 	});
 
-	test("Array Deconstruction, splice", i, function(){
+	test("Array Deconstruction, shift", i, function(){
+		var a = ret.slice();
 		for ( var j = 0; j < i; j++ )
-			tmp = ret.splice(0,1);
+			tmp = a.shift();
+	});
+
+	test("Array Deconstruction, splice", i, function(){
+		var a = ret.slice();
+		for ( var j = 0; j < i; j++ )
+			tmp = a.splice(0,1);
+	});
+
+	test("Array Construction, push", i, function(){
+		ret = [];
+		for ( var j = 0; j < i * 25; j++ )
+			ret.push(j);
+	});
+
+	test("Array Deconstruction, pop", i, function(){
+		var a = ret.slice();
+		for ( var j = 0; j < i * 25; j++ )
+			tmp = a.pop();
 	});
 
 })(i);

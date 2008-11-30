@@ -50,7 +50,7 @@ startTest("math-spectral-norm");
 
 for ( var i = 8; i <= 64; i *= 2 ) (function(i){
   test( "Spectral Norm", i, function(){
-    for (var i = 6; i <= 24; i *= 2)
+    for (var i = 12; i <= 24; i *= 2)
       spectralnorm(i);
   });
 })(i);

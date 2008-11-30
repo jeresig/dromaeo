@@ -11,37 +11,36 @@ str = str.join("");
 for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 
 	// TESTS: split
-	// Note: These tests are really slow, so we're running them for smaller
-	//       test sets only.
 
-	if ( i <= 32768 ) {
-		prep(function(){
-			re = //;
-			tmp = str;
-		});
+	prep(function(){
+		re = //;
+		tmp = str;
+	});
 
-		test( "Compiled Object Empty Split", i, function(){
+	test( "Compiled Object Empty Split", i, function(){
+		for ( var i = 0; i < 100; i++ )
 			ret = tmp.split( re );
-		});
+	});
 
-		prep(function(){
-			re = /a/;
-			tmp = str;
-		});
+	prep(function(){
+		re = /a/;
+		tmp = str;
+	});
 
-		test( "Compiled Object Char Split", i, function(){
+	test( "Compiled Object Char Split", i, function(){
+		for ( var i = 0; i < 30; i++ )
 			ret = tmp.split( re );
-		});
+	});
 
-		prep(function(){
-			re = /.*/;
-			tmp = str;
-		});
+	prep(function(){
+		re = /.*/;
+		tmp = str;
+	});
 
-		test( "Compiled Object Variable Split", i, function(){
+	test( "Compiled Object Variable Split", i, function(){
+		for ( var i = 0; i < 100; i++ )
 			ret = tmp.split( re );
-		});
-	}
+	});
     
 	// TESTS: Compiled RegExps
 
@@ -51,7 +50,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Match", i, function(){
-		ret = tmp.match( re );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( re );
 	});
 	
 	prep(function(){
@@ -59,7 +59,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Test", i, function(){
-		ret = re.test( tmp );
+		for ( var i = 0; i < 100; i++ )
+			ret = re.test( tmp );
 	});
     
 	prep(function(){
@@ -67,7 +68,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Empty Replace", i, function(){
-		ret = tmp.replace( re, "" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "" );
 	});
 	
 	prep(function(){
@@ -75,7 +77,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled 12 Char Replace", i, function(){
-		ret = tmp.replace( re, "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "asdfasdfasdf" );
 	});
 	
 	prep(function(){
@@ -84,7 +87,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Object Match", i, function(){
-		ret = tmp.match( re );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( re );
 	});
 	
 	prep(function(){
@@ -92,7 +96,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Object Test", i, function(){
-		ret = re.test( tmp );
+		for ( var i = 0; i < 100; i++ )
+			ret = re.test( tmp );
 	});
     
 	prep(function(){
@@ -100,7 +105,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Object Empty Replace", i, function(){
-		ret = tmp.replace( re, "" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "" );
 	});
 	
 	prep(function(){
@@ -108,7 +114,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Object 12 Char Replace", i, function(){
-		ret = tmp.replace( re, "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "asdfasdfasdf" );
 	});
 	
 	prep(function(){
@@ -116,7 +123,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Object 12 Char Replace Function", i, function(){
-		ret = tmp.replace( re, function(all){
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, function(all){
 			return "asdfasdfasdf";
 		});
 	});
@@ -129,7 +137,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Variable Match", i, function(){
-		ret = tmp.match( re );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( re );
 	});
 	
 	prep(function(){
@@ -137,7 +146,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Variable Test", i, function(){
-		ret = re.test( tmp );
+		for ( var i = 0; i < 100; i++ )
+			ret = re.test( tmp );
 	});
     
 	prep(function(){
@@ -145,7 +155,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Variable Empty Replace", i, function(){
-		ret = tmp.replace( re, "" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "" );
 	});
 	
 	prep(function(){
@@ -153,7 +164,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Variable 12 Char Replace", i, function(){
-		ret = tmp.replace( re, "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "asdfasdfasdf" );
 	});
 	
 	prep(function(){
@@ -162,7 +174,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Variable Object Match", i, function(){
-		ret = tmp.match( re );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( re );
 	});
 	
 	prep(function(){
@@ -170,7 +183,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Variable Object Test", i, function(){
-		ret = re.test( tmp );
+		for ( var i = 0; i < 100; i++ )
+			ret = re.test( tmp );
 	});
     
 	prep(function(){
@@ -178,7 +192,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Compiled Variable Object Empty Replace", i, function(){
-		ret = tmp.replace( re, "" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "" );
 	});
 	
 	prep(function(){
@@ -186,7 +201,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Variable Object 12 Char Replace", i, function(){
-		ret = tmp.replace( re, "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "asdfasdfasdf" );
 	});
 	
 	prep(function(){
@@ -194,7 +210,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Variable Object 12 Char Replace Function", i, function(){
-		ret = tmp.replace( re, function(all){
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, function(all){
 			return "asdfasdfasdf";
 		});
 	});
@@ -207,7 +224,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Capture Match", i, function(){
-		ret = tmp.match( re );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( re );
 	});
 	
 	prep(function(){
@@ -215,7 +233,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Capture Replace", i, function(){
-		ret = tmp.replace( re, "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "asdfasdfasdf" );
 	});
 	
 	prep(function(){
@@ -223,7 +242,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Capture Replace with Capture", i, function(){
-		ret = tmp.replace( re, "asdf\\1asdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, "asdf\\1asdfasdf" );
 	});
 	
 	prep(function(){
@@ -231,7 +251,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Capture Replace with Capture Function", i, function(){
-		ret = tmp.replace( re, function(all,capture){
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, function(all,capture){
 			return "asdf" + capture + "asdfasdf";
 		});
 	});
@@ -241,7 +262,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Compiled Capture Replace with Upperase Capture Function", i, function(){
-		ret = tmp.replace( re, function(all,capture){
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( re, function(all,capture){
 			return capture.toUpperCase();
 		});
 	});
@@ -253,7 +275,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Uncompiled Match", i, function(){
-		ret = tmp.match( /aaaaaaaaaa/g );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( /aaaaaaaaaa/g );
 	});
 	
 	prep(function(){
@@ -261,7 +284,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Uncompiled Test", i, function(){
-		ret = (/aaaaaaaaaa/g).test( tmp );
+		for ( var i = 0; i < 100; i++ )
+			ret = (/aaaaaaaaaa/g).test( tmp );
 	});
     
 	prep(function(){
@@ -269,7 +293,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Uncompiled Empty Replace", i, function(){
-		ret = tmp.replace( /aaaaaaaaaa/g, "" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( /aaaaaaaaaa/g, "" );
 	});
 	
 	prep(function(){
@@ -277,7 +302,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Uncompiled 12 Char Replace", i, function(){
-		ret = tmp.replace( /aaaaaaaaaa/g, "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( /aaaaaaaaaa/g, "asdfasdfasdf" );
 	});
 	
 	prep(function(){
@@ -285,7 +311,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Uncompiled Object Match", i, function(){
-		ret = tmp.match( new RegExp("aaaaaaaaaa", "g") );
+		for ( var i = 0; i < 100; i++ )
+			ret = tmp.match( new RegExp("aaaaaaaaaa", "g") );
 	});
 	
 	prep(function(){
@@ -293,7 +320,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Uncompiled Object Test", i, function(){
-		ret = (new RegExp("aaaaaaaaaa", "g")).test( tmp );
+		for ( var i = 0; i < 100; i++ )
+			ret = (new RegExp("aaaaaaaaaa", "g")).test( tmp );
 	});
     
 	prep(function(){
@@ -301,7 +329,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
     
 	test( "Uncompiled Object Empty Replace", i, function(){
-		ret = tmp.replace( new RegExp("aaaaaaaaaa", "g"), "" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( new RegExp("aaaaaaaaaa", "g"), "" );
 	});
 	
 	prep(function(){
@@ -309,7 +338,8 @@ for ( var i = 16384; i <= 131072; i *= 2 ) (function(i){
 	});
 	
 	test( "Uncompiled Object 12 Char Replace", i, function(){
-		ret = tmp.replace( new RegExp("aaaaaaaaaa", "g"), "asdfasdfasdf" );
+		for ( var i = 0; i < 50; i++ )
+			ret = tmp.replace( new RegExp("aaaaaaaaaa", "g"), "asdfasdfasdf" );
 	});
 	
 	// Double the length of the string

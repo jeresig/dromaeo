@@ -4,26 +4,18 @@ startTest("core-eval");
 var ret, tmp;
 
 // The commands that we'll be evaling
-var cmd = 'var str="";for(var i=0;i<10;i++){str += "a";}ret = str;';
+var cmd = 'var str="";for(var i=0;i<1000;i++){str += "a";}ret = str;';
 
 // TESTS: eval()
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
-	test( "No eval", num, function(){
-		for ( var n = 0; n < num; n++ ) {
-			var str = "";
-			for ( var i = 0; i < 100; i++ ) {
-				str += "a";
-			}
-			ret = str;
-		}
+	prep(function(){
+		tmp = cmd;
+
+		for ( var n = 0; n < num; n++ )
+			tmp += tmp;
 	});
-
-	tmp = cmd;
-
-	for ( var n = 0; n < num; n++ )
-		tmp += tmp;
 
 	test( "Normal eval", num, function(){
 		eval(tmp);
@@ -31,15 +23,6 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	test( "new Function", num, function(){
 		(new Function(tmp))();
-	});
-
-	var fn;
-	try {
-	   fn = new Function(tmp);
-	} catch(e){}
-
-	test( "Pre-Compiled Function", num, function(){
-		fn();
 	});
 
 })(num);

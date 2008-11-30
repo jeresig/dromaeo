@@ -65,7 +65,7 @@ startTest("access-fannkuch");
 
 var ret;
 
-for ( var n = 2; n <= 5; n++ ) (function(n){
+for ( var n = 5; n <= 8; n++ ) (function(n){
 	test( "Pfannkuchen", n, function(){
 		ret = fannkuch(n);
 	});

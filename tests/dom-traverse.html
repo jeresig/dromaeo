@@ -22,25 +22,33 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 	});
 
 	test( "firstChild", num, function(){
+		var nodes = document.body.childNodes, nl = nodes.length;
+
 		for ( var i = 0; i < num; i++ ) {
-			var cur = document.body.firstChild;
-			while ( cur )
-				cur = cur.firstChild;
-			ret = cur;
+			for ( var j = 0; j < nl; j++ ) {
+				var cur = nodes[j];
+				while ( cur )
+					cur = cur.firstChild;
+				ret = cur;
+			}
 		}
 	});
 
 	test( "lastChild", num, function(){
+		var nodes = document.body.childNodes, nl = nodes.length;
+
 		for ( var i = 0; i < num; i++ ) {
-			var cur = document.body.lastChild;
-			while ( cur )
-				cur = cur.lastChild;
-			ret = cur;
+			for ( var j = 0; j < nl; j++ ) {
+				var cur = nodes[j];
+				while ( cur )
+					cur = cur.lastChild;
+				ret = cur;
+			}
 		}
 	});
 
 	test( "nextSibling", num, function(){
-		for ( var i = 0; i < num; i++ ) {
+		for ( var i = 0; i < num * 2; i++ ) {
 			var cur = document.body.firstChild;
 			while ( cur )
 				cur = cur.nextSibling;
@@ -49,7 +57,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 	});
 
 	test( "previousSibling", num, function(){
-		for ( var i = 0; i < num; i++ ) {
+		for ( var i = 0; i < num * 2; i++ ) {
 			var cur = document.body.lastChild;
 			while ( cur )
 				cur = cur.previousSibling;

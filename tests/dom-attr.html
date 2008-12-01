@@ -11,7 +11,7 @@ var ret, tmp;
 var elem = document.getElementById("test1");
 var a = document.getElementsByTagName("a")[0];
 
-for ( var num = 1280; num <= 10240; num *= 2 ) (function(num){
+for ( var num = 2560; num <= 20480; num *= 2 ) (function(num){
 	
 	test( "getAttribute", num, function(){
 		for ( var i = 0; i < num; i++ )
@@ -19,7 +19,7 @@ for ( var num = 1280; num <= 10240; num *= 2 ) (function(num){
 	});
 
 	test( "element.property", num, function(){
-		for ( var i = 0; i < num; i++ )
+		for ( var i = 0; i < num * 2; i++ )
 			ret = elem.id;
 	});
 

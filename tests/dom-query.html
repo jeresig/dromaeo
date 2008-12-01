@@ -13,7 +13,7 @@ var html = document.body.innerHTML;
 for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 
 	prep(function(){
-		html = html.replace(/id="test.*?"/g, 'id="test' + num + '"');
+		html = html.replace(/id="test(\w).*?"/g, 'id="test$1' + num + '"');
 		html = html.replace(/name="test.*?"/g, 'name="test' + num + '"');
 		html = html.replace(/class="foo.*?"/g, 'class="foo test' + num + ' bar"');
 		var div = document.createElement("div");
@@ -22,15 +22,24 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 	});
 
 	test( "getElementById", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			var elem = document.getElementById("test" + num);
-			ret = elem.nodeType;
+		for ( var i = 0; i < num * 30; i++ ) {
+			ret = document.getElementById("testA" + num).nodeType;
+			ret = document.getElementById("testB" + num).nodeType;
+			ret = document.getElementById("testC" + num).nodeType;
+			ret = document.getElementById("testD" + num).nodeType;
+			ret = document.getElementById("testE" + num).nodeType;
+			ret = document.getElementById("testF" + num).nodeType;
 		}
 	});
 
 	test( "getElementById (not in document)", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			ret = document.getElementById("test");
+		for ( var i = 0; i < num * 30; i++ ) {
+			ret = document.getElementById("testA");
+			ret = document.getElementById("testB");
+			ret = document.getElementById("testC");
+			ret = document.getElementById("testD");
+			ret = document.getElementById("testE");
+			ret = document.getElementById("testF");
 		}
 	});
 
@@ -70,15 +79,25 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 	});
 
 	test( "getElementsByName", num, function(){
-		for ( var i = 0; i < num; i++ ) {
+		for ( var i = 0; i < num * 20; i++ ) {
+			var elems = document.getElementsByName("test" + num);
+			ret = elems[elems.length-1].nodeType;
+			var elems = document.getElementsByName("test" + num);
+			ret = elems[elems.length-1].nodeType;
+			var elems = document.getElementsByName("test" + num);
+			ret = elems[elems.length-1].nodeType;
 			var elems = document.getElementsByName("test" + num);
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
 	test( "getElementsByName (not in document)", num, function(){
-		for ( var i = 0; i < num; i++ ) {
-			ret = document.getElementsByName("test");
+		for ( var i = 0; i < num * 20; i++ ) {
+			ret = document.getElementsByName("test").length == 0;
+			ret = document.getElementsByName("test").length == 0;
+			ret = document.getElementsByName("test").length == 0;
+			ret = document.getElementsByName("test").length == 0;
+			ret = document.getElementsByName("test").length == 0;
 		}
 	});
 
@@ -233,7 +252,7 @@ endTest();
 
   <div class="subtoc">
 
-   <h2 id="test10"><a name=contents>Table of contents</a></h2>
+   <h2 id="testF10"><a name=contents>Table of contents</a></h2>
 
    <ul class="toc">
     <li class="tocline2"><a href="#context">1. Introduction</a>
@@ -324,7 +343,7 @@ endTest();
 
   </div>
 
-  <h2><a name=context>1. Introduction</a></h2>
+  <h2 id="testA10"><a name=context>1. Introduction</a></h2>
 
   <h3><a name=dependencies></a>1.1. Dependencies</h3>
 
@@ -379,7 +398,7 @@ endTest();
 
   </ul>
 
-<h2><a name=selectors></a>2. Selectors</h2>
+<h2 id="testB10"><a name=selectors></a>2. Selectors</h2>
 
 <p><em>This section is non-normative, as it merely summarizes the
 following sections.</em></p>
@@ -693,14 +712,14 @@ representations.</p>
 prepending "matches" to the contents of each cell in the "Meaning"
 column.</p>
 
-<h2><a name=casesens>3. Case sensitivity</a></h2>
+<h2 id="testC10"><a name=casesens>3. Case sensitivity</a></h2>
 
 <p>The case sensitivity of document language element names, attribute
 names, and attribute values in selectors depends on the document
 language. For example, in HTML, element names are case-insensitive,
 but in XML, they are case-sensitive.</p>
 
-<h2><a name=selector-syntax>4. Selector syntax</a></h2>
+<h2 id="testD10"><a name=selector-syntax>4. Selector syntax</a></h2>
 
 <p>A <dfn><a name=selector>selector</a></dfn> is a chain of one
 or more <a href="#sequence">sequences of simple selectors</a>
@@ -748,7 +767,7 @@ simple selectors.</p>
 no pseudo-element, is an <a href="#Conformance">invalid
 selector</a>.</p>
 
-<h2><a name=grouping>5. Groups of selectors</a></h2>
+<h2 id="testE10"><a name=grouping>5. Groups of selectors</a></h2>
 
 <p>When several selectors share the same declarations, they may be
 grouped into a comma-separated list. (A comma is U+002C.)</p>

@@ -633,6 +633,13 @@
 	}
 	
 	function makeElem(testID){
+		if ( tests[testID] ) {
+			var cat = tests[testID].category, catsm = cat.replace(/[^\w]/g, "-");
+			if ( !$("#" + catsm).length ) {
+				$("#main").append("<h2 id='" + catsm + "' class='test'><a href='?cat=" + cat +"'>" + cat + '</a><div class="bar"><div id="timebar" style="width:25%;"><span class="left">Est.&nbsp;Time:&nbsp;<strong id="left">0:00</strong></span></div></div>');
+			}
+		}
+		
 		testElems[testID] = $("<div class='test'></div>")
 			.click(function(){
 				var next = jQuery(this).next().next();

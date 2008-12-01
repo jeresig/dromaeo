@@ -97,3 +97,8 @@ div.bar span { padding-left: 5px; padding-right: 5px; }
 h1 { font-size: 28px; border-bottom: 1px solid #AAA; position: relative; padding: 0px 1% 2px 1%;}
 h1 div.bar { font-size: 10px; width: 275px; top: -2px; right: 1%; }
 h1 input { position: absolute; top: 0px; right: 300px; }
+
+h2 { font-size: 20px; border-bottom: 1px solid #AAA; position: relative; padding: 0px 1% 2px 1%;}
+h2 a { color: #FFF; }
+h2 div.bar { font-size: 10px; width: 275px; top: -2px; right: 1%; }
+h2 input { position: absolute; top: 0px; right: 300px; }

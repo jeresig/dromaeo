@@ -7,6 +7,54 @@
 	category: "Dromaeo JavaScript Tests",
 	tags: ["object", "array", "property", "math"]
 },
+"string-base64": {
+	file: "string-base64.js",
+	name: "Base 64 Encoding and Decoding",
+	origin: ["Mozilla", "http://mozilla.org/"],
+	desc: "Encode and decode a random string to base 64.",
+	category: "Dromaeo JavaScript Tests",
+	tags: ["string","array","looping","bitops"]
+},
+"core-eval": {
+	file: "core-eval.js",
+	name: "Code Evaluation",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Microtests of code evaluation (eval, new Function).",
+	category: "Dromaeo JavaScript Tests",
+	tags: ["eval","microtest"]
+},
+"object-array": {
+	file: "object-array.js",
+	name: "Arrays",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Microtests of arrays (construction, methods, access).",
+	category: "Dromaeo JavaScript Tests",
+	tags: ["array","microtest"]
+},
+"object-regexp": {
+	file: "object-regexp.js",
+	name: "Regular Expressions",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Microtests of regular expressions (construction, matching, replace).",
+	category: "Dromaeo JavaScript Tests",
+	tags: ["regexp","microtest"]
+},
+"object-string": {
+	file: "object-string.js",
+	name: "Strings",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Microtests of strings (concatenation, methods).",
+	category: "Dromaeo JavaScript Tests",
+	tags: ["string","microtest"]
+},
+"real-packer": {
+	file: "real-packer.js",
+	name: "Script Unpacking",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Decompressing and evaluation scripts run through Dean Edwards' Packer.",
+	category: "Dromaeo JavaScript Tests",
+	tags: ["regexp","string","eval","looping"]
+},
 "3d-morph": {
 	file: "3d-morph.js",
 	name: "3D Mesh Transformation",
@@ -79,14 +127,6 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["array","looping","math"]
 },
-"string-base64": {
-	file: "string-base64.js",
-	name: "Base 64 Encoding and Decoding",
-	origin: ["Mozilla", "http://mozilla.org/"],
-	desc: "Encode and decode a random string to base 64.",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["string","array","looping","bitops"]
-},
 "string-fasta": {
 	file: "string-fasta.js",
 	name: "DNA Sequence Alignment",
@@ -95,46 +135,6 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["string","object","looping"]
 },
-"core-eval": {
-	file: "core-eval.js",
-	name: "Code Evaluation",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Microtests of code evaluation (eval, new Function).",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["eval","microtest"]
-},
-"object-array": {
-	file: "object-array.js",
-	name: "Arrays",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Microtests of arrays (construction, methods, access).",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["array","microtest"]
-},
-"object-regexp": {
-	file: "object-regexp.js",
-	name: "Regular Expressions",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Microtests of regular expressions (construction, matching, replace).",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["regexp","microtest"]
-},
-"object-string": {
-	file: "object-string.js",
-	name: "Strings",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Microtests of strings (concatenation, methods).",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["string","microtest"]
-},
-"real-packer": {
-	file: "real-packer.js",
-	name: "Script Unpacking",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Decompressing and evaluation scripts run through Dean Edwards' Packer.",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["regexp","string","eval","looping"]
-},
 "dom-attr": {
 	file: "dom-attr.html",
 	name: "DOM Attributes",
@@ -142,6 +142,30 @@
 	desc: "Setting and getting DOM node attributes.",
 	category: "Dromaeo DOM Tests",
 	tags: ["dom","attributes"]
+},
+"dom-modify": {
+	file: "dom-modify.html",
+	name: "DOM Modification",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Creating and injecting DOM nodes into a document.",
+	category: "Dromaeo DOM Tests",
+	tags: ["dom","modify"]
+},
+"dom-query": {
+	file: "dom-query.html",
+	name: "DOM Query",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document.",
+	category: "Dromaeo DOM Tests",
+	tags: ["dom","query"]
+},
+"dom-traverse": {
+	file: "dom-traverse.html",
+	name: "DOM Traversal",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Traversing a DOM structure.",
+	category: "Dromaeo DOM Tests",
+	tags: ["dom","traverse"]
 },
 "dom-attr-jquery": {
 	file: "dom-attr-jquery.html",
@@ -175,14 +199,6 @@
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","events"]
 },
-"dom-modify": {
-	file: "dom-modify.html",
-	name: "DOM Modification",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Creating and injecting DOM nodes into a document.",
-	category: "Dromaeo DOM Tests",
-	tags: ["dom","modify"]
-},
 "dom-modify-jquery": {
 	file: "dom-modify-jquery.html",
 	name: "DOM Modification (jQuery)",
@@ -198,62 +214,6 @@
 	desc: "Creating and injecting DOM nodes into a document using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","modify"]
-},
-"dom-query": {
-	file: "dom-query.html",
-	name: "DOM Query",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document.",
-	category: "Dromaeo DOM Tests",
-	tags: ["dom","query"]
-},
-"dom-query-jquery": {
-	file: "dom-query-jquery.html",
-	name: "DOM Query (jQuery)",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document using the jQuery JavaScript Library.",
-	category: "JavaScript Library Tests",
-	tags: ["dom","jslib","jquery","query"]
-},
-"dom-query-prototype": {
-	file: "dom-query-prototype.html",
-	name: "DOM Query (Prototype)",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document using the Prototype JavaScript Library.",
-	category: "JavaScript Library Tests",
-	tags: ["dom","jslib","prototype","query"]
-},
-"dom-query-dojo": {
-	file: "dom-query-dojo.html",
-	name: "DOM Query (Dojo)",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document using the Dojo JavaScript Library.",
-	category: "JavaScript Library Tests",
-	tags: ["dom","jslib","dojo","query"]
-},
-"dom-query-ext": {
-	file: "dom-query-ext.html",
-	name: "DOM Query (ExtJS)",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document using the ExtJS JavaScript Library.",
-	category: "JavaScript Library Tests",
-	tags: ["dom","jslib","extjs","query"]
-},
-"dom-query-mootools": {
-	file: "dom-query-mootools.html",
-	name: "DOM Query (Mootools)",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document using the Mootools JavaScript Library.",
-	category: "JavaScript Library Tests",
-	tags: ["dom","jslib","mootools","query"]
-},
-"dom-query-yui": {
-	file: "dom-query-yui.html",
-	name: "DOM Query (Yahoo UI)",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Querying DOM elements in a document using the Yahoo UI JavaScript Library.",
-	category: "JavaScript Library Tests",
-	tags: ["dom","jslib","yui","query"]
 },
 "dom-style-jquery": {
 	file: "dom-style-jquery.html",
@@ -271,14 +231,6 @@
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","style"]
 },
-"dom-traverse": {
-	file: "dom-traverse.html",
-	name: "DOM Traversal",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Traversing a DOM structure.",
-	category: "Dromaeo DOM Tests",
-	tags: ["dom","traverse"]
-},
 "dom-traverse-jquery": {
 	file: "dom-traverse-jquery.html",
 	name: "DOM Traversal (jQuery)",
@@ -294,5 +246,53 @@
 	desc: "Traversing a DOM structure using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","traverse"]
+},
+"dom-query-jquery": {
+	file: "dom-query-jquery.html",
+	name: "DOM Query (jQuery)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document using the jQuery JavaScript Library.",
+	category: "DOM CSS Selection",
+	tags: ["dom","jslib","jquery","query"]
+},
+"dom-query-prototype": {
+	file: "dom-query-prototype.html",
+	name: "DOM Query (Prototype)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document using the Prototype JavaScript Library.",
+	category: "DOM CSS Selection",
+	tags: ["dom","jslib","prototype","query"]
+},
+"dom-query-dojo": {
+	file: "dom-query-dojo.html",
+	name: "DOM Query (Dojo)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document using the Dojo JavaScript Library.",
+	category: "DOM CSS Selection",
+	tags: ["dom","jslib","dojo","query"]
+},
+"dom-query-ext": {
+	file: "dom-query-ext.html",
+	name: "DOM Query (ExtJS)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document using the ExtJS JavaScript Library.",
+	category: "DOM CSS Selection",
+	tags: ["dom","jslib","extjs","query"]
+},
+"dom-query-mootools": {
+	file: "dom-query-mootools.html",
+	name: "DOM Query (Mootools)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document using the Mootools JavaScript Library.",
+	category: "DOM CSS Selection",
+	tags: ["dom","jslib","mootools","query"]
+},
+"dom-query-yui": {
+	file: "dom-query-yui.html",
+	name: "DOM Query (Yahoo UI)",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Querying DOM elements in a document using the Yahoo UI JavaScript Library.",
+	category: "DOM CSS Selection",
+	tags: ["dom","jslib","yui","query"]
 }
 }

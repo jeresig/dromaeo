@@ -80,9 +80,9 @@ startTest("string-fasta");
 
 var ret;
 
-for ( var n = 2; n <= 16; n *= 2 ) (function(n){
+for ( var n = 4; n <= 32; n *= 2 ) (function(n){
 	test( "Homo sapiens alu", n, function(){
-		ret = fastaRepeat(2*n*10000, ALU);
+		ret = fastaRepeat(4*n*10000, ALU);
 	});
 	
 	test( "IUB ambiguity codes", n, function(){

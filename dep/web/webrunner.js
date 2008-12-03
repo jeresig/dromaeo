@@ -255,7 +255,7 @@
 	jQuery(function(){
 		var id = search.match(/id=([\d,]+)/);
 
-		if ( none ) {
+		if ( none && !id ) {
 			$("#overview").hide();
 			return;
 		} 

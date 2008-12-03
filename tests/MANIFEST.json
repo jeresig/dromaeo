@@ -55,6 +55,46 @@
 	category: "Dromaeo JavaScript Tests",
 	tags: ["regexp","string","eval","looping"]
 },
+"v8-crypto": {
+	file: "v8-crypto.js",
+	name: "RSA Encryption/Decryption",
+	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
+	desc: "Encrypt a string and then decrypt it again using RSA.",
+	category: "V8 Benchmark Tests",
+	tags: ["looping","string","bitops"]
+},
+"v8-deltablue": {
+	file: "v8-deltablue.js",
+	name: "DeltaBlue Constraint Solving",
+	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
+	desc: "Computing a number of limitations on a set of values.",
+	category: "V8 Benchmark Tests",
+	tags: ["looping","functions"]
+},
+"v8-earley-boyer": {
+	file: "v8-earley-boyer.js",
+	name: "String Parsing and Searching",
+	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
+	desc: "Tests for parsing languages and searching strings.",
+	category: "V8 Benchmark Tests",
+	tags: ["looping","functions","string"]
+},
+"v8-raytrace": {
+	file: "v8-raytrace.html",
+	name: "RayTracer",
+	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
+	desc: "Renders a scene using raytracing (no rendering done).",
+	category: "V8 Benchmark Tests",
+	tags: ["looping","functions","object"]
+},
+"v8-richards": {
+	file: "v8-richards.js",
+	name: "Richards Benchmarks",
+	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
+	desc: "A series of benchmarks to test the quality system implementation languages.",
+	category: "V8 Benchmark Tests",
+	tags: ["function","object"]
+},
 "3d-morph": {
 	file: "3d-morph.js",
 	name: "3D Mesh Transformation",

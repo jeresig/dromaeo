@@ -151,6 +151,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping", "bitops"]
 },
+"sunspider-bitops-bitwise-and": {
+	file: "sunspider-bitops-bitwise-and.js",
+	name: "Bitwise And",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Compute a number by using a series of 'and' bit operations.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["looping", "bitops"]
+},
 "sunspider-bitops-nsieve-bits": {
 	file: "sunspider-bitops-nsieve-bits.js",
 	name: "Prime Number Computation (2)",

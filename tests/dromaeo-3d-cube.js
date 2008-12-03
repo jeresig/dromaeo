@@ -2,8 +2,6 @@
 // http://www.speich.net/computer/moztesting/3d.htm
 // Created by Simon Speich
 
-startTest("3d-cube");
-
 var Q = new Array();
 var MTrans = new Array();	// transformation matrix
 var MQube = new Array();	// position information of qube
@@ -324,6 +322,8 @@ function Init(CubeSize) {
 	Testing.Init = true;
 	Loop();
 }
+
+startTest("dromaeo-3d-cube");
 
 test("Rotate 3D Cube", function(){
 	Init(20);

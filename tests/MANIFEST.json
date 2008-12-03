@@ -175,6 +175,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["functions"]
 },
+"sunspider-crypto-aes": {
+	file: "sunspider-crypto-aes.js",
+	name: "AES Encryption/Decryption",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Encrypt a string and then decrypt it again using AES.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["looping","string","bitops"]
+},
 "sunspider-math-partial-sums": {
 	file: "sunspider-math-partial-sums.js",
 	name: "Partial Sum Calculation",

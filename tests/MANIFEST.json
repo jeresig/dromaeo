@@ -183,6 +183,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping","string","bitops"]
 },
+"sunspider-crypto-md5": {
+	file: "sunspider-crypto-md5.js",
+	name: "MD5 Hashing",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Hash a long string using MD5.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["looping","string"]
+},
 "sunspider-math-partial-sums": {
 	file: "sunspider-math-partial-sums.js",
 	name: "Partial Sum Calculation",

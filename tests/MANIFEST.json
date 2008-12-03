@@ -1,59 +1,51 @@
 {
-"3d-cube": {
-	file: "3d-cube.js",
+"dromaeo-3d-cube": {
+	file: "dromaeo-3d-cube.js",
 	name: "Rotating 3D Cube",
 	origin: ["Simon Speich", "http://www.speich.net/computer/moztesting/3d.htm"],
 	desc: "Rotating the individual pixels of a cube. No rendering done.",
 	category: "Dromaeo JavaScript Tests",
 	tags: ["object", "array", "property", "math"]
 },
-"string-base64": {
-	file: "string-base64.js",
+"dromaeo-string-base64": {
+	file: "dromaeo-string-base64.js",
 	name: "Base 64 Encoding and Decoding",
 	origin: ["Mozilla", "http://mozilla.org/"],
 	desc: "Encode and decode a random string to base 64.",
 	category: "Dromaeo JavaScript Tests",
 	tags: ["string","array","looping","bitops"]
 },
-"core-eval": {
-	file: "core-eval.js",
+"dromaeo-core-eval": {
+	file: "dromaeo-core-eval.js",
 	name: "Code Evaluation",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of code evaluation (eval, new Function).",
 	category: "Dromaeo JavaScript Tests",
 	tags: ["eval","microtest"]
 },
-"object-array": {
-	file: "object-array.js",
+"dromaeo-object-array": {
+	file: "dromaeo-object-array.js",
 	name: "Arrays",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of arrays (construction, methods, access).",
 	category: "Dromaeo JavaScript Tests",
 	tags: ["array","microtest"]
 },
-"object-regexp": {
-	file: "object-regexp.js",
+"dromaeo-object-regexp": {
+	file: "dromaeo-object-regexp.js",
 	name: "Regular Expressions",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of regular expressions (construction, matching, replace).",
 	category: "Dromaeo JavaScript Tests",
 	tags: ["regexp","microtest"]
 },
-"object-string": {
-	file: "object-string.js",
+"dromaeo-object-string": {
+	file: "dromaeo-object-string.js",
 	name: "Strings",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of strings (concatenation, methods).",
 	category: "Dromaeo JavaScript Tests",
 	tags: ["string","microtest"]
-},
-"real-packer": {
-	file: "real-packer.js",
-	name: "Script Unpacking",
-	origin: ["John Resig", "http://ejohn.org/"],
-	desc: "Decompressing and evaluation scripts run through Dean Edwards' Packer.",
-	category: "Dromaeo JavaScript Tests",
-	tags: ["regexp","string","eval","looping"]
 },
 "v8-crypto": {
 	file: "v8-crypto.js",
@@ -93,87 +85,95 @@
 	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
 	desc: "A series of benchmarks to test the quality of system implementation languages.",
 	category: "V8 Benchmark Tests",
-	tags: ["function","object"]
+	tags: ["functions","object"]
 },
-"3d-morph": {
-	file: "3d-morph.js",
+"sunspider-3d-morph": {
+	file: "sunspider-3d-morph.js",
 	name: "3D Mesh Transformation",
 	origin: ["WebKit", "http://webkit.org/misc/morph.html"],
 	desc: "Transforming the points of a matrix. No rendering done.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["array", "looping", "math"]
 },
-"access-binary-trees": {
-	file: "access-binary-trees.js",
+"sunspider-access-binary-trees": {
+	file: "sunspider-access-binary-trees.js",
 	name: "Traversing Binary Trees",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Moving through an object representation of a binary tree.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["object", "recursion"]
 },
-"access-fannkuch": {
-	file: "access-fannkuch.js",
+"sunspider-access-fannkuch": {
+	file: "sunspider-access-fannkuch.js",
 	name: "Fannkuch",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Figure out the number of ways in which a set of numbers can be manipulated.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["array", "looping"]
 },
-"access-nbody": {
-	file: "access-nbody.js",
+"sunspider-access-nbody": {
+	file: "sunspider-access-nbody.js",
 	name: "N-Body Rotation and Gravity",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute the location of multiple planets based upon rotation and gravity.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["object", "property", "looping", "math"]
 },
-"access-nsieve": {
-	file: "access-nsieve.js",
+"sunspider-access-nsieve": {
+	file: "sunspider-access-nsieve.js",
 	name: "Prime Number Computation",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute the number of prime numbers in a specific range of numbers.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping", "array"]
 },
-"bitops-nsieve-bits": {
-	file: "bitops-nsieve-bits.js",
+"sunspider-bitops-nsieve-bits": {
+	file: "sunspider-bitops-nsieve-bits.js",
 	name: "Prime Number Computation (2)",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute the number of prime numbers in a specific range of numbers using bit operations.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping", "bitops", "array"]
 },
-"controlflow-recursive": {
-	file: "controlflow-recursive.js",
+"sunspider-controlflow-recursive": {
+	file: "sunspider-controlflow-recursive.js",
 	name: "Recursive Number Calculation",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute various numbers in a recursive manner.",
 	category: "SunSpider JavaScript Tests",
-	tags: ["recursion"]
+	tags: ["functions"]
 },
-"math-partial-sums": {
-	file: "math-partial-sums.js",
+"sunspider-math-partial-sums": {
+	file: "sunspider-math-partial-sums.js",
 	name: "Partial Sum Calculation",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Calculate the partial sum of a few different number series.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["math","looping"]
 },
-"math-spectral-norm": {
-	file: "math-spectral-norm.js",
+"sunspider-math-spectral-norm": {
+	file: "sunspider-math-spectral-norm.js",
 	name: "Spectral Norm of a Matrix",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Calculate the spectral norm of a matrix of numbers.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["array","looping","math"]
 },
-"string-fasta": {
-	file: "string-fasta.js",
+"sunspider-string-fasta": {
+	file: "sunspider-string-fasta.js",
 	name: "DNA Sequence Alignment",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Find DNA matches within a larger sequence.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["string","object","looping"]
+},
+"sunspider-string-unpack-code": {
+	file: "sunspider-string-unpack-code.js",
+	name: "Script Unpacking",
+	origin: ["John Resig", "http://ejohn.org/"],
+	desc: "Decompressing scripts run through Dean Edwards' Packer.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["regexp","string","eval","looping"]
 },
 "dom-attr": {
 	file: "dom-attr.html",

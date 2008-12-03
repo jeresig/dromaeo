@@ -48,7 +48,7 @@ function spectralnorm(n) {
 
 startTest("sunspider-math-spectral-norm");
 
-test( "Spectral Norm", i, function(){
+test( "Spectral Norm", function(){
 	for (var i = 12; i <= 24; i *= 2)
 		spectralnorm(i);
 });

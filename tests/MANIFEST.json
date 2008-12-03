@@ -91,7 +91,7 @@
 	file: "v8-richards.js",
 	name: "Richards Benchmarks",
 	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
-	desc: "A series of benchmarks to test the quality system implementation languages.",
+	desc: "A series of benchmarks to test the quality of system implementation languages.",
 	category: "V8 Benchmark Tests",
 	tags: ["function","object"]
 },

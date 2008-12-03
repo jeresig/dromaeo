@@ -102,3 +102,9 @@ h2 { font-size: 20px; border-bottom: 1px solid #AAA; position: relative; padding
 h2 a { color: #FFF; }
 h2 div.bar { font-size: 10px; width: 275px; top: -2px; right: 1%; }
 h2 input { position: absolute; top: 0px; right: 300px; }
+
+ul#tests { clear:both;width:420px;margin:0 auto;text-align:left; padding: 10px; list-style: none; }
+#tests a { font-size: 1.2em; }
+#tests b { background: #c7331d; color: #000; display: block; padding: 4px 0 4px 10px; margin-left: -10px; }
+#tests b a { color: #000; }
+#tests li { padding-left: 10px; padding-bottom: 5px; }

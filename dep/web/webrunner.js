@@ -226,7 +226,8 @@
 	// Query String Parsing
 	var search = (window.location.search || "?").substr(1);
 	var parts = search.split("&");
-	var filter = parts.length && !parts[0].match(/=/) ?
+	var none = !parts[0] || parts[0].match(/=/);
+	var filter = parts.length && !parts[0].match(/=/) && parts[0] !== "all" ?
 		new RegExp(parts.shift(), "i") :
 		/./;
 
@@ -253,6 +254,13 @@
 
 	jQuery(function(){
 		var id = search.match(/id=([\d,]+)/);
+
+		if ( none ) {
+			$("#overview").hide();
+			return;
+		} 
+
+		$("#tests").hide();
 
 		jQuery.getJSON("tests/MANIFEST.json", function(json){
 			tests = json;

@@ -91,9 +91,17 @@
 	file: "sunspider-3d-morph.js",
 	name: "3D Mesh Transformation",
 	origin: ["WebKit", "http://webkit.org/misc/morph.html"],
-	desc: "Transforming the points of a matrix. No rendering done.",
+	desc: "Transforming the points of a matrix. No visual output.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["array", "looping", "math"]
+},
+"sunspider-3d-raytrace": {
+	file: "sunspider-3d-raytrace.js",
+	name: "3D Raytrace",
+	origin: ["Apple", "http://apple.com/"],
+	desc: "Rendering a scene using raytracing techniques. No visual output.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["array", "functions", "math"]
 },
 "sunspider-access-binary-trees": {
 	file: "sunspider-access-binary-trees.js",

@@ -135,6 +135,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping", "array"]
 },
+"sunspider-bitops-3bit-bits-in-byte": {
+	file: "sunspider-bitops-3bit-bits-in-byte.js",
+	name: "Compute Bits in Byte",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Compute the number of bits in a number using bitops.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["looping", "bitops"]
+},
 "sunspider-bitops-nsieve-bits": {
 	file: "sunspider-bitops-nsieve-bits.js",
 	name: "Prime Number Computation (2)",

@@ -191,6 +191,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping","string"]
 },
+"sunspider-crypto-sha1": {
+	file: "sunspider-crypto-sha1.js",
+	name: "SHA1 Hashing",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Hash a long string using SHA1.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["looping","string"]
+},
 "sunspider-math-partial-sums": {
 	file: "sunspider-math-partial-sums.js",
 	name: "Partial Sum Calculation",

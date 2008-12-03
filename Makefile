@@ -15,12 +15,12 @@ web: ${TESTS}
 	@@ for i in ${TESTS}; do \
 		echo "Converting $${i} to web test..."; \
 		cat dep/web/test-head.js "$${i}" dep/web/test-tail.js | \
-			sed "s/startTest.\(.*\).;/startTest\(\1 `git log --abbrev-commit "$${i}" | head -1 | sed s/commit./,\'/ | sed s/[.][.][.]//``git log --abbrev-commit "dep/web/webrunner.js" | head -1 | sed s/commit./-/ | sed s/[.][.][.]/\'/`\);/" > ${WEB}"/$${i}"; \
+			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 $${i}`-`crc32 "dep/web/webrunner.js"`'\);/" > ${WEB}"/$${i}"; \
 	done
 	@@ for i in ${HTMLTESTS}; do \
 		echo "Converting $${i} to web test..."; \
 		cat "$${i}" | \
-			sed "s/startTest.\(.*\).;/startTest\(\1 `git log --abbrev-commit "$${i}" | head -1 | sed s/commit./,\'/ | sed s/[.][.][.]/\'/`\);/" > ${WEB}"/$${i}"; \
+			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 "$${i}"`-`crc32 "dep/web/webrunner.js"`'\);/" > ${WEB}"/$${i}"; \
 	done
 
 perf: ${TESTS}

@@ -68,6 +68,9 @@
 	
 			if ( nameDone[name] != 3 )
 				return; 
+		} else {
+			fn = num;
+			num = 1;
 		}
 
 		time += timePerTest * numTests;
@@ -79,11 +82,6 @@
 			title = name;
 			var times = [], start, pos = 0, cur;
 			
-			if ( !fn ) {
-				fn = num;
-				num = '';
-			}
-	
 			setTimeout(function(){
 				// run tests
 				try {

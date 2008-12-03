@@ -215,6 +215,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["date","string"]
 },
+"sunspider-math-cordic": {
+	file: "sunspider-math-cordic.js",
+	name: "Trigonometric Calculation",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Calculate values from hyperbolic and trigonometric functions.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["math","looping"]
+},
 "sunspider-math-partial-sums": {
 	file: "sunspider-math-partial-sums.js",
 	name: "Partial Sum Calculation",
@@ -231,6 +239,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["array","looping","math"]
 },
+"sunspider-regexp-dna": {
+	file: "sunspider-regexp-dna.js",
+	name: "DNA Conversion",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Convert one DNA sequence to another.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["string","regexp"]
+},
 "sunspider-string-fasta": {
 	file: "sunspider-string-fasta.js",
 	name: "DNA Sequence Alignment",
@@ -238,6 +254,14 @@
 	desc: "Find DNA matches within a larger sequence.",
 	category: "SunSpider JavaScript Tests",
 	tags: ["string","object","looping"]
+},
+"sunspider-string-tagcloud": {
+	file: "sunspider-string-tagcloud.html",
+	name: "Tag Cloud Creation",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Convert a JSON structure into an HTML tag cloud.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["string","regexp"]
 },
 "sunspider-string-unpack-code": {
 	file: "sunspider-string-unpack-code.js",

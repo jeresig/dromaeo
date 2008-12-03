@@ -61,12 +61,14 @@
 		// Save the summary output until all the test are complete
 		var curTest = testName, curID = testID;
 
-		if ( !nameDone[name] )
-			nameDone[name] = 0;
-		nameDone[name]++;
-
-		if ( nameDone[name] != 3 )
-			return; 
+		if ( arguments.length === 3 ) {
+			if ( !nameDone[name] )
+				nameDone[name] = 0;
+			nameDone[name]++;
+	
+			if ( nameDone[name] != 3 )
+				return; 
+		}
 
 		time += timePerTest * numTests;
 

@@ -199,6 +199,22 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["looping","string"]
 },
+"sunspider-date-format-xparb": {
+	file: "sunspider-date-format-xparb.js",
+	name: "Date Formatting",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Converting a date into a string representation.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["date","string"]
+},
+"sunspider-date-format-tofte": {
+	file: "sunspider-date-format-tofte.js",
+	name: "Date Formatting (2)",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Converting a date into a string representation.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["date","string"]
+},
 "sunspider-math-partial-sums": {
 	file: "sunspider-math-partial-sums.js",
 	name: "Partial Sum Calculation",

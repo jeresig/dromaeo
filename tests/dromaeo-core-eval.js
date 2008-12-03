@@ -1,4 +1,4 @@
-startTest("core-eval");
+startTest("dromaeo-core-eval");
 
 // Try to force real results
 var ret, tmp;

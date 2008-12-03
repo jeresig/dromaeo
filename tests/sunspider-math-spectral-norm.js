@@ -46,7 +46,7 @@ function spectralnorm(n) {
   return Math.sqrt(vBv/vv);
 }
 
-startTest("math-spectral-norm");
+startTest("sunspider-math-spectral-norm");
 
 for ( var i = 8; i <= 64; i *= 2 ) (function(i){
   test( "Spectral Norm", i, function(){

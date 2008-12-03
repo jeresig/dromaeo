@@ -76,7 +76,7 @@ function fastaRandom(n, table) {
   }
 }
 
-startTest("string-fasta");
+startTest("sunspider-string-fasta");
 
 var ret;
 

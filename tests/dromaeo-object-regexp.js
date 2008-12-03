@@ -1,4 +1,4 @@
-startTest("object-regexp");
+startTest("dromaeo-object-regexp");
 
 // Try to force real results
 var str = [], tmp, ret, re;

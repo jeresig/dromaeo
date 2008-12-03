@@ -1,7 +1,7 @@
 // Test from here:
 // http://webkit.org/misc/morph.html
 
-startTest("3d-morph");
+startTest("sunspider-3d-morph");
 
 var loops = 15, nx, nz, a;
 

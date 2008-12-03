@@ -1,4 +1,4 @@
-startTest("object-string");
+startTest("dromaeo-object-string");
 
 // Try to force real results
 var ret;

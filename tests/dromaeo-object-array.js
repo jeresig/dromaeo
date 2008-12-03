@@ -1,4 +1,4 @@
-startTest("object-array");
+startTest("dromaeo-object-array");
 
 var ret = [], tmp, num = 500;
 

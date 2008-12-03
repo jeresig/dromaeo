@@ -27,7 +27,7 @@ function partial(n){
 	}
 }
 
-startTest("math-partial-sums");
+startTest("sunspider-math-partial-sums");
 
 for ( var i = 512; i <= 4096; i *= 2 ) (function(i){
 	test( "Partial Sums", i, function(){

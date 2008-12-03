@@ -18,7 +18,7 @@ function tak(x,y,z) {
 	return tak(tak(x-1,y,z), tak(y-1,z,x), tak(z-1,x,y));
 }
 
-startTest("controlflow-recursive");
+startTest("sunspider-controlflow-recursive");
 
 for ( var i = 3; i <= 6; i++ ) (function(i){
 

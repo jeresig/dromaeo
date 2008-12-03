@@ -116,7 +116,7 @@ function base64ToString(data) {
     return result;
 }
 
-startTest("string-base64");
+startTest("dromaeo-string-base64");
 
 var str = [];
 

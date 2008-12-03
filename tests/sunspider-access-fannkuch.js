@@ -61,7 +61,7 @@ function fannkuch(n) {
    }
 }
 
-startTest("access-fannkuch");
+startTest("sunspider-access-fannkuch");
 
 var ret;
 

@@ -26,7 +26,7 @@ function bottomUpTree(item,depth){
    }
 }
 
-startTest("access-binary-trees");
+startTest("sunspider-access-binary-trees");
 
 var ret;
 

@@ -151,7 +151,7 @@ NBodySystem.prototype.energy = function(){
    return e;
 }
 
-startTest("access-nbody");
+startTest("sunspider-access-nbody");
 
 var ret;
 

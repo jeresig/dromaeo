@@ -22,7 +22,7 @@ function primes(isPrime, n) {
     }
 }
 
-startTest("bitops-nsieve-bits");
+startTest("sunspider-bitops-nsieve-bits");
 
 for ( var i = 0; i <= 3; i++ ) (function(i){
 	test( "N-Sieve Bits", i, function(){

@@ -27,7 +27,7 @@ function nsieve(m, isPrime){
    return count;
 }
 
-startTest("access-nsieve");
+startTest("sunspider-access-nsieve");
 
 for ( var i = 1; i <= 4; i++ ) (function(i){
 	test( "N-Sieve", i, function(){

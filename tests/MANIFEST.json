@@ -173,7 +173,7 @@
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Decompressing scripts run through Dean Edwards' Packer.",
 	category: "SunSpider JavaScript Tests",
-	tags: ["regexp","string","eval","looping"]
+	tags: ["regexp","string","looping"]
 },
 "dom-attr": {
 	file: "dom-attr.html",

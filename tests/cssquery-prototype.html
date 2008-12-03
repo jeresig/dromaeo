@@ -4,46 +4,164 @@
 <script src="../lib/prototype.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-attr-prototype");
+startTest("cssquery-prototype");
 
 // Try to force real results
-var ret, tmp, div;
+var ret, tmp;
 
 var html = document.body.innerHTML;
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		div = $$("div");
-		var tmp = document.createElement("div");
-		tmp.innerHTML = html;
-		document.body.appendChild( tmp );
-	});
-	
-	test("Prototype - addClassName", num, function(){
-		div.invoke("addClassName", "foo");
+		var div = document.createElement("div");
+		div.innerHTML = html;
+		document.body.appendChild( div );
 	});
 
-	test("Prototype - removeClassName", num, function(){
-		div.invoke("removeClassName", "foo");
+	test("Prototype - *", num, function(){
+		$$("*");
 	});
 
-	test("Prototype - hasClassName", num, function(){
-		ret = div.invoke("hasClassName", "test");
+	test("Prototype - div:only-child", num, function(){
+		$$("div:only-child");
 	});
 
-	test("Prototype - readAttribute", num, function(){
-		ret = div.invoke("readAttribute", "class");
+	test("Prototype - div:first-child", num, function(){
+		$$("div:first-child");
 	});
 
-	test("Prototype - writeAttribute", num, function(){
-		div.invoke("writeAttribute","class","test");
+	test("Prototype - div:nth-child(even)", num, function(){
+		$$("div:nth-child(even)");
 	});
 
-	/* ???
-	test("Prototype - removeAttribute", num, function(){
+	test("Prototype - div:nth-child(2n)", num, function(){
+		$$("div:nth-child(2n)");
 	});
-	*/
+
+	test("Prototype - div:nth-child(odd)", num, function(){
+		$$("div:nth-child(odd)");
+	});
+
+	test("Prototype - div:nth-child(2n+1)", num, function(){
+		$$("div:nth-child(2n+1)");
+	});
+
+	test("Prototype - div:nth-child(n)", num, function(){
+		$$("div:nth-child(n)");
+	});
+
+	test("Prototype - div:last-child", num, function(){
+		$$("div:last-child");
+	});
+
+	test("Prototype - div > div", num, function(){
+		$$("div > div");
+	});
+
+	test("Prototype - div + div", num, function(){
+		$$("div + div");
+	});
+
+	test("Prototype - div ~ div", num, function(){
+		$$("div ~ div");
+	});
+
+	test("Prototype - body", num, function(){
+		$$("body");
+	});
+
+	test("Prototype - body div", num, function(){
+		$$("body div");
+	});
+
+	test("Prototype - div", num, function(){
+		$$("div");
+	});
+
+	test("Prototype - div div", num, function(){
+		$$("div div");
+	});
+
+	test("Prototype - div div div", num, function(){
+		$$("div div div");
+	});
+
+	test("Prototype - div, div, div", num, function(){
+		$$("div, div, div");
+	});
+
+	test("Prototype - div, a, span", num, function(){
+		$$("div, a, span");
+	});
+
+	test("Prototype - .dialog", num, function(){
+		$$(".dialog");
+	});
+
+	test("Prototype - div.dialog", num, function(){
+		$$("div.dialog");
+	});
+
+	test("Prototype - div .dialog", num, function(){
+		$$("div .dialog");
+	});
+
+	test("Prototype - div.character, div.dialog", num, function(){
+		$$("div.character, div.dialog");
+	});
+
+	test("Prototype - #speech5", num, function(){
+		$$("#speech5");
+	});
+
+	test("Prototype - div#speech5", num, function(){
+		$$("div#speech5");
+	});
+
+	test("Prototype - div #speech5", num, function(){
+		$$("div #speech5");
+	});
+
+	test("Prototype - div.scene div.dialog", num, function(){
+		$$("div.scene div.dialog");
+	});
+
+	test("Prototype - div#scene1 div.dialog div", num, function(){
+		$$("div#scene1 div.dialog div");
+	});
+
+	test("Prototype - #scene1 #speech1", num, function(){
+		$$("#scene1 #speech1");
+	});
+
+	test("Prototype - div[class]", num, function(){
+		$$("div[class]");
+	});
+
+	test("Prototype - div[class=dialog]", num, function(){
+		$$("div[class=dialog]");
+	});
+
+	test("Prototype - div[class^=dia]", num, function(){
+		$$("div[class^=dia]");
+	});
+
+	test("Prototype - div[class$=log]", num, function(){
+		$$("div[class$=log]");
+	});
+
+	test("Prototype - div[class*=sce]", num, function(){
+		$$("div[class*=sce]");
+	});
+
+	test("Prototype - div[class|=dialog]", num, function(){
+		$$("div[class|=dialog]");
+	});
+
+	test("Prototype - div[class~=dialog]", num, function(){
+		$$("div[class~=dialog]");
+	});
 
 })(num);
 

@@ -1,10 +1,10 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/prototype.js"></script>
+<script src="../lib/jquery.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-event-prototype");
+startTest("jslib-event-jquery");
 
 // Try to force real results
 var ret, tmp, div;
@@ -16,22 +16,22 @@ function testfn(){}
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		div = $$("div");
+		div = jQuery("div");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
 	});
 	
-	test("Prototype - observe", num, function(){
-		div.invoke("observe", "click", testfn);
+	test("jQuery - bind", num, function(){
+		div.bind("click", testfn);
 	});
 
-	test("Prototype - fire", num, function(){
-		div.invoke("fire", "click");
+	test("jQuery - trigger", num, function(){
+		div.trigger("click");
 	});
 
-	test("Prototype - stopObserving", num, function(){
-		div.invoke("stopObserving", "click", testfn);
+	test("jQuery - unbind", num, function(){
+		div.unbind("click", testfn);
 	});
 
 })(num);

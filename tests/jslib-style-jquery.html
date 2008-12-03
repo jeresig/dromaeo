@@ -4,10 +4,10 @@
 <script src="../lib/jquery.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-traverse-jquery");
+startTest("jslib-style-jquery");
 
 // Try to force real results
-var ret, tmp, div, dd;
+var ret, tmp, div;
 
 var html = document.body.innerHTML;
 
@@ -15,42 +15,41 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
 		div = jQuery("div");
-		dd = jQuery("dd");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - parent", num, function(){
-		ret = div.parent().length;
+	test("jQuery - css('color')", num, function(){
+		ret = div.css("color");
 	});
 
-	test("jQuery - parents", num, function(){
-		ret = div.parents().length;
+	test("jQuery - css('color','red')", num, function(){
+		div.css("color","red");
 	});
 
-	test("jQuery - prev", num, function(){
-		ret = div.prev().length;
+	test("jQuery - height()", num, function(){
+		ret = div.height();
 	});
 
-	test("jQuery - prevAll", num, function(){
-		ret = dd.prevAll().length;
+	test("jQuery - width()", num, function(){
+		ret = div.width();
 	});
 
-	test("jQuery - next", num, function(){
-		ret = div.next().length;
+	test("jQuery - .is(':visible')", num, function(){
+		ret = div.is(":visible");
 	});
 
-	test("jQuery - nextAll", num, function(){
-		ret = dd.nextAll().length;
+	test("jQuery - .show()", num, function(){
+		div.show();
 	});
 
-	test("jQuery - siblings", num, function(){
-		ret = dd.siblings().length;
+	test("jQuery - .hide()", num, function(){
+		div.hide();
 	});
 
-	test("jQuery - children", num, function(){
-		ret = div.children().length;
+	test("jQuery - .toggle()", num, function(){
+		div.toggle();
 	});
 
 })(num);

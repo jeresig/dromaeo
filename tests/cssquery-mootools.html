@@ -1,55 +1,166 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/prototype.js"></script>
+<script src="../lib/mootools-1.2b2.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-style-prototype");
+startTest("cssquery-mootools");
 
 // Try to force real results
-var ret, tmp, div;
+var ret, tmp;
 
 var html = document.body.innerHTML;
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		div = $$("div");
-		var tmp = document.createElement("div");
-		tmp.innerHTML = html;
-		document.body.appendChild( tmp );
+		var div = document.createElement("div");
+		div.innerHTML = html;
+		document.body.appendChild( div );
 	});
 	
-	test("Prototype - getStyle()", num, function(){
-		ret = div.invoke("getStyle","color");
+	test("Mootools - *", num, function(){
+		$$("*");
 	});
 
-	test("Prototype - setStyle()", num, function(){
-		div.invoke("setStyle","color","red");
+	test("Mootools - div:only-child", num, function(){
+		$$("div:only-child");
 	});
 
-	test("Prototype - getHeight()", num, function(){
-		ret = div.invoke("getHeight");
+	test("Mootools - div:first-child", num, function(){
+		$$("div:first-child");
 	});
 
-	test("Prototype - getWidth()", num, function(){
-		ret = div.invoke("getWidth");
+	test("Mootools - div:nth-child(even)", num, function(){
+		$$("div:nth-child(even)");
 	});
 
-	test("Prototype - visible()", num, function(){
-		ret = div.invoke("visible");
+	test("Mootools - div:nth-child(2n)", num, function(){
+		$$("div:nth-child(2n)");
 	});
 
-	test("Prototype - .show()", num, function(){
-		div.invoke("show");
+	test("Mootools - div:nth-child(odd)", num, function(){
+		$$("div:nth-child(odd)");
 	});
 
-	test("Prototype - .hide()", num, function(){
-		div.invoke("hide");
+	test("Mootools - div:nth-child(2n+1)", num, function(){
+		$$("div:nth-child(2n+1)");
 	});
 
-	test("Prototype - .toggle()", num, function(){
-		div.invoke("toggle");
+	test("Mootools - div:nth-child(n)", num, function(){
+		$$("div:nth-child(n)");
+	});
+
+	test("Mootools - div:last-child", num, function(){
+		$$("div:last-child");
+	});
+
+	test("Mootools - div > div", num, function(){
+		$$("div > div");
+	});
+
+	test("Mootools - div + div", num, function(){
+		$$("div + div");
+	});
+
+	test("Mootools - div ~ div", num, function(){
+		$$("div ~ div");
+	});
+
+	test("Mootools - body", num, function(){
+		$$("body");
+	});
+
+	test("Mootools - body div", num, function(){
+		$$("body div");
+	});
+
+	test("Mootools - div", num, function(){
+		$$("div");
+	});
+
+	test("Mootools - div div", num, function(){
+		$$("div div");
+	});
+
+	test("Mootools - div div div", num, function(){
+		$$("div div div");
+	});
+
+	test("Mootools - div, div, div", num, function(){
+		$$("div, div, div");
+	});
+
+	test("Mootools - div, a, span", num, function(){
+		$$("div, a, span");
+	});
+
+	test("Mootools - .dialog", num, function(){
+		$$(".dialog");
+	});
+
+	test("Mootools - div.dialog", num, function(){
+		$$("div.dialog");
+	});
+
+	test("Mootools - div .dialog", num, function(){
+		$$("div .dialog");
+	});
+
+	test("Mootools - div.character, div.dialog", num, function(){
+		$$("div.character, div.dialog");
+	});
+
+	test("Mootools - #speech5", num, function(){
+		$$("#speech5");
+	});
+
+	test("Mootools - div#speech5", num, function(){
+		$$("div#speech5");
+	});
+
+	test("Mootools - div #speech5", num, function(){
+		$$("div #speech5");
+	});
+
+	test("Mootools - div.scene div.dialog", num, function(){
+		$$("div.scene div.dialog");
+	});
+
+	test("Mootools - div#scene1 div.dialog div", num, function(){
+		$$("div#scene1 div.dialog div");
+	});
+
+	test("Mootools - #scene1 #speech1", num, function(){
+		$$("#scene1 #speech1");
+	});
+
+	test("Mootools - div[class]", num, function(){
+		$$("div[class]");
+	});
+
+	test("Mootools - div[class=dialog]", num, function(){
+		$$("div[class=dialog]");
+	});
+
+	test("Mootools - div[class^=dia]", num, function(){
+		$$("div[class^=dia]");
+	});
+
+	test("Mootools - div[class$=log]", num, function(){
+		$$("div[class$=log]");
+	});
+
+	test("Mootools - div[class*=sce]", num, function(){
+		$$("div[class*=sce]");
+	});
+
+	test("Mootools - div[class|=dialog]", num, function(){
+		$$("div[class|=dialog]");
+	});
+
+	test("Mootools - div[class~=dialog]", num, function(){
+		$$("div[class~=dialog]");
 	});
 
 })(num);

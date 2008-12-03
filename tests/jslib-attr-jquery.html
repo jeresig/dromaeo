@@ -4,14 +4,12 @@
 <script src="../lib/jquery.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-event-jquery");
+startTest("jslib-attr-jquery");
 
 // Try to force real results
 var ret, tmp, div;
 
 var html = document.body.innerHTML;
-
-function testfn(){}
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
@@ -22,16 +20,28 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - bind", num, function(){
-		div.bind("click", testfn);
+	test("jQuery - addClass", num, function(){
+		div.addClass("foo");
 	});
 
-	test("jQuery - trigger", num, function(){
-		div.trigger("click");
+	test("jQuery - removeClass", num, function(){
+		div.removeClass("foo");
 	});
 
-	test("jQuery - unbind", num, function(){
-		div.unbind("click", testfn);
+	test("jQuery - hasClass", num, function(){
+		ret = div.hasClass("test");
+	});
+
+	test("jQuery - attr('class')", num, function(){
+		ret = div.attr("class");
+	});
+
+	test("jQuery - attr('class','test')", num, function(){
+		div.attr("class","test");
+	});
+
+	test("jQuery - removeAttribute", num, function(){
+		div.removeAttr("id");
 	});
 
 })(num);

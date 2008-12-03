@@ -1,10 +1,10 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/jquery.js"></script>
+<script src="../lib/prototype.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-style-jquery");
+startTest("jslib-style-prototype");
 
 // Try to force real results
 var ret, tmp, div;
@@ -14,42 +14,42 @@ var html = document.body.innerHTML;
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		div = jQuery("div");
+		div = $$("div");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - css('color')", num, function(){
-		ret = div.css("color");
+	test("Prototype - getStyle()", num, function(){
+		ret = div.invoke("getStyle","color");
 	});
 
-	test("jQuery - css('color','red')", num, function(){
-		div.css("color","red");
+	test("Prototype - setStyle()", num, function(){
+		div.invoke("setStyle","color","red");
 	});
 
-	test("jQuery - height()", num, function(){
-		ret = div.height();
+	test("Prototype - getHeight()", num, function(){
+		ret = div.invoke("getHeight");
 	});
 
-	test("jQuery - width()", num, function(){
-		ret = div.width();
+	test("Prototype - getWidth()", num, function(){
+		ret = div.invoke("getWidth");
 	});
 
-	test("jQuery - .is(':visible')", num, function(){
-		ret = div.is(":visible");
+	test("Prototype - visible()", num, function(){
+		ret = div.invoke("visible");
 	});
 
-	test("jQuery - .show()", num, function(){
-		div.show();
+	test("Prototype - .show()", num, function(){
+		div.invoke("show");
 	});
 
-	test("jQuery - .hide()", num, function(){
-		div.hide();
+	test("Prototype - .hide()", num, function(){
+		div.invoke("hide");
 	});
 
-	test("jQuery - .toggle()", num, function(){
-		div.toggle();
+	test("Prototype - .toggle()", num, function(){
+		div.invoke("toggle");
 	});
 
 })(num);

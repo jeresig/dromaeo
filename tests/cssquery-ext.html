@@ -1,15 +1,17 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/mootools-1.2b2.js"></script>
+<script src="../lib/ext-base.js"></script>
+<script src="../lib/ext-core.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-query-mootools");
+startTest("cssquery-ext");
 
 // Try to force real results
 var ret, tmp;
 
 var html = document.body.innerHTML;
+var query = Ext.DomQuery.select;
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
@@ -19,148 +21,148 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( div );
 	});
 	
-	test("Mootools - *", num, function(){
-		$$("*");
+	test("Ext - *", num, function(){
+		query("*");
 	});
 
-	test("Mootools - div:only-child", num, function(){
-		$$("div:only-child");
+	test("Ext - div:only-child", num, function(){
+		query("div:only-child");
 	});
 
-	test("Mootools - div:first-child", num, function(){
-		$$("div:first-child");
+	test("Ext - div:first-child", num, function(){
+		query("div:first-child");
 	});
 
-	test("Mootools - div:nth-child(even)", num, function(){
-		$$("div:nth-child(even)");
+	test("Ext - div:nth-child(even)", num, function(){
+		query("div:nth-child(even)");
 	});
 
-	test("Mootools - div:nth-child(2n)", num, function(){
-		$$("div:nth-child(2n)");
+	test("Ext - div:nth-child(2n)", num, function(){
+		query("div:nth-child(2n)");
 	});
 
-	test("Mootools - div:nth-child(odd)", num, function(){
-		$$("div:nth-child(odd)");
+	test("Ext - div:nth-child(odd)", num, function(){
+		query("div:nth-child(odd)");
 	});
 
-	test("Mootools - div:nth-child(2n+1)", num, function(){
-		$$("div:nth-child(2n+1)");
+	test("Ext - div:nth-child(2n+1)", num, function(){
+		query("div:nth-child(2n+1)");
 	});
 
-	test("Mootools - div:nth-child(n)", num, function(){
-		$$("div:nth-child(n)");
+	test("Ext - div:nth-child(n)", num, function(){
+		query("div:nth-child(n)");
 	});
 
-	test("Mootools - div:last-child", num, function(){
-		$$("div:last-child");
+	test("Ext - div:last-child", num, function(){
+		query("div:last-child");
 	});
 
-	test("Mootools - div > div", num, function(){
-		$$("div > div");
+	test("Ext - div > div", num, function(){
+		query("div > div");
 	});
 
-	test("Mootools - div + div", num, function(){
-		$$("div + div");
+	test("Ext - div + div", num, function(){
+		query("div + div");
 	});
 
-	test("Mootools - div ~ div", num, function(){
-		$$("div ~ div");
+	test("Ext - div ~ div", num, function(){
+		query("div ~ div");
 	});
 
-	test("Mootools - body", num, function(){
-		$$("body");
+	test("Ext - body", num, function(){
+		query("body");
 	});
 
-	test("Mootools - body div", num, function(){
-		$$("body div");
+	test("Ext - body div", num, function(){
+		query("body div");
 	});
 
-	test("Mootools - div", num, function(){
-		$$("div");
+	test("Ext - div", num, function(){
+		query("div");
 	});
 
-	test("Mootools - div div", num, function(){
-		$$("div div");
+	test("Ext - div div", num, function(){
+		query("div div");
 	});
 
-	test("Mootools - div div div", num, function(){
-		$$("div div div");
+	test("Ext - div div div", num, function(){
+		query("div div div");
 	});
 
-	test("Mootools - div, div, div", num, function(){
-		$$("div, div, div");
+	test("Ext - div, div, div", num, function(){
+		query("div, div, div");
 	});
 
-	test("Mootools - div, a, span", num, function(){
-		$$("div, a, span");
+	test("Ext - div, a, span", num, function(){
+		query("div, a, span");
 	});
 
-	test("Mootools - .dialog", num, function(){
-		$$(".dialog");
+	test("Ext - .dialog", num, function(){
+		query(".dialog");
 	});
 
-	test("Mootools - div.dialog", num, function(){
-		$$("div.dialog");
+	test("Ext - div.dialog", num, function(){
+		query("div.dialog");
 	});
 
-	test("Mootools - div .dialog", num, function(){
-		$$("div .dialog");
+	test("Ext - div .dialog", num, function(){
+		query("div .dialog");
 	});
 
-	test("Mootools - div.character, div.dialog", num, function(){
-		$$("div.character, div.dialog");
+	test("Ext - div.character, div.dialog", num, function(){
+		query("div.character, div.dialog");
 	});
 
-	test("Mootools - #speech5", num, function(){
-		$$("#speech5");
+	test("Ext - #speech5", num, function(){
+		query("#speech5");
 	});
 
-	test("Mootools - div#speech5", num, function(){
-		$$("div#speech5");
+	test("Ext - div#speech5", num, function(){
+		query("div#speech5");
 	});
 
-	test("Mootools - div #speech5", num, function(){
-		$$("div #speech5");
+	test("Ext - div #speech5", num, function(){
+		query("div #speech5");
 	});
 
-	test("Mootools - div.scene div.dialog", num, function(){
-		$$("div.scene div.dialog");
+	test("Ext - div.scene div.dialog", num, function(){
+		query("div.scene div.dialog");
 	});
 
-	test("Mootools - div#scene1 div.dialog div", num, function(){
-		$$("div#scene1 div.dialog div");
+	test("Ext - div#scene1 div.dialog div", num, function(){
+		query("div#scene1 div.dialog div");
 	});
 
-	test("Mootools - #scene1 #speech1", num, function(){
-		$$("#scene1 #speech1");
+	test("Ext - #scene1 #speech1", num, function(){
+		query("#scene1 #speech1");
 	});
 
-	test("Mootools - div[class]", num, function(){
-		$$("div[class]");
+	test("Ext - div[class]", num, function(){
+		query("div[class]");
 	});
 
-	test("Mootools - div[class=dialog]", num, function(){
-		$$("div[class=dialog]");
+	test("Ext - div[class=dialog]", num, function(){
+		query("div[class=dialog]");
 	});
 
-	test("Mootools - div[class^=dia]", num, function(){
-		$$("div[class^=dia]");
+	test("Ext - div[class^=dia]", num, function(){
+		query("div[class^=dia]");
 	});
 
-	test("Mootools - div[class$=log]", num, function(){
-		$$("div[class$=log]");
+	test("Ext - div[class$=log]", num, function(){
+		query("div[class$=log]");
 	});
 
-	test("Mootools - div[class*=sce]", num, function(){
-		$$("div[class*=sce]");
+	test("Ext - div[class*=sce]", num, function(){
+		query("div[class*=sce]");
 	});
 
-	test("Mootools - div[class|=dialog]", num, function(){
-		$$("div[class|=dialog]");
+	test("Ext - div[class|=dialog]", num, function(){
+		query("div[class|=dialog]");
 	});
 
-	test("Mootools - div[class~=dialog]", num, function(){
-		$$("div[class~=dialog]");
+	test("Ext - div[class~=dialog]", num, function(){
+		query("div[class~=dialog]");
 	});
 
 })(num);

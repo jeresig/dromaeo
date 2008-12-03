@@ -4,10 +4,10 @@
 <script src="../lib/jquery.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-attr-jquery");
+startTest("jslib-traverse-jquery");
 
 // Try to force real results
-var ret, tmp, div;
+var ret, tmp, div, dd;
 
 var html = document.body.innerHTML;
 
@@ -15,33 +15,42 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
 		div = jQuery("div");
+		dd = jQuery("dd");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - addClass", num, function(){
-		div.addClass("foo");
+	test("jQuery - parent", num, function(){
+		ret = div.parent().length;
 	});
 
-	test("jQuery - removeClass", num, function(){
-		div.removeClass("foo");
+	test("jQuery - parents", num, function(){
+		ret = div.parents().length;
 	});
 
-	test("jQuery - hasClass", num, function(){
-		ret = div.hasClass("test");
+	test("jQuery - prev", num, function(){
+		ret = div.prev().length;
 	});
 
-	test("jQuery - attr('class')", num, function(){
-		ret = div.attr("class");
+	test("jQuery - prevAll", num, function(){
+		ret = dd.prevAll().length;
 	});
 
-	test("jQuery - attr('class','test')", num, function(){
-		div.attr("class","test");
+	test("jQuery - next", num, function(){
+		ret = div.next().length;
 	});
 
-	test("jQuery - removeAttribute", num, function(){
-		div.removeAttr("id");
+	test("jQuery - nextAll", num, function(){
+		ret = dd.nextAll().length;
+	});
+
+	test("jQuery - siblings", num, function(){
+		ret = dd.siblings().length;
+	});
+
+	test("jQuery - children", num, function(){
+		ret = div.children().length;
 	});
 
 })(num);

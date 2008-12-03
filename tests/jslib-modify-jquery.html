@@ -1,169 +1,65 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/ext-base.js"></script>
-<script src="../lib/ext-core.js"></script>
+<script src="../lib/jquery.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-query-ext");
+startTest("jslib-modify-jquery");
 
 // Try to force real results
-var ret, tmp;
+var ret, tmp, div, a, dd;
 
-var html = document.body.innerHTML;
-var query = Ext.DomQuery.select;
+var html = document.body.innerHTML,
+	elem = document.createElement("div"),
+	elem2 = document.createElement("strong"),
+	elemStr = "<strong>some text</strong>";
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		var div = document.createElement("div");
-		div.innerHTML = html;
-		document.body.appendChild( div );
-	});
-	
-	test("Ext - *", num, function(){
-		query("*");
-	});
-
-	test("Ext - div:only-child", num, function(){
-		query("div:only-child");
+		a = jQuery("a");
+		dd = jQuery("dd");
+		div = jQuery("div");
+		var tmp = document.createElement("div");
+		tmp.innerHTML = html;
+		document.body.appendChild( tmp );
 	});
 
-	test("Ext - div:first-child", num, function(){
-		query("div:first-child");
+	/* // Need to find a good way to test this
+	test("jQuery - wrap()", num, function(){
+		div.wrap( elem );
+	});
+	*/
+
+	test("jQuery - html()", num, function(){
+		dd.html( elemStr );
 	});
 
-	test("Ext - div:nth-child(even)", num, function(){
-		query("div:nth-child(even)");
+	test("jQuery - before()", num, function(){
+		div.before( elemStr );
 	});
 
-	test("Ext - div:nth-child(2n)", num, function(){
-		query("div:nth-child(2n)");
+	test("jQuery - after()", num, function(){
+		div.before( elemStr );
 	});
 
-	test("Ext - div:nth-child(odd)", num, function(){
-		query("div:nth-child(odd)");
+	test("jQuery - prepend()", num, function(){
+		div.prepend( elemStr );
 	});
 
-	test("Ext - div:nth-child(2n+1)", num, function(){
-		query("div:nth-child(2n+1)");
+	test("jQuery - append()", num, function(){
+		div.append( elemStr );
 	});
 
-	test("Ext - div:nth-child(n)", num, function(){
-		query("div:nth-child(n)");
+	/* // Need a good way to test
+	test("jQuery - replaceWith()", num, function(){
+		div.replaceWith( elem );
 	});
 
-	test("Ext - div:last-child", num, function(){
-		query("div:last-child");
+	test("jQuery - remove()", num, function(){
+		div.remove();
 	});
-
-	test("Ext - div > div", num, function(){
-		query("div > div");
-	});
-
-	test("Ext - div + div", num, function(){
-		query("div + div");
-	});
-
-	test("Ext - div ~ div", num, function(){
-		query("div ~ div");
-	});
-
-	test("Ext - body", num, function(){
-		query("body");
-	});
-
-	test("Ext - body div", num, function(){
-		query("body div");
-	});
-
-	test("Ext - div", num, function(){
-		query("div");
-	});
-
-	test("Ext - div div", num, function(){
-		query("div div");
-	});
-
-	test("Ext - div div div", num, function(){
-		query("div div div");
-	});
-
-	test("Ext - div, div, div", num, function(){
-		query("div, div, div");
-	});
-
-	test("Ext - div, a, span", num, function(){
-		query("div, a, span");
-	});
-
-	test("Ext - .dialog", num, function(){
-		query(".dialog");
-	});
-
-	test("Ext - div.dialog", num, function(){
-		query("div.dialog");
-	});
-
-	test("Ext - div .dialog", num, function(){
-		query("div .dialog");
-	});
-
-	test("Ext - div.character, div.dialog", num, function(){
-		query("div.character, div.dialog");
-	});
-
-	test("Ext - #speech5", num, function(){
-		query("#speech5");
-	});
-
-	test("Ext - div#speech5", num, function(){
-		query("div#speech5");
-	});
-
-	test("Ext - div #speech5", num, function(){
-		query("div #speech5");
-	});
-
-	test("Ext - div.scene div.dialog", num, function(){
-		query("div.scene div.dialog");
-	});
-
-	test("Ext - div#scene1 div.dialog div", num, function(){
-		query("div#scene1 div.dialog div");
-	});
-
-	test("Ext - #scene1 #speech1", num, function(){
-		query("#scene1 #speech1");
-	});
-
-	test("Ext - div[class]", num, function(){
-		query("div[class]");
-	});
-
-	test("Ext - div[class=dialog]", num, function(){
-		query("div[class=dialog]");
-	});
-
-	test("Ext - div[class^=dia]", num, function(){
-		query("div[class^=dia]");
-	});
-
-	test("Ext - div[class$=log]", num, function(){
-		query("div[class$=log]");
-	});
-
-	test("Ext - div[class*=sce]", num, function(){
-		query("div[class*=sce]");
-	});
-
-	test("Ext - div[class|=dialog]", num, function(){
-		query("div[class|=dialog]");
-	});
-
-	test("Ext - div[class~=dialog]", num, function(){
-		query("div[class~=dialog]");
-	});
+	*/
 
 })(num);
 

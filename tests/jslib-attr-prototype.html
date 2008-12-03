@@ -1,168 +1,49 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/dojo.js"></script>
+<script src="../lib/prototype.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-query-dojo");
+startTest("jslib-attr-prototype");
 
 // Try to force real results
-var ret, tmp;
+var ret, tmp, div;
 
 var html = document.body.innerHTML;
-var query = dojo.query;
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		var div = document.createElement("div");
-		div.innerHTML = html;
-		document.body.appendChild( div );
+		div = $$("div");
+		var tmp = document.createElement("div");
+		tmp.innerHTML = html;
+		document.body.appendChild( tmp );
+	});
+	
+	test("Prototype - addClassName", num, function(){
+		div.invoke("addClassName", "foo");
 	});
 
-	test("Dojo - *", num, function(){
-		query("*");
+	test("Prototype - removeClassName", num, function(){
+		div.invoke("removeClassName", "foo");
 	});
 
-	test("Dojo - div:only-child", num, function(){
-		query("div:only-child");
+	test("Prototype - hasClassName", num, function(){
+		ret = div.invoke("hasClassName", "test");
 	});
 
-	test("Dojo - div:first-child", num, function(){
-		query("div:first-child");
+	test("Prototype - readAttribute", num, function(){
+		ret = div.invoke("readAttribute", "class");
 	});
 
-	test("Dojo - div:nth-child(even)", num, function(){
-		query("div:nth-child(even)");
+	test("Prototype - writeAttribute", num, function(){
+		div.invoke("writeAttribute","class","test");
 	});
 
-	test("Dojo - div:nth-child(2n)", num, function(){
-		query("div:nth-child(2n)");
+	/* ???
+	test("Prototype - removeAttribute", num, function(){
 	});
-
-	test("Dojo - div:nth-child(odd)", num, function(){
-		query("div:nth-child(odd)");
-	});
-
-	test("Dojo - div:nth-child(2n+1)", num, function(){
-		query("div:nth-child(2n+1)");
-	});
-
-	test("Dojo - div:nth-child(n)", num, function(){
-		query("div:nth-child(n)");
-	});
-
-	test("Dojo - div:last-child", num, function(){
-		query("div:last-child");
-	});
-
-	test("Dojo - div > div", num, function(){
-		query("div > div");
-	});
-
-	test("Dojo - div + div", num, function(){
-		query("div + div");
-	});
-
-	test("Dojo - div ~ div", num, function(){
-		query("div ~ div");
-	});
-
-	test("Dojo - body", num, function(){
-		query("body");
-	});
-
-	test("Dojo - body div", num, function(){
-		query("body div");
-	});
-
-	test("Dojo - div", num, function(){
-		query("div");
-	});
-
-	test("Dojo - div div", num, function(){
-		query("div div");
-	});
-
-	test("Dojo - div div div", num, function(){
-		query("div div div");
-	});
-
-	test("Dojo - div, div, div", num, function(){
-		query("div, div, div");
-	});
-
-	test("Dojo - div, a, span", num, function(){
-		query("div, a, span");
-	});
-
-	test("Dojo - .dialog", num, function(){
-		query(".dialog");
-	});
-
-	test("Dojo - div.dialog", num, function(){
-		query("div.dialog");
-	});
-
-	test("Dojo - div .dialog", num, function(){
-		query("div .dialog");
-	});
-
-	test("Dojo - div.character, div.dialog", num, function(){
-		query("div.character, div.dialog");
-	});
-
-	test("Dojo - #speech5", num, function(){
-		query("#speech5");
-	});
-
-	//test("Dojo - div#speech5", num, function(){
-		//query("div#speech5");
-	//});
-
-	//test("Dojo - div #speech5", num, function(){
-		//query("div #speech5");
-	//});
-
-	test("Dojo - div.scene div.dialog", num, function(){
-		query("div.scene div.dialog");
-	});
-
-	//test("Dojo - div#scene1 div.dialog div", num, function(){
-		//query("div#scene1 div.dialog div");
-	//});
-
-	test("Dojo - #scene1 #speech1", num, function(){
-		query("#scene1 #speech1");
-	});
-
-	test("Dojo - div[class]", num, function(){
-		query("div[class]");
-	});
-
-	test("Dojo - div[class=dialog]", num, function(){
-		query("div[class=dialog]");
-	});
-
-	test("Dojo - div[class^=dia]", num, function(){
-		query("div[class^=dia]");
-	});
-
-	test("Dojo - div[class$=log]", num, function(){
-		query("div[class$=log]");
-	});
-
-	test("Dojo - div[class*=sce]", num, function(){
-		query("div[class*=sce]");
-	});
-
-	test("Dojo - div[class|=dialog]", num, function(){
-		query("div[class|=dialog]");
-	});
-
-	test("Dojo - div[class~=dialog]", num, function(){
-		query("div[class~=dialog]");
-	});
+	*/
 
 })(num);
 

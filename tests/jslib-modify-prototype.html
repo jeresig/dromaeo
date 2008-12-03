@@ -4,54 +4,62 @@
 <script src="../lib/prototype.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-traverse-prototype");
+startTest("jslib-modify-prototype");
 
 // Try to force real results
-var ret, tmp, div, dd;
+var ret, tmp, div, a, dd;
 
-var html = document.body.innerHTML;
+var html = document.body.innerHTML,
+	elem = document.createElement("div"),
+	elem2 = document.createElement("strong"),
+	elemStr = "<strong>some text</strong>";
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		div = $$("div");
+		a = $$("a");
 		dd = $$("dd");
+		div = $$("div");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
 	});
+
+	/* // Need a good way to test this
+	test("Prototype - wrap()", num, function(){
+		div.invoke("wrap", "div");
+	});
+	*/
+
+	test("Prototype - update()", num, function(){
+		dd.invoke("update", elemStr);
+	});
 	
-	test("Prototype - up", num, function(){
-		ret = div.invoke("up").length;
+	test("Prototype - before", num, function(){
+		div.invoke("insert", {before: elemStr});
 	});
 
-	test("Prototype - ancestors", num, function(){
-		ret = div.invoke("ancestors").length;
+	test("Prototype - after", num, function(){
+		div.invoke("insert", {after: elemStr});
 	});
 
-	test("Prototype - previous", num, function(){
-		ret = div.invoke("previous").length;
+	test("Prototype - prepend", num, function(){
+		div.invoke("insert", {top: elemStr});
 	});
 
-	test("Prototype - previousSiblings", num, function(){
-		ret = dd.invoke("previousSiblings").length;
+	test("Prototype - append", num, function(){
+		div.invoke("insert", {bottom: elemStr});
 	});
 
-	test("Prototype - next", num, function(){
-		ret = div.invoke("next").length;
+	/* // Need a good way to test
+	test("Prototype - replace()", num, function(){
+		div.invoke("replace", elem );
 	});
 
-	test("Prototype - nextSiblings", num, function(){
-		ret = dd.invoke("nextSiblings").length;
+	test("Prototype - remove()", num, function(){
+		div.invoke("remove");
 	});
-
-	test("Prototype - siblings", num, function(){
-		ret = dd.invoke("siblings").length;
-	});
-
-	test("Prototype - childElements", num, function(){
-		ret = div.invoke("childElements").length;
-	});
+	*/
 
 })(num);
 

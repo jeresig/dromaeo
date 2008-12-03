@@ -239,132 +239,132 @@
 	category: "Dromaeo DOM Tests",
 	tags: ["dom","traverse"]
 },
-"dom-attr-jquery": {
-	file: "dom-attr-jquery.html",
+"jslib-attr-jquery": {
+	file: "jslib-attr-jquery.html",
 	name: "DOM Attributes (jQuery)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Setting and getting DOM node attributes using the jQuery JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","jquery","attributes"]
 },
-"dom-attr-prototype": {
-	file: "dom-attr-prototype.html",
+"jslib-attr-prototype": {
+	file: "jslib-attr-prototype.html",
 	name: "DOM Attributes (Prototype)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Setting and getting DOM node attributes using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","attributes"]
 },
-"dom-event-jquery": {
-	file: "dom-event-jquery.html",
+"jslib-event-jquery": {
+	file: "jslib-event-jquery.html",
 	name: "DOM Events (jQuery)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Binding, removing, and triggering DOM events using the jQuery JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","jquery","events"]
 },
-"dom-event-prototype": {
-	file: "dom-event-prototype.html",
+"jslib-event-prototype": {
+	file: "jslib-event-prototype.html",
 	name: "DOM Events (Prototype)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Binding, removing, and triggering DOM events using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","events"]
 },
-"dom-modify-jquery": {
-	file: "dom-modify-jquery.html",
+"jslib-modify-jquery": {
+	file: "jslib-modify-jquery.html",
 	name: "DOM Modification (jQuery)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Creating and injecting DOM nodes into a document using the jQuery JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","jquery","modify"]
 },
-"dom-modify-prototype": {
-	file: "dom-modify-prototype.html",
+"jslib-modify-prototype": {
+	file: "jslib-modify-prototype.html",
 	name: "DOM Modification (Prototype)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Creating and injecting DOM nodes into a document using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","modify"]
 },
-"dom-style-jquery": {
-	file: "dom-style-jquery.html",
+"jslib-style-jquery": {
+	file: "jslib-style-jquery.html",
 	name: "DOM Style (jQuery)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Getting and setting CSS information on DOM elements using the jQuery JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","jquery","style"]
 },
-"dom-style-prototype": {
-	file: "dom-style-prototype.html",
+"jslib-style-prototype": {
+	file: "jslib-style-prototype.html",
 	name: "DOM Style (Prototype)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Getting and setting CSS information on DOM elements using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","style"]
 },
-"dom-traverse-jquery": {
-	file: "dom-traverse-jquery.html",
+"jslib-traverse-jquery": {
+	file: "jslib-traverse-jquery.html",
 	name: "DOM Traversal (jQuery)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Traversing a DOM structure using the jQuery JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","jquery","traverse"]
 },
-"dom-traverse-prototype": {
-	file: "dom-traverse-prototype.html",
+"jslib-traverse-prototype": {
+	file: "jslib-traverse-prototype.html",
 	name: "DOM Traversal (Prototype)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Traversing a DOM structure using the Prototype JavaScript Library.",
 	category: "JavaScript Library Tests",
 	tags: ["dom","jslib","prototype","traverse"]
 },
-"dom-query-jquery": {
-	file: "dom-query-jquery.html",
+"cssquery-jquery": {
+	file: "cssquery-jquery.html",
 	name: "DOM Query (jQuery)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Querying DOM elements in a document using the jQuery JavaScript Library.",
-	category: "DOM CSS Selection",
+	category: "CSS Selector Tests",
 	tags: ["dom","jslib","jquery","query"]
 },
-"dom-query-prototype": {
-	file: "dom-query-prototype.html",
+"cssquery-prototype": {
+	file: "cssquery-prototype.html",
 	name: "DOM Query (Prototype)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Querying DOM elements in a document using the Prototype JavaScript Library.",
-	category: "DOM CSS Selection",
+	category: "CSS Selector Tests",
 	tags: ["dom","jslib","prototype","query"]
 },
-"dom-query-dojo": {
-	file: "dom-query-dojo.html",
+"cssquery-dojo": {
+	file: "cssquery-dojo.html",
 	name: "DOM Query (Dojo)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Querying DOM elements in a document using the Dojo JavaScript Library.",
-	category: "DOM CSS Selection",
+	category: "CSS Selector Tests",
 	tags: ["dom","jslib","dojo","query"]
 },
-"dom-query-ext": {
-	file: "dom-query-ext.html",
+"cssquery-ext": {
+	file: "cssquery-ext.html",
 	name: "DOM Query (ExtJS)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Querying DOM elements in a document using the ExtJS JavaScript Library.",
-	category: "DOM CSS Selection",
+	category: "CSS Selector Tests",
 	tags: ["dom","jslib","extjs","query"]
 },
-"dom-query-mootools": {
-	file: "dom-query-mootools.html",
+"cssquery-mootools": {
+	file: "cssquery-mootools.html",
 	name: "DOM Query (Mootools)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Querying DOM elements in a document using the Mootools JavaScript Library.",
-	category: "DOM CSS Selection",
+	category: "CSS Selector Tests",
 	tags: ["dom","jslib","mootools","query"]
 },
-"dom-query-yui": {
-	file: "dom-query-yui.html",
+"cssquery-yui": {
+	file: "cssquery-yui.html",
 	name: "DOM Query (Yahoo UI)",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Querying DOM elements in a document using the Yahoo UI JavaScript Library.",
-	category: "DOM CSS Selection",
+	category: "CSS Selector Tests",
 	tags: ["dom","jslib","yui","query"]
 }
 }

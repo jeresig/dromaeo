@@ -1,65 +1,170 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="../lib/prototype.js"></script>
+<script src="../lib/yahoo.js"></script>
+<script src="../lib/yui-dom.js"></script>
+<script src="../lib/yui-selector.js"></script>
 <script>
 window.onload = function(){
-startTest("dom-modify-prototype");
+startTest("cssquery-yui");
 
 // Try to force real results
-var ret, tmp, div, a, dd;
+var ret, tmp;
 
-var html = document.body.innerHTML,
-	elem = document.createElement("div"),
-	elem2 = document.createElement("strong"),
-	elemStr = "<strong>some text</strong>";
+var html = document.body.innerHTML;
+var query = YAHOO.util.Selector.query;
 
 for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 
 	prep(function(){
-		a = $$("a");
-		dd = $$("dd");
-		div = $$("div");
-		var tmp = document.createElement("div");
-		tmp.innerHTML = html;
-		document.body.appendChild( tmp );
-	});
-
-	/* // Need a good way to test this
-	test("Prototype - wrap()", num, function(){
-		div.invoke("wrap", "div");
-	});
-	*/
-
-	test("Prototype - update()", num, function(){
-		dd.invoke("update", elemStr);
+		var div = document.createElement("div");
+		div.innerHTML = html;
+		document.body.appendChild( div );
 	});
 	
-	test("Prototype - before", num, function(){
-		div.invoke("insert", {before: elemStr});
+	test("YUI - *", num, function(){
+		query("*");
 	});
 
-	test("Prototype - after", num, function(){
-		div.invoke("insert", {after: elemStr});
+	test("YUI - div:only-child", num, function(){
+		query("div:only-child");
 	});
 
-	test("Prototype - prepend", num, function(){
-		div.invoke("insert", {top: elemStr});
+	test("YUI - div:first-child", num, function(){
+		query("div:first-child");
 	});
 
-	test("Prototype - append", num, function(){
-		div.invoke("insert", {bottom: elemStr});
+	test("YUI - div:nth-child(even)", num, function(){
+		query("div:nth-child(even)");
 	});
 
-	/* // Need a good way to test
-	test("Prototype - replace()", num, function(){
-		div.invoke("replace", elem );
+	test("YUI - div:nth-child(2n)", num, function(){
+		query("div:nth-child(2n)");
 	});
 
-	test("Prototype - remove()", num, function(){
-		div.invoke("remove");
+	test("YUI - div:nth-child(odd)", num, function(){
+		query("div:nth-child(odd)");
 	});
-	*/
+
+	test("YUI - div:nth-child(2n+1)", num, function(){
+		query("div:nth-child(2n+1)");
+	});
+
+	test("YUI - div:nth-child(n)", num, function(){
+		query("div:nth-child(n)");
+	});
+
+	test("YUI - div:last-child", num, function(){
+		query("div:last-child");
+	});
+
+	test("YUI - div > div", num, function(){
+		query("div > div");
+	});
+
+	test("YUI - div + div", num, function(){
+		query("div + div");
+	});
+
+	test("YUI - div ~ div", num, function(){
+		query("div ~ div");
+	});
+
+	test("YUI - body", num, function(){
+		query("body");
+	});
+
+	test("YUI - body div", num, function(){
+		query("body div");
+	});
+
+	test("YUI - div", num, function(){
+		query("div");
+	});
+
+	test("YUI - div div", num, function(){
+		query("div div");
+	});
+
+	test("YUI - div div div", num, function(){
+		query("div div div");
+	});
+
+	test("YUI - div, div, div", num, function(){
+		query("div, div, div");
+	});
+
+	test("YUI - div, a, span", num, function(){
+		query("div, a, span");
+	});
+
+	test("YUI - .dialog", num, function(){
+		query(".dialog");
+	});
+
+	test("YUI - div.dialog", num, function(){
+		query("div.dialog");
+	});
+
+	test("YUI - div .dialog", num, function(){
+		query("div .dialog");
+	});
+
+	test("YUI - div.character, div.dialog", num, function(){
+		query("div.character, div.dialog");
+	});
+
+	test("YUI - #speech5", num, function(){
+		query("#speech5");
+	});
+
+	test("YUI - div#speech5", num, function(){
+		query("div#speech5");
+	});
+
+	test("YUI - div #speech5", num, function(){
+		query("div #speech5");
+	});
+
+	test("YUI - div.scene div.dialog", num, function(){
+		query("div.scene div.dialog");
+	});
+
+	test("YUI - div#scene1 div.dialog div", num, function(){
+		query("div#scene1 div.dialog div");
+	});
+
+	test("YUI - #scene1 #speech1", num, function(){
+		query("#scene1 #speech1");
+	});
+
+	test("YUI - div[class]", num, function(){
+		query("div[class]");
+	});
+
+	test("YUI - div[class=dialog]", num, function(){
+		query("div[class=dialog]");
+	});
+
+	test("YUI - div[class^=dia]", num, function(){
+		query("div[class^=dia]");
+	});
+
+	test("YUI - div[class$=log]", num, function(){
+		query("div[class$=log]");
+	});
+
+	test("YUI - div[class*=sce]", num, function(){
+		query("div[class*=sce]");
+	});
+
+	test("YUI - div[class|=dialog]", num, function(){
+		query("div[class|=dialog]");
+	});
+
+	test("YUI - div[class~=dialog]", num, function(){
+		query("div[class~=dialog]");
+	});
 
 })(num);
 

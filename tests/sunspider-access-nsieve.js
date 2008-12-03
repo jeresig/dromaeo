@@ -29,14 +29,12 @@ function nsieve(m, isPrime){
 
 startTest("sunspider-access-nsieve");
 
-for ( var i = 1; i <= 4; i++ ) (function(i){
-	test( "N-Sieve", i, function(){
-		for ( var i = 1; i <= 2; i++ ) {
-        	var m = (1<<i)*10000;
-        	var flags = Array(m+1);
-		nsieve(m,flags);
-		}
-	});
-})(i);
+test( "N-Sieve", function(){
+	for ( var i = 1; i <= 2; i++ ) {
+       	var m = (1<<i)*10000;
+       	var flags = Array(m+1);
+	nsieve(m,flags);
+	}
+});
 
 endTest();

@@ -3435,9 +3435,7 @@ function renderScene(){
 window.onload = function(){
 startTest("v8-raytrace");
 
-for ( var i = 0; i < 4; i++ ) {
-test("RayTrace", i, renderScene);
-}
+test("RayTrace", renderScene);
 
 endTest();
 };

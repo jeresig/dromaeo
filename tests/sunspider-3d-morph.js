@@ -4,6 +4,7 @@
 startTest("sunspider-3d-morph");
 
 var loops = 15, nx, nz, a;
+var size = 120;
 
 function morph(a,f) {
     var PI2nx = Math.PI * 8/nx;
@@ -18,20 +19,18 @@ function morph(a,f) {
 }
 
     
-for ( var size = 30; size <= 240; size *= 2 ) (function(size){
-	prep(function(){
-		nz = nx = size / 3;
-	});
+prep(function(){
+	nz = nx = size / 3;
+});
 
-	test("Mesh Transform", size, function(){
-		a = Array();
-		for (var i=0; i < nx*nz*3; ++i)
-			a[i] = 0;
+test("Mesh Transform", function(){
+	a = Array();
+	for (var i=0; i < nx*nz*3; ++i)
+		a[i] = 0;
 
-		for (var i = 0; i < loops; ++i) {
-    			morph(a, i/loops)
-		}
-	});
-})(size);
+	for (var i = 0; i < loops; ++i) {
+    		morph(a, i/loops)
+	}
+});
 
 endTest();

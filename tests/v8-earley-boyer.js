@@ -4679,11 +4679,7 @@ var BgL_runzd2benchmarkzd2 = RunBenchmark;
 
 startTest("v8-earley-boyer");
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("Earley", i, BgL_earleyzd2benchmarkzd2);
-test("Boyer", i, BgL_nboyerzd2benchmarkzd2);
-
-}
+test("Earley", BgL_earleyzd2benchmarkzd2);
+test("Boyer", BgL_nboyerzd2benchmarkzd2);
 
 endTest();

@@ -11,8 +11,6 @@ var ret, tmp, div, dd;
 
 var html = document.body.innerHTML;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		div = jQuery("div");
 		dd = jQuery("dd");
@@ -21,39 +19,37 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - parent", num, function(){
+	test("jQuery - parent", function(){
 		ret = div.parent().length;
 	});
 
-	test("jQuery - parents", num, function(){
+	test("jQuery - parents", function(){
 		ret = div.parents().length;
 	});
 
-	test("jQuery - prev", num, function(){
+	test("jQuery - prev", function(){
 		ret = div.prev().length;
 	});
 
-	test("jQuery - prevAll", num, function(){
+	test("jQuery - prevAll", function(){
 		ret = dd.prevAll().length;
 	});
 
-	test("jQuery - next", num, function(){
+	test("jQuery - next", function(){
 		ret = div.next().length;
 	});
 
-	test("jQuery - nextAll", num, function(){
+	test("jQuery - nextAll", function(){
 		ret = dd.nextAll().length;
 	});
 
-	test("jQuery - siblings", num, function(){
+	test("jQuery - siblings", function(){
 		ret = dd.siblings().length;
 	});
 
-	test("jQuery - children", num, function(){
+	test("jQuery - children", function(){
 		ret = div.children().length;
 	});
-
-})(num);
 
 endTest();
 };

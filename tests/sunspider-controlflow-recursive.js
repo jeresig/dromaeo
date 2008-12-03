@@ -20,23 +20,19 @@ function tak(x,y,z) {
 
 startTest("sunspider-controlflow-recursive");
 
-for ( var i = 3; i <= 6; i++ ) (function(i){
-
-	test("Ack", i, function(){
+	test("Ack", function(){
 		for ( var i = 3; i <= 5; i++ )
 			ack(3,i);
 	});
 	
-	test("Fib", i, function(){
+	test("Fib", function(){
 		for ( var i = 3; i <= 5; i++ )
 			fib(17.0+i);
 	});
 	
-	test("Tak", i, function(){
+	test("Tak", function(){
 		for ( var i = 3; i <= 5; i++ )
 			tak(3*i+3,2*i+2,i+1);
 	});
-
-})(i);
 
 endTest();

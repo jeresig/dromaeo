@@ -79,19 +79,18 @@ function fastaRandom(n, table) {
 startTest("sunspider-string-fasta");
 
 var ret;
+var n = 16;
 
-for ( var n = 4; n <= 32; n *= 2 ) (function(n){
-	test( "Homo sapiens alu", n, function(){
-		ret = fastaRepeat(4*n*10000, ALU);
-	});
+test( "Homo sapiens alu", function(){
+	ret = fastaRepeat(4*n*10000, ALU);
+});
 	
-	test( "IUB ambiguity codes", n, function(){
-		ret = fastaRandom(3*n*100, IUB);
-	});
+test( "IUB ambiguity codes", function(){
+	ret = fastaRandom(3*n*100, IUB);
+});
 	
-	test( "Homo sapiens frequency", n, function(){
-		ret = fastaRandom(5*n*100, HomoSap);
-	});
-})(n);
+test( "Homo sapiens frequency", function(){
+	ret = fastaRandom(5*n*100, HomoSap);
+});
 
 endTest();

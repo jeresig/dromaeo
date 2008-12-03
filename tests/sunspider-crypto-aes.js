@@ -421,19 +421,15 @@ var cipherText, decryptedText;
 
 startTest("sunspider-crypto-aes");
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("AES Encrypt", i, function(){
+test("AES Encrypt", function(){
 	cipherText = AESEncryptCtr(plainText, password, 256);
 });
 
-test("AES Decrypt", i, function(){
+test("AES Decrypt", function(){
 	decryptedText = AESDecryptCtr(cipherText, password, 256);
 
 	if ( decryptedText !== plainText )
 		throw "Decryption failed.";
 });
-
-}
 
 endTest();

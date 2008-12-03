@@ -11,8 +11,6 @@ var ret, tmp, div;
 
 var html = document.body.innerHTML;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		div = jQuery("div");
 		var tmp = document.createElement("div");
@@ -20,39 +18,37 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - css('color')", num, function(){
+	test("jQuery - css('color')", function(){
 		ret = div.css("color");
 	});
 
-	test("jQuery - css('color','red')", num, function(){
+	test("jQuery - css('color','red')", function(){
 		div.css("color","red");
 	});
 
-	test("jQuery - height()", num, function(){
+	test("jQuery - height()", function(){
 		ret = div.height();
 	});
 
-	test("jQuery - width()", num, function(){
+	test("jQuery - width()", function(){
 		ret = div.width();
 	});
 
-	test("jQuery - .is(':visible')", num, function(){
+	test("jQuery - .is(':visible')", function(){
 		ret = div.is(":visible");
 	});
 
-	test("jQuery - .show()", num, function(){
+	test("jQuery - .show()", function(){
 		div.show();
 	});
 
-	test("jQuery - .hide()", num, function(){
+	test("jQuery - .hide()", function(){
 		div.hide();
 	});
 
-	test("jQuery - .toggle()", num, function(){
+	test("jQuery - .toggle()", function(){
 		div.toggle();
 	});
-
-})(num);
 
 endTest();
 };

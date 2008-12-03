@@ -871,13 +871,9 @@ var planner = null;
 
 startTest("v8-deltablue");
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("Constraint Solving", i, function deltaBlue() {
+test("Constraint Solving", function deltaBlue() {
   chainTest(100);
   projectionTest(100);
 });
-
-}
 
 endTest();

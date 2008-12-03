@@ -7,10 +7,8 @@ startTest("dom-traverse");
 
 // Try to force real results
 var ret, tmp;
-
+var num = 40;
 var html = document.body.innerHTML;
-
-for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 
 	prep(function(){
 		html = html.replace(/id="test.*?"/g, 'id="test' + num + '"');
@@ -21,7 +19,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		document.body.appendChild( div );
 	});
 
-	test( "firstChild", num, function(){
+	test( "firstChild", function(){
 		var nodes = document.body.childNodes, nl = nodes.length;
 
 		for ( var i = 0; i < num; i++ ) {
@@ -34,7 +32,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "lastChild", num, function(){
+	test( "lastChild", function(){
 		var nodes = document.body.childNodes, nl = nodes.length;
 
 		for ( var i = 0; i < num; i++ ) {
@@ -47,7 +45,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "nextSibling", num, function(){
+	test( "nextSibling", function(){
 		for ( var i = 0; i < num * 2; i++ ) {
 			var cur = document.body.firstChild;
 			while ( cur )
@@ -56,7 +54,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "previousSibling", num, function(){
+	test( "previousSibling", function(){
 		for ( var i = 0; i < num * 2; i++ ) {
 			var cur = document.body.lastChild;
 			while ( cur )
@@ -65,15 +63,13 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "childNodes", num, function(){
+	test( "childNodes", function(){
 		for ( var i = 0; i < num; i++ ) {
 			var nodes = document.body.childNodes;
 			for ( var j = 0; j < nodes.length; j++ )
 				ret = nodes[j];
 		}
 	});
-
-})(num);
 
 endTest();
 };

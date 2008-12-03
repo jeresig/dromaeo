@@ -10,40 +10,37 @@ var ret, tmp;
 
 var elem = document.getElementById("test1");
 var a = document.getElementsByTagName("a")[0];
-
-for ( var num = 2560; num <= 20480; num *= 2 ) (function(num){
+var num = 10240;
 	
-	test( "getAttribute", num, function(){
+	test( "getAttribute", function(){
 		for ( var i = 0; i < num; i++ )
 			ret = elem.getAttribute("id");
 	});
 
-	test( "element.property", num, function(){
+	test( "element.property", function(){
 		for ( var i = 0; i < num * 2; i++ )
 			ret = elem.id;
 	});
 
-	test( "setAttribute", num, function(){
+	test( "setAttribute", function(){
 		for ( var i = 0; i < num; i++ )
 			a.setAttribute("id", "foo");
 	});
 
-	test( "element.property = value", num, function(){
+	test( "element.property = value", function(){
 		for ( var i = 0; i < num; i++ )
 			a.id = "foo";
 	});
 
-	test( "element.expando = value", num, function(){
+	test( "element.expando = value", function(){
 		for ( var i = 0; i < num; i++ )
 			a["test" + num] = function(){};
 	});
 
-	test( "element.expando", num, function(){
+	test( "element.expando", function(){
 		for ( var i = 0; i < num; i++ )
 			ret = a["test" + num];
 	});
-
-})(num);
 
 endTest();
 };

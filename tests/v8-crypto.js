@@ -1677,16 +1677,14 @@ var encrypted;
 
 startTest("v8-crypto");
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("RSA Encrypt", i, function encrypt() {
+test("RSA Encrypt", function encrypt() {
   var RSA = new RSAKey();
   RSA.setPublic(nValue, eValue);
   RSA.setPrivateEx(nValue, eValue, dValue, pValue, qValue, dmp1Value, dmq1Value, coeffValue);
   encrypted = RSA.encrypt(TEXT);
 });
 
-test("RSA Decrypt", i, function decrypt() {
+test("RSA Decrypt", function decrypt() {
   var RSA = new RSAKey();
   RSA.setPublic(nValue, eValue);
   RSA.setPrivateEx(nValue, eValue, dValue, pValue, qValue, dmp1Value, dmq1Value, coeffValue);
@@ -1695,7 +1693,5 @@ test("RSA Decrypt", i, function decrypt() {
     throw new Error("Crypto operation failed");
   }
 });
-
-}
 
 endTest();

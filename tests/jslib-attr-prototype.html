@@ -11,8 +11,6 @@ var ret, tmp, div;
 
 var html = document.body.innerHTML;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		div = $$("div");
 		var tmp = document.createElement("div");
@@ -20,32 +18,30 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("Prototype - addClassName", num, function(){
+	test("Prototype - addClassName", function(){
 		div.invoke("addClassName", "foo");
 	});
 
-	test("Prototype - removeClassName", num, function(){
+	test("Prototype - removeClassName", function(){
 		div.invoke("removeClassName", "foo");
 	});
 
-	test("Prototype - hasClassName", num, function(){
+	test("Prototype - hasClassName", function(){
 		ret = div.invoke("hasClassName", "test");
 	});
 
-	test("Prototype - readAttribute", num, function(){
+	test("Prototype - readAttribute", function(){
 		ret = div.invoke("readAttribute", "class");
 	});
 
-	test("Prototype - writeAttribute", num, function(){
+	test("Prototype - writeAttribute", function(){
 		div.invoke("writeAttribute","class","test");
 	});
 
 	/* ???
-	test("Prototype - removeAttribute", num, function(){
+	test("Prototype - removeAttribute", function(){
 	});
 	*/
-
-})(num);
 
 endTest();
 };

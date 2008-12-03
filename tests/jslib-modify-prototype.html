@@ -14,8 +14,6 @@ var html = document.body.innerHTML,
 	elem2 = document.createElement("strong"),
 	elemStr = "<strong>some text</strong>";
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		a = $$("a");
 		dd = $$("dd");
@@ -26,42 +24,40 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 	});
 
 	/* // Need a good way to test this
-	test("Prototype - wrap()", num, function(){
+	test("Prototype - wrap()", function(){
 		div.invoke("wrap", "div");
 	});
 	*/
 
-	test("Prototype - update()", num, function(){
+	test("Prototype - update()", function(){
 		dd.invoke("update", elemStr);
 	});
 	
-	test("Prototype - before", num, function(){
+	test("Prototype - before", function(){
 		div.invoke("insert", {before: elemStr});
 	});
 
-	test("Prototype - after", num, function(){
+	test("Prototype - after", function(){
 		div.invoke("insert", {after: elemStr});
 	});
 
-	test("Prototype - prepend", num, function(){
+	test("Prototype - prepend", function(){
 		div.invoke("insert", {top: elemStr});
 	});
 
-	test("Prototype - append", num, function(){
+	test("Prototype - append", function(){
 		div.invoke("insert", {bottom: elemStr});
 	});
 
 	/* // Need a good way to test
-	test("Prototype - replace()", num, function(){
+	test("Prototype - replace()", function(){
 		div.invoke("replace", elem );
 	});
 
-	test("Prototype - remove()", num, function(){
+	test("Prototype - remove()", function(){
 		div.invoke("remove");
 	});
 	*/
-
-})(num);
 
 endTest();
 };

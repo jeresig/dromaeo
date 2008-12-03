@@ -2,40 +2,37 @@ startTest("dromaeo-object-string");
 
 // Try to force real results
 var ret;
+var num = 80000;
 
 // TESTS: String concatenation
 
-for ( var num = 20000; num <= 160000; num *= 2 ) (function(num){
-
-	test( "Concat String", num, function(){
+	test( "Concat String", function(){
 		var str = "";
 		for ( var i = 0; i < num; i++ )
 			str += "a";
 		ret = str;
 	});
 
-	test( "Concat String Object", num, function(){
+	test( "Concat String Object", function(){
 		var str = new String();
 		for ( var i = 0; i < num; i++ )
 			str += "a";
 		ret = str;
 	});
 
-	test( "Concat String from charCode", num, function(){
+	test( "Concat String from charCode", function(){
 		var str = "";
 		for ( var i = 0; i < num / 2; i++ )
 			str += String.fromCharCode(97);
 		ret = str;
 	});
 
-	test( "Array String Join", num, function(){
+	test( "Array String Join", function(){
 		var str = [];
 		for ( var i = 0; i < num / 2; i++ )
 			str.push("a");
 		ret = str.join("");
 	});
-
-})(num);
 
 var ostr = [], tmp, num = 5000, tmpstr;
 
@@ -43,16 +40,18 @@ for ( var i = 0; i < 16384; i++ )
 	ostr.push( String.fromCharCode( (25 * Math.random()) + 97 ) );
 
 ostr = ostr.join("");
+ostr += ostr;
+ostr += ostr;
 
 var str;
+var i = 52288;
 
-for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 	prep(function(){
 		str = new String(ostr);
 	});
 
 	// TESTS: split
-	test( "String Split", i, function(){
+	test( "String Split", function(){
 		ret = str.split("");
 	});
 
@@ -64,7 +63,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 		tmpstr += tmpstr;
 	});
 
-	test( "String Split on Char", i, function(){
+	test( "String Split on Char", function(){
 		ret = tmpstr.split("a");
 	});
 
@@ -74,7 +73,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: characters
 
-	test( "charAt", i, function(){
+	test( "charAt", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.charAt(0);
 			ret = str.charAt(str.length - 1);
@@ -83,7 +82,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 		}
 	});
 
-	test( "[Number]", i, function(){
+	test( "[Number]", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str[0];
 			ret = str[str.length - 1];
@@ -93,7 +92,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 		}
 	});
 
-	test( "charCodeAt", i, function(){
+	test( "charCodeAt", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.charCodeAt(0);
 			ret = str.charCodeAt(str.length - 1);
@@ -105,7 +104,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: indexOf
 
-	test( "indexOf", i, function(){
+	test( "indexOf", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.indexOf("a");
 			ret = str.indexOf("b");
@@ -114,7 +113,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 		}
 	});
 
-	test( "lastIndexOf", i, function(){
+	test( "lastIndexOf", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.lastIndexOf("a");
 			ret = str.lastIndexOf("b");
@@ -125,7 +124,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: slice
 
-	test( "slice", i, function(){
+	test( "slice", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.slice(0);
 			ret = str.slice(0,5);
@@ -138,7 +137,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: substr
 
-	test( "substr", i, function(){
+	test( "substr", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.substr(0);
 			ret = str.substr(0,5);
@@ -151,7 +150,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: substring
 
-	test( "substring", i, function(){
+	test( "substring", function(){
 		for ( var j = 0; j < num; j++ ) {
 			ret = str.substring(0);
 			ret = str.substring(0,5);
@@ -164,13 +163,13 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: toLower/UpperCase
 
-	test( "toLowerCase", i, function(){
+	test( "toLowerCase", function(){
 		for ( var j = 0; j < num / 1000; j++ ) {
 			ret = str.toLowerCase();
 		}
 	});
 
-	test( "toUpperCase", i, function(){
+	test( "toUpperCase", function(){
 		for ( var j = 0; j < num / 1000; j++ ) {
 			ret = str.toUpperCase();
 		}
@@ -178,7 +177,7 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 
 	// TESTS: comparing
 
-	test( "comparing", i, function(){
+	test( "comparing", function(){
 		var tmp = str + "a";
 		for ( var j = 0; j < num / 1000; j++ ) {
 			ret = str == tmp;
@@ -186,11 +185,5 @@ for ( var i = 131072; i <= 1048576; i *= 2 ) (function(i){
 			ret = str > tmp;
 		}
 	});
-
-	// Double the length of the string
-	prep(function(){
-		ostr += ostr;
-	});
-})(i);
 
 endTest();

@@ -7,10 +7,8 @@ startTest("dom-query");
 
 // Try to force real results
 var ret, tmp;
-
+var num = 40;
 var html = document.body.innerHTML;
-
-for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 
 	prep(function(){
 		html = html.replace(/id="test(\w).*?"/g, 'id="test$1' + num + '"');
@@ -21,7 +19,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		document.body.appendChild( div );
 	});
 
-	test( "getElementById", num, function(){
+	test( "getElementById", function(){
 		for ( var i = 0; i < num * 30; i++ ) {
 			ret = document.getElementById("testA" + num).nodeType;
 			ret = document.getElementById("testB" + num).nodeType;
@@ -32,7 +30,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "getElementById (not in document)", num, function(){
+	test( "getElementById (not in document)", function(){
 		for ( var i = 0; i < num * 30; i++ ) {
 			ret = document.getElementById("testA");
 			ret = document.getElementById("testB");
@@ -43,42 +41,42 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "getElementsByTagName(div)", num, function(){
+	test( "getElementsByTagName(div)", function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("div");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName(p)", num, function(){
+	test( "getElementsByTagName(p)", function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("p");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName(a)", num, function(){
+	test( "getElementsByTagName(a)", function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("a");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName(*)", num, function(){
+	test( "getElementsByTagName(*)", function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("*");
 			ret = elems[elems.length-1].nodeType;
 		}
 	});
 
-	test( "getElementsByTagName (not in document)", num, function(){
+	test( "getElementsByTagName (not in document)", function(){
 		for ( var i = 0; i < num; i++ ) {
 			var elems = document.getElementsByTagName("strong");
 			ret = elems.length == 0;
 		}
 	});
 
-	test( "getElementsByName", num, function(){
+	test( "getElementsByName", function(){
 		for ( var i = 0; i < num * 20; i++ ) {
 			var elems = document.getElementsByName("test" + num);
 			ret = elems[elems.length-1].nodeType;
@@ -91,7 +89,7 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "getElementsByName (not in document)", num, function(){
+	test( "getElementsByName (not in document)", function(){
 		for ( var i = 0; i < num * 20; i++ ) {
 			ret = document.getElementsByName("test").length == 0;
 			ret = document.getElementsByName("test").length == 0;
@@ -100,8 +98,6 @@ for ( var num = 10; num <= 80; num *= 2 ) (function(num){
 			ret = document.getElementsByName("test").length == 0;
 		}
 	});
-
-})(num);
 
 endTest();
 };

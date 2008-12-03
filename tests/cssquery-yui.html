@@ -14,159 +14,155 @@ var ret, tmp;
 var html = document.body.innerHTML;
 var query = YAHOO.util.Selector.query;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		var div = document.createElement("div");
 		div.innerHTML = html;
 		document.body.appendChild( div );
 	});
 	
-	test("YUI - *", num, function(){
+	test("YUI - *", function(){
 		query("*");
 	});
 
-	test("YUI - div:only-child", num, function(){
+	test("YUI - div:only-child", function(){
 		query("div:only-child");
 	});
 
-	test("YUI - div:first-child", num, function(){
+	test("YUI - div:first-child", function(){
 		query("div:first-child");
 	});
 
-	test("YUI - div:nth-child(even)", num, function(){
+	test("YUI - div:nth-child(even)", function(){
 		query("div:nth-child(even)");
 	});
 
-	test("YUI - div:nth-child(2n)", num, function(){
+	test("YUI - div:nth-child(2n)", function(){
 		query("div:nth-child(2n)");
 	});
 
-	test("YUI - div:nth-child(odd)", num, function(){
+	test("YUI - div:nth-child(odd)", function(){
 		query("div:nth-child(odd)");
 	});
 
-	test("YUI - div:nth-child(2n+1)", num, function(){
+	test("YUI - div:nth-child(2n+1)", function(){
 		query("div:nth-child(2n+1)");
 	});
 
-	test("YUI - div:nth-child(n)", num, function(){
+	test("YUI - div:nth-child(n)", function(){
 		query("div:nth-child(n)");
 	});
 
-	test("YUI - div:last-child", num, function(){
+	test("YUI - div:last-child", function(){
 		query("div:last-child");
 	});
 
-	test("YUI - div > div", num, function(){
+	test("YUI - div > div", function(){
 		query("div > div");
 	});
 
-	test("YUI - div + div", num, function(){
+	test("YUI - div + div", function(){
 		query("div + div");
 	});
 
-	test("YUI - div ~ div", num, function(){
+	test("YUI - div ~ div", function(){
 		query("div ~ div");
 	});
 
-	test("YUI - body", num, function(){
+	test("YUI - body", function(){
 		query("body");
 	});
 
-	test("YUI - body div", num, function(){
+	test("YUI - body div", function(){
 		query("body div");
 	});
 
-	test("YUI - div", num, function(){
+	test("YUI - div", function(){
 		query("div");
 	});
 
-	test("YUI - div div", num, function(){
+	test("YUI - div div", function(){
 		query("div div");
 	});
 
-	test("YUI - div div div", num, function(){
+	test("YUI - div div div", function(){
 		query("div div div");
 	});
 
-	test("YUI - div, div, div", num, function(){
+	test("YUI - div, div, div", function(){
 		query("div, div, div");
 	});
 
-	test("YUI - div, a, span", num, function(){
+	test("YUI - div, a, span", function(){
 		query("div, a, span");
 	});
 
-	test("YUI - .dialog", num, function(){
+	test("YUI - .dialog", function(){
 		query(".dialog");
 	});
 
-	test("YUI - div.dialog", num, function(){
+	test("YUI - div.dialog", function(){
 		query("div.dialog");
 	});
 
-	test("YUI - div .dialog", num, function(){
+	test("YUI - div .dialog", function(){
 		query("div .dialog");
 	});
 
-	test("YUI - div.character, div.dialog", num, function(){
+	test("YUI - div.character, div.dialog", function(){
 		query("div.character, div.dialog");
 	});
 
-	test("YUI - #speech5", num, function(){
+	test("YUI - #speech5", function(){
 		query("#speech5");
 	});
 
-	test("YUI - div#speech5", num, function(){
+	test("YUI - div#speech5", function(){
 		query("div#speech5");
 	});
 
-	test("YUI - div #speech5", num, function(){
+	test("YUI - div #speech5", function(){
 		query("div #speech5");
 	});
 
-	test("YUI - div.scene div.dialog", num, function(){
+	test("YUI - div.scene div.dialog", function(){
 		query("div.scene div.dialog");
 	});
 
-	test("YUI - div#scene1 div.dialog div", num, function(){
+	test("YUI - div#scene1 div.dialog div", function(){
 		query("div#scene1 div.dialog div");
 	});
 
-	test("YUI - #scene1 #speech1", num, function(){
+	test("YUI - #scene1 #speech1", function(){
 		query("#scene1 #speech1");
 	});
 
-	test("YUI - div[class]", num, function(){
+	test("YUI - div[class]", function(){
 		query("div[class]");
 	});
 
-	test("YUI - div[class=dialog]", num, function(){
+	test("YUI - div[class=dialog]", function(){
 		query("div[class=dialog]");
 	});
 
-	test("YUI - div[class^=dia]", num, function(){
+	test("YUI - div[class^=dia]", function(){
 		query("div[class^=dia]");
 	});
 
-	test("YUI - div[class$=log]", num, function(){
+	test("YUI - div[class$=log]", function(){
 		query("div[class$=log]");
 	});
 
-	test("YUI - div[class*=sce]", num, function(){
+	test("YUI - div[class*=sce]", function(){
 		query("div[class*=sce]");
 	});
 
-	test("YUI - div[class|=dialog]", num, function(){
+	test("YUI - div[class|=dialog]", function(){
 		query("div[class|=dialog]");
 	});
 
-	test("YUI - div[class~=dialog]", num, function(){
+	test("YUI - div[class~=dialog]", function(){
 		query("div[class~=dialog]");
 	});
-
-})(num);
 
 endTest();
 };

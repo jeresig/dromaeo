@@ -11,159 +11,155 @@ var ret, tmp;
 
 var html = document.body.innerHTML;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		var div = document.createElement("div");
 		div.innerHTML = html;
 		document.body.appendChild( div );
 	});
 	
-	test("jQuery - *", num, function(){
+	test("jQuery - *", function(){
 		jQuery("*");
 	});
 
-	test("jQuery - div:only-child", num, function(){
+	test("jQuery - div:only-child", function(){
 		jQuery("div:only-child");
 	});
 
-	test("jQuery - div:first-child", num, function(){
+	test("jQuery - div:first-child", function(){
 		jQuery("div:first-child");
 	});
 
-	test("jQuery - div:nth-child(even)", num, function(){
+	test("jQuery - div:nth-child(even)", function(){
 		jQuery("div:nth-child(even)");
 	});
 
-	test("jQuery - div:nth-child(2n)", num, function(){
+	test("jQuery - div:nth-child(2n)", function(){
 		jQuery("div:nth-child(2n)");
 	});
 
-	test("jQuery - div:nth-child(odd)", num, function(){
+	test("jQuery - div:nth-child(odd)", function(){
 		jQuery("div:nth-child(odd)");
 	});
 
-	test("jQuery - div:nth-child(2n+1)", num, function(){
+	test("jQuery - div:nth-child(2n+1)", function(){
 		jQuery("div:nth-child(2n+1)");
 	});
 
-	test("jQuery - div:nth-child(n)", num, function(){
+	test("jQuery - div:nth-child(n)", function(){
 		jQuery("div:nth-child(n)");
 	});
 
-	test("jQuery - div:last-child", num, function(){
+	test("jQuery - div:last-child", function(){
 		jQuery("div:last-child");
 	});
 
-	test("jQuery - div > div", num, function(){
+	test("jQuery - div > div", function(){
 		jQuery("div > div");
 	});
 
-	test("jQuery - div + div", num, function(){
+	test("jQuery - div + div", function(){
 		jQuery("div + div");
 	});
 
-	test("jQuery - div ~ div", num, function(){
+	test("jQuery - div ~ div", function(){
 		jQuery("div ~ div");
 	});
 
-	test("jQuery - body", num, function(){
+	test("jQuery - body", function(){
 		jQuery("body");
 	});
 
-	test("jQuery - body div", num, function(){
+	test("jQuery - body div", function(){
 		jQuery("body div");
 	});
 
-	test("jQuery - div", num, function(){
+	test("jQuery - div", function(){
 		jQuery("div");
 	});
 
-	test("jQuery - div div", num, function(){
+	test("jQuery - div div", function(){
 		jQuery("div div");
 	});
 
-	test("jQuery - div div div", num, function(){
+	test("jQuery - div div div", function(){
 		jQuery("div div div");
 	});
 
-	test("jQuery - div, div, div", num, function(){
+	test("jQuery - div, div, div", function(){
 		jQuery("div, div, div");
 	});
 
-	test("jQuery - div, a, span", num, function(){
+	test("jQuery - div, a, span", function(){
 		jQuery("div, a, span");
 	});
 
-	test("jQuery - .dialog", num, function(){
+	test("jQuery - .dialog", function(){
 		jQuery(".dialog");
 	});
 
-	test("jQuery - div.dialog", num, function(){
+	test("jQuery - div.dialog", function(){
 		jQuery("div.dialog");
 	});
 
-	test("jQuery - div .dialog", num, function(){
+	test("jQuery - div .dialog", function(){
 		jQuery("div .dialog");
 	});
 
-	test("jQuery - div.character, div.dialog", num, function(){
+	test("jQuery - div.character, div.dialog", function(){
 		jQuery("div.character, div.dialog");
 	});
 
-	test("jQuery - #speech5", num, function(){
+	test("jQuery - #speech5", function(){
 		jQuery("#speech5");
 	});
 
-	test("jQuery - div#speech5", num, function(){
+	test("jQuery - div#speech5", function(){
 		jQuery("div#speech5");
 	});
 
-	test("jQuery - div #speech5", num, function(){
+	test("jQuery - div #speech5", function(){
 		jQuery("div #speech5");
 	});
 
-	test("jQuery - div.scene div.dialog", num, function(){
+	test("jQuery - div.scene div.dialog", function(){
 		jQuery("div.scene div.dialog");
 	});
 
-	test("jQuery - div#scene1 div.dialog div", num, function(){
+	test("jQuery - div#scene1 div.dialog div", function(){
 		jQuery("div#scene1 div.dialog div");
 	});
 
-	test("jQuery - #scene1 #speech1", num, function(){
+	test("jQuery - #scene1 #speech1", function(){
 		jQuery("#scene1 #speech1");
 	});
 
-	test("jQuery - div[class]", num, function(){
+	test("jQuery - div[class]", function(){
 		jQuery("div[class]");
 	});
 
-	test("jQuery - div[class=dialog]", num, function(){
+	test("jQuery - div[class=dialog]", function(){
 		jQuery("div[class=dialog]");
 	});
 
-	test("jQuery - div[class^=dia]", num, function(){
+	test("jQuery - div[class^=dia]", function(){
 		jQuery("div[class^=dia]");
 	});
 
-	test("jQuery - div[class$=log]", num, function(){
+	test("jQuery - div[class$=log]", function(){
 		jQuery("div[class$=log]");
 	});
 
-	test("jQuery - div[class*=sce]", num, function(){
+	test("jQuery - div[class*=sce]", function(){
 		jQuery("div[class*=sce]");
 	});
 
-	test("jQuery - div[class|=dialog]", num, function(){
+	test("jQuery - div[class|=dialog]", function(){
 		jQuery("div[class|=dialog]");
 	});
 
-	test("jQuery - div[class~=dialog]", num, function(){
+	test("jQuery - div[class~=dialog]", function(){
 		jQuery("div[class~=dialog]");
 	});
-
-})(num);
 
 endTest();
 };

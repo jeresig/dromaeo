@@ -440,17 +440,13 @@ startTest("sunspider-3d-raytrace");
 
 var rayoutput;
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("3D Raytrace", i, function(){
+test("3D Raytrace", function(){
 	rayoutput = raytraceScene(15);
 });
 
-test("Convert pixels to canvas", i, function(){
+test("Convert pixels to canvas", function(){
 	for ( var i = 0; i < 10; i++ )
 		testOutput = arrayToCanvasCommands(rayoutput, 15);
 });
-
-}
 
 endTest();

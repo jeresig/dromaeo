@@ -14,8 +14,6 @@ var html = document.body.innerHTML,
 	elem2 = document.createElement("strong"),
 	elemStr = "<strong>some text</strong>";
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		a = jQuery("a");
 		dd = jQuery("dd");
@@ -26,42 +24,40 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 	});
 
 	/* // Need to find a good way to test this
-	test("jQuery - wrap()", num, function(){
+	test("jQuery - wrap()", function(){
 		div.wrap( elem );
 	});
 	*/
 
-	test("jQuery - html()", num, function(){
+	test("jQuery - html()", function(){
 		dd.html( elemStr );
 	});
 
-	test("jQuery - before()", num, function(){
+	test("jQuery - before()", function(){
 		div.before( elemStr );
 	});
 
-	test("jQuery - after()", num, function(){
+	test("jQuery - after()", function(){
 		div.before( elemStr );
 	});
 
-	test("jQuery - prepend()", num, function(){
+	test("jQuery - prepend()", function(){
 		div.prepend( elemStr );
 	});
 
-	test("jQuery - append()", num, function(){
+	test("jQuery - append()", function(){
 		div.append( elemStr );
 	});
 
 	/* // Need a good way to test
-	test("jQuery - replaceWith()", num, function(){
+	test("jQuery - replaceWith()", function(){
 		div.replaceWith( elem );
 	});
 
-	test("jQuery - remove()", num, function(){
+	test("jQuery - remove()", function(){
 		div.remove();
 	});
 	*/
-
-})(num);
 
 endTest();
 };

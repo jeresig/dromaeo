@@ -155,21 +155,19 @@ startTest("sunspider-access-nbody");
 
 var ret;
 
-for ( var n = 2; n <= 16; n *= 2 ) (function(n){
-	test( "N-Body", n, function(){
-		for ( var n = 3; n <= 6; n *= 2 ) {
-		var bodies = new NBodySystem( Array(
-		   Sun(),Jupiter(),Saturn(),Uranus(),Neptune()
-		));
-		var max = n * 100;
+test( "N-Body", function(){
+	for ( var n = 3; n <= 6; n *= 2 ) {
+	var bodies = new NBodySystem( Array(
+	   Sun(),Jupiter(),Saturn(),Uranus(),Neptune()
+	));
+	var max = n * 100;
 		
-		ret = bodies.energy();
-		for (var i=0; i<max; i++){
-			bodies.advance(0.01);
-		}
-		ret = bodies.energy();
-		}
-	});
-})(n);
+	ret = bodies.energy();
+	for (var i=0; i<max; i++){
+		bodies.advance(0.01);
+	}
+	ret = bodies.energy();
+	}
+});
 
 endTest();

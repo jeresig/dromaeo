@@ -31,12 +31,8 @@ for(var y=0; y<256; y++) func(y);
 
 startTest("sunspider-bitops-3bit-bits-in-byte");
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("3bit bits in byte", i, function(){
+test("3bit bits in byte", function(){
 	TimeFunc(fast3bitlookup);
 });
-
-}
 
 endTest();

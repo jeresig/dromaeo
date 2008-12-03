@@ -65,10 +65,8 @@ startTest("sunspider-access-fannkuch");
 
 var ret;
 
-for ( var n = 5; n <= 8; n++ ) (function(n){
-	test( "Pfannkuchen", n, function(){
-		ret = fannkuch(n);
-	});
-})(n);
+test( "Pfannkuchen", function(){
+	ret = fannkuch(7);
+});
 
 endTest();

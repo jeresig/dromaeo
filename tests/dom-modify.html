@@ -11,13 +11,12 @@ var ret, tmp, str;
 var elems = [];
 var htmlstr = document.body.innerHTML;
 var div = document.createElement("div");
+var num = 400;
 
 for ( var i = 0; i < 1024; i++ )
         str += String.fromCharCode( (25 * Math.random()) + 97 );
 
-for ( var num = 100; num <= 800; num *= 2 ) (function(num){
-
-	test( "createElement", num, function(){
+	test( "createElement", function(){
 		for ( var i = 0; i < num; i++ ) {
 			ret = document.createElement("div");
 			ret = document.createElement("span");
@@ -27,7 +26,7 @@ for ( var num = 100; num <= 800; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "createTextNode", num, function(){
+	test( "createTextNode", function(){
 		for ( var i = 0; i < num; i++ ) {
 			ret = document.createTextNode(str);
 			ret = document.createTextNode(str + "2");
@@ -38,13 +37,13 @@ for ( var num = 100; num <= 800; num *= 2 ) (function(num){
 	});
 
 	/* Need a better way to test this
-	test( "removeChild", num, function(){
+	test( "removeChild", function(){
 		while ( document.body.firstChild )
 			document.body.removeChild( document.body.firstChild );
 	});
 	*/
 
-	test( "innerHTML", num, function(){
+	test( "innerHTML", function(){
 		document.body.innerHTML = htmlstr;
 	});
 
@@ -55,7 +54,7 @@ for ( var num = 100; num <= 800; num *= 2 ) (function(num){
 			elems.push( telems[i] );
 	});
 	
-	test( "cloneNode", num, function(){
+	test( "cloneNode", function(){
 		for ( var i = 0; i < elems.length; i++ ) {
 			ret = elems[i].cloneNode();
 			ret = elems[i].cloneNode(true);
@@ -63,17 +62,15 @@ for ( var num = 100; num <= 800; num *= 2 ) (function(num){
 		}
 	});
 
-	test( "appendChild", num, function(){
+	test( "appendChild", function(){
 		for ( var i = 0; i < elems.length; i++ )
 			document.body.appendChild( elems[i] );
 	});
 
-	test( "insertBefore", num, function(){
+	test( "insertBefore", function(){
 		for ( var i = 0; i < elems.length; i++ )
 			document.body.insertBefore( elems[i], document.body.firstChild );
 	});
-
-})(num);
 
 endTest();
 };

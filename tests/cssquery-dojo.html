@@ -12,159 +12,155 @@ var ret, tmp;
 var html = document.body.innerHTML;
 var query = dojo.query;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		var div = document.createElement("div");
 		div.innerHTML = html;
 		document.body.appendChild( div );
 	});
 
-	test("Dojo - *", num, function(){
+	test("Dojo - *", function(){
 		query("*");
 	});
 
-	test("Dojo - div:only-child", num, function(){
+	test("Dojo - div:only-child", function(){
 		query("div:only-child");
 	});
 
-	test("Dojo - div:first-child", num, function(){
+	test("Dojo - div:first-child", function(){
 		query("div:first-child");
 	});
 
-	test("Dojo - div:nth-child(even)", num, function(){
+	test("Dojo - div:nth-child(even)", function(){
 		query("div:nth-child(even)");
 	});
 
-	test("Dojo - div:nth-child(2n)", num, function(){
+	test("Dojo - div:nth-child(2n)", function(){
 		query("div:nth-child(2n)");
 	});
 
-	test("Dojo - div:nth-child(odd)", num, function(){
+	test("Dojo - div:nth-child(odd)", function(){
 		query("div:nth-child(odd)");
 	});
 
-	test("Dojo - div:nth-child(2n+1)", num, function(){
+	test("Dojo - div:nth-child(2n+1)", function(){
 		query("div:nth-child(2n+1)");
 	});
 
-	test("Dojo - div:nth-child(n)", num, function(){
+	test("Dojo - div:nth-child(n)", function(){
 		query("div:nth-child(n)");
 	});
 
-	test("Dojo - div:last-child", num, function(){
+	test("Dojo - div:last-child", function(){
 		query("div:last-child");
 	});
 
-	test("Dojo - div > div", num, function(){
+	test("Dojo - div > div", function(){
 		query("div > div");
 	});
 
-	test("Dojo - div + div", num, function(){
+	test("Dojo - div + div", function(){
 		query("div + div");
 	});
 
-	test("Dojo - div ~ div", num, function(){
+	test("Dojo - div ~ div", function(){
 		query("div ~ div");
 	});
 
-	test("Dojo - body", num, function(){
+	test("Dojo - body", function(){
 		query("body");
 	});
 
-	test("Dojo - body div", num, function(){
+	test("Dojo - body div", function(){
 		query("body div");
 	});
 
-	test("Dojo - div", num, function(){
+	test("Dojo - div", function(){
 		query("div");
 	});
 
-	test("Dojo - div div", num, function(){
+	test("Dojo - div div", function(){
 		query("div div");
 	});
 
-	test("Dojo - div div div", num, function(){
+	test("Dojo - div div div", function(){
 		query("div div div");
 	});
 
-	test("Dojo - div, div, div", num, function(){
+	test("Dojo - div, div, div", function(){
 		query("div, div, div");
 	});
 
-	test("Dojo - div, a, span", num, function(){
+	test("Dojo - div, a, span", function(){
 		query("div, a, span");
 	});
 
-	test("Dojo - .dialog", num, function(){
+	test("Dojo - .dialog", function(){
 		query(".dialog");
 	});
 
-	test("Dojo - div.dialog", num, function(){
+	test("Dojo - div.dialog", function(){
 		query("div.dialog");
 	});
 
-	test("Dojo - div .dialog", num, function(){
+	test("Dojo - div .dialog", function(){
 		query("div .dialog");
 	});
 
-	test("Dojo - div.character, div.dialog", num, function(){
+	test("Dojo - div.character, div.dialog", function(){
 		query("div.character, div.dialog");
 	});
 
-	test("Dojo - #speech5", num, function(){
+	test("Dojo - #speech5", function(){
 		query("#speech5");
 	});
 
-	//test("Dojo - div#speech5", num, function(){
+	//test("Dojo - div#speech5", function(){
 		//query("div#speech5");
 	//});
 
-	//test("Dojo - div #speech5", num, function(){
+	//test("Dojo - div #speech5", function(){
 		//query("div #speech5");
 	//});
 
-	test("Dojo - div.scene div.dialog", num, function(){
+	test("Dojo - div.scene div.dialog", function(){
 		query("div.scene div.dialog");
 	});
 
-	//test("Dojo - div#scene1 div.dialog div", num, function(){
+	//test("Dojo - div#scene1 div.dialog div", function(){
 		//query("div#scene1 div.dialog div");
 	//});
 
-	test("Dojo - #scene1 #speech1", num, function(){
+	test("Dojo - #scene1 #speech1", function(){
 		query("#scene1 #speech1");
 	});
 
-	test("Dojo - div[class]", num, function(){
+	test("Dojo - div[class]", function(){
 		query("div[class]");
 	});
 
-	test("Dojo - div[class=dialog]", num, function(){
+	test("Dojo - div[class=dialog]", function(){
 		query("div[class=dialog]");
 	});
 
-	test("Dojo - div[class^=dia]", num, function(){
+	test("Dojo - div[class^=dia]", function(){
 		query("div[class^=dia]");
 	});
 
-	test("Dojo - div[class$=log]", num, function(){
+	test("Dojo - div[class$=log]", function(){
 		query("div[class$=log]");
 	});
 
-	test("Dojo - div[class*=sce]", num, function(){
+	test("Dojo - div[class*=sce]", function(){
 		query("div[class*=sce]");
 	});
 
-	test("Dojo - div[class|=dialog]", num, function(){
+	test("Dojo - div[class|=dialog]", function(){
 		query("div[class|=dialog]");
 	});
 
-	test("Dojo - div[class~=dialog]", num, function(){
+	test("Dojo - div[class~=dialog]", function(){
 		query("div[class~=dialog]");
 	});
-
-})(num);
 
 endTest();
 };

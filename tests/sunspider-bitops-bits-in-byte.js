@@ -20,12 +20,8 @@ for(var y=0; y<256; y++) func(y);
 
 startTest("sunspider-bitops-bits-in-byte");
 
-for ( var i = 0; i < 4; i++ ) {
-
-test("Bit in byte (2)", i, function(){
+test("Bit in byte (2)", function(){
 	TimeFunc(bitsinbyte);
 });
-
-}
 
 endTest();

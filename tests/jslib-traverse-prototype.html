@@ -11,8 +11,6 @@ var ret, tmp, div, dd;
 
 var html = document.body.innerHTML;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		div = $$("div");
 		dd = $$("dd");
@@ -21,39 +19,37 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("Prototype - up", num, function(){
+	test("Prototype - up", function(){
 		ret = div.invoke("up").length;
 	});
 
-	test("Prototype - ancestors", num, function(){
+	test("Prototype - ancestors", function(){
 		ret = div.invoke("ancestors").length;
 	});
 
-	test("Prototype - previous", num, function(){
+	test("Prototype - previous", function(){
 		ret = div.invoke("previous").length;
 	});
 
-	test("Prototype - previousSiblings", num, function(){
+	test("Prototype - previousSiblings", function(){
 		ret = dd.invoke("previousSiblings").length;
 	});
 
-	test("Prototype - next", num, function(){
+	test("Prototype - next", function(){
 		ret = div.invoke("next").length;
 	});
 
-	test("Prototype - nextSiblings", num, function(){
+	test("Prototype - nextSiblings", function(){
 		ret = dd.invoke("nextSiblings").length;
 	});
 
-	test("Prototype - siblings", num, function(){
+	test("Prototype - siblings", function(){
 		ret = dd.invoke("siblings").length;
 	});
 
-	test("Prototype - childElements", num, function(){
+	test("Prototype - childElements", function(){
 		ret = div.invoke("childElements").length;
 	});
-
-})(num);
 
 endTest();
 };

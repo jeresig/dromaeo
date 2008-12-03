@@ -11,8 +11,6 @@ var ret, tmp, div;
 
 var html = document.body.innerHTML;
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		div = $$("div");
 		var tmp = document.createElement("div");
@@ -20,39 +18,37 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("Prototype - getStyle()", num, function(){
+	test("Prototype - getStyle()", function(){
 		ret = div.invoke("getStyle","color");
 	});
 
-	test("Prototype - setStyle()", num, function(){
+	test("Prototype - setStyle()", function(){
 		div.invoke("setStyle","color","red");
 	});
 
-	test("Prototype - getHeight()", num, function(){
+	test("Prototype - getHeight()", function(){
 		ret = div.invoke("getHeight");
 	});
 
-	test("Prototype - getWidth()", num, function(){
+	test("Prototype - getWidth()", function(){
 		ret = div.invoke("getWidth");
 	});
 
-	test("Prototype - visible()", num, function(){
+	test("Prototype - visible()", function(){
 		ret = div.invoke("visible");
 	});
 
-	test("Prototype - .show()", num, function(){
+	test("Prototype - .show()", function(){
 		div.invoke("show");
 	});
 
-	test("Prototype - .hide()", num, function(){
+	test("Prototype - .hide()", function(){
 		div.invoke("hide");
 	});
 
-	test("Prototype - .toggle()", num, function(){
+	test("Prototype - .toggle()", function(){
 		div.invoke("toggle");
 	});
-
-})(num);
 
 endTest();
 };

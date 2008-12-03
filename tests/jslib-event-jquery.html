@@ -13,8 +13,6 @@ var html = document.body.innerHTML;
 
 function testfn(){}
 
-for ( var num = 1; num <= 8; num *= 2 ) (function(num){
-
 	prep(function(){
 		div = jQuery("div");
 		var tmp = document.createElement("div");
@@ -22,19 +20,17 @@ for ( var num = 1; num <= 8; num *= 2 ) (function(num){
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - bind", num, function(){
+	test("jQuery - bind", function(){
 		div.bind("click", testfn);
 	});
 
-	test("jQuery - trigger", num, function(){
+	test("jQuery - trigger", function(){
 		div.trigger("click");
 	});
 
-	test("jQuery - unbind", num, function(){
+	test("jQuery - unbind", function(){
 		div.unbind("click", testfn);
 	});
-
-})(num);
 
 endTest();
 };

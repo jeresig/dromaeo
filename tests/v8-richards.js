@@ -37,9 +37,7 @@
 
 startTest("v8-richards");
 
-for (var i = 0; i < 4; i++) {
-  test("Richards", i, runRichards);
-}
+test("Richards", runRichards);
 
 endTest();
 

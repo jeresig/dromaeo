@@ -16,7 +16,7 @@ web: ${TESTS}
 	@@ for i in ${TESTS}; do \
 		echo "Converting $${i} to web test..."; \
 		cat dep/web/test-head.html "$${i}" dep/web/test-tail.html | \
-			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 $${i}`-`crc32 "dep/web/webrunner.js"`'\);/" | \
+			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 $${i}`'\);/" | \
 			sed "s/startTest/window.onload = function(){ startTest/" | \
 			sed "s/endTest..;/endTest(); };/" > \
 			${WEB}/`echo "$${i}"|sed s/.js//`.html; \
@@ -24,7 +24,7 @@ web: ${TESTS}
 	@@ for i in ${HTMLTESTS}; do \
 		echo "Converting $${i} to web test..."; \
 		cat "$${i}" | \
-			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 "$${i}"`-`crc32 "dep/web/webrunner.js"`'\);/" > ${WEB}"/$${i}"; \
+			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 "$${i}"`'\);/" > ${WEB}"/$${i}"; \
 	done
 
 perf: ${TESTS}

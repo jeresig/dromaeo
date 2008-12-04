@@ -56,7 +56,7 @@ for ( var i = 0; i < 1024; i++ )
 	
 	test( "cloneNode", function(){
 		for ( var i = 0; i < elems.length; i++ ) {
-			ret = elems[i].cloneNode();
+			ret = elems[i].cloneNode(false);
 			ret = elems[i].cloneNode(true);
 			ret = elems[i].cloneNode(true);
 		}

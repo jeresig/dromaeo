@@ -644,21 +644,25 @@
 
 		for ( var i in data ) {
 			var total = data[i].mean;
-			if ( minVal == -1 || total < minVal ) {
+			if ( minVal == -1 || (runStyle === "ms" && total < minVal || runStyle === "runs/s" && total > minVal) ) {
 				min2Val = minVal;
 				min2 = min;
 				minVal = total;
 				min = i;
-			} else if ( min2Val == -1 || total < min2Val ) {
+			} else if ( min2Val == -1 || (runStyle === "ms" && total < minVal || runStyle === "runs/s" && total > min2Val) ) {
 				min2Val = total;
 				min2 = i;
 			}
 		}
 
+		var tieVal = (runStyle === "ms" ? minVal : min2Val) + data[min].error + data[min2].error;
+
 		var ret = {
 			winner: min,
-			diff: -1 * Math.round((1 - (min2Val / minVal)) * 100),
-			tie: minVal + data[min].error + data[min2].error >= min2Val
+			diff: runStyle === "ms" ?
+				-1 * Math.round((1 - (min2Val / minVal)) * 100) :
+				Math.round(((minVal / min2Val) - 1) * 100),
+			tie: (runStyle === "ms" ? tieVal >= min2Val : tieVal >= minVal)
 		};
 
 		ret.tie = ret.tie || ret.diff == 0;

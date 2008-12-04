@@ -112,3 +112,4 @@ ul#tests { clear:both;width:420px;margin:0 auto;text-align:left; padding: 10px; 
 
 #overview { position: relative; }
 #overview a { font-size: 10px; top: -29px; left: 8px; position: absolute; }
+#overview table a { position: static; }

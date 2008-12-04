@@ -1,6 +1,6 @@
 {
 "dromaeo-3d-cube": {
-	file: "dromaeo-3d-cube.js",
+	file: "dromaeo-3d-cube.html",
 	name: "Rotating 3D Cube",
 	origin: ["Simon Speich", "http://www.speich.net/computer/moztesting/3d.htm"],
 	desc: "Rotating the individual pixels of a cube. No rendering done.",
@@ -8,7 +8,7 @@
 	tags: ["object", "array", "property", "math"]
 },
 "dromaeo-string-base64": {
-	file: "dromaeo-string-base64.js",
+	file: "dromaeo-string-base64.html",
 	name: "Base 64 Encoding and Decoding",
 	origin: ["Mozilla", "http://mozilla.org/"],
 	desc: "Encode and decode a random string to base 64.",
@@ -16,7 +16,7 @@
 	tags: ["string","array","looping","bitops"]
 },
 "dromaeo-core-eval": {
-	file: "dromaeo-core-eval.js",
+	file: "dromaeo-core-eval.html",
 	name: "Code Evaluation",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of code evaluation (eval, new Function).",
@@ -24,7 +24,7 @@
 	tags: ["eval","microtest"]
 },
 "dromaeo-object-array": {
-	file: "dromaeo-object-array.js",
+	file: "dromaeo-object-array.html",
 	name: "Arrays",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of arrays (construction, methods, access).",
@@ -32,7 +32,7 @@
 	tags: ["array","microtest"]
 },
 "dromaeo-object-regexp": {
-	file: "dromaeo-object-regexp.js",
+	file: "dromaeo-object-regexp.html",
 	name: "Regular Expressions",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of regular expressions (construction, matching, replace).",
@@ -40,7 +40,7 @@
 	tags: ["regexp","microtest"]
 },
 "dromaeo-object-string": {
-	file: "dromaeo-object-string.js",
+	file: "dromaeo-object-string.html",
 	name: "Strings",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Microtests of strings (concatenation, methods).",
@@ -48,7 +48,7 @@
 	tags: ["string","microtest"]
 },
 "v8-crypto": {
-	file: "v8-crypto.js",
+	file: "v8-crypto.html",
 	name: "RSA Encryption/Decryption",
 	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
 	desc: "Encrypt a string and then decrypt it again using RSA.",
@@ -56,7 +56,7 @@
 	tags: ["looping","string","bitops"]
 },
 "v8-deltablue": {
-	file: "v8-deltablue.js",
+	file: "v8-deltablue.html",
 	name: "DeltaBlue Constraint Solving",
 	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
 	desc: "Computing a number of limitations on a set of values.",
@@ -64,7 +64,7 @@
 	tags: ["looping","functions"]
 },
 "v8-earley-boyer": {
-	file: "v8-earley-boyer.js",
+	file: "v8-earley-boyer.html",
 	name: "String Parsing and Searching",
 	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
 	desc: "Tests for parsing languages and searching strings.",
@@ -80,7 +80,7 @@
 	tags: ["looping","functions","object"]
 },
 "v8-richards": {
-	file: "v8-richards.js",
+	file: "v8-richards.html",
 	name: "Richards Benchmarks",
 	origin: ["V8 Benchmark", "http://code.google.com/apis/v8/benchmarks.html"],
 	desc: "A series of benchmarks to test the quality of system implementation languages.",
@@ -88,7 +88,7 @@
 	tags: ["functions","object"]
 },
 "sunspider-3d-morph": {
-	file: "sunspider-3d-morph.js",
+	file: "sunspider-3d-morph.html",
 	name: "3D Mesh Transformation",
 	origin: ["WebKit", "http://webkit.org/misc/morph.html"],
 	desc: "Transforming the points of a matrix. No visual output.",
@@ -96,7 +96,7 @@
 	tags: ["array", "looping", "math"]
 },
 "sunspider-3d-raytrace": {
-	file: "sunspider-3d-raytrace.js",
+	file: "sunspider-3d-raytrace.html",
 	name: "3D Raytrace",
 	origin: ["Apple", "http://apple.com/"],
 	desc: "Rendering a scene using raytracing techniques. No visual output.",
@@ -104,7 +104,7 @@
 	tags: ["array", "functions", "math"]
 },
 "sunspider-access-binary-trees": {
-	file: "sunspider-access-binary-trees.js",
+	file: "sunspider-access-binary-trees.html",
 	name: "Traversing Binary Trees",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Moving through an object representation of a binary tree.",
@@ -112,7 +112,7 @@
 	tags: ["object", "recursion"]
 },
 "sunspider-access-fannkuch": {
-	file: "sunspider-access-fannkuch.js",
+	file: "sunspider-access-fannkuch.html",
 	name: "Fannkuch",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Figure out the number of ways in which a set of numbers can be manipulated.",
@@ -120,7 +120,7 @@
 	tags: ["array", "looping"]
 },
 "sunspider-access-nbody": {
-	file: "sunspider-access-nbody.js",
+	file: "sunspider-access-nbody.html",
 	name: "N-Body Rotation and Gravity",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute the location of multiple planets based upon rotation and gravity.",
@@ -128,7 +128,7 @@
 	tags: ["object", "property", "looping", "math"]
 },
 "sunspider-access-nsieve": {
-	file: "sunspider-access-nsieve.js",
+	file: "sunspider-access-nsieve.html",
 	name: "Prime Number Computation",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute the number of prime numbers in a specific range of numbers.",
@@ -136,7 +136,7 @@
 	tags: ["looping", "array"]
 },
 "sunspider-bitops-3bit-bits-in-byte": {
-	file: "sunspider-bitops-3bit-bits-in-byte.js",
+	file: "sunspider-bitops-3bit-bits-in-byte.html",
 	name: "Compute Bits in Byte",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Compute the number of bits in a number using bitops.",
@@ -144,7 +144,7 @@
 	tags: ["looping", "bitops"]
 },
 "sunspider-bitops-bits-in-byte": {
-	file: "sunspider-bitops-bits-in-byte.js",
+	file: "sunspider-bitops-bits-in-byte.html",
 	name: "Compute Bits in Byte (2)",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Compute the number of bits in a number using bitops.",
@@ -152,7 +152,7 @@
 	tags: ["looping", "bitops"]
 },
 "sunspider-bitops-bitwise-and": {
-	file: "sunspider-bitops-bitwise-and.js",
+	file: "sunspider-bitops-bitwise-and.html",
 	name: "Bitwise And",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Compute a number by using a series of 'and' bit operations.",
@@ -160,7 +160,7 @@
 	tags: ["looping", "bitops"]
 },
 "sunspider-bitops-nsieve-bits": {
-	file: "sunspider-bitops-nsieve-bits.js",
+	file: "sunspider-bitops-nsieve-bits.html",
 	name: "Prime Number Computation (2)",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute the number of prime numbers in a specific range of numbers using bit operations.",
@@ -168,7 +168,7 @@
 	tags: ["looping", "bitops", "array"]
 },
 "sunspider-controlflow-recursive": {
-	file: "sunspider-controlflow-recursive.js",
+	file: "sunspider-controlflow-recursive.html",
 	name: "Recursive Number Calculation",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Compute various numbers in a recursive manner.",
@@ -176,7 +176,7 @@
 	tags: ["functions"]
 },
 "sunspider-crypto-aes": {
-	file: "sunspider-crypto-aes.js",
+	file: "sunspider-crypto-aes.html",
 	name: "AES Encryption/Decryption",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Encrypt a string and then decrypt it again using AES.",
@@ -184,7 +184,7 @@
 	tags: ["looping","string","bitops"]
 },
 "sunspider-crypto-md5": {
-	file: "sunspider-crypto-md5.js",
+	file: "sunspider-crypto-md5.html",
 	name: "MD5 Hashing",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Hash a long string using MD5.",
@@ -192,7 +192,7 @@
 	tags: ["looping","string"]
 },
 "sunspider-crypto-sha1": {
-	file: "sunspider-crypto-sha1.js",
+	file: "sunspider-crypto-sha1.html",
 	name: "SHA1 Hashing",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Hash a long string using SHA1.",
@@ -200,7 +200,7 @@
 	tags: ["looping","string"]
 },
 "sunspider-date-format-xparb": {
-	file: "sunspider-date-format-xparb.js",
+	file: "sunspider-date-format-xparb.html",
 	name: "Date Formatting",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Converting a date into a string representation.",
@@ -208,7 +208,7 @@
 	tags: ["date","string"]
 },
 "sunspider-date-format-tofte": {
-	file: "sunspider-date-format-tofte.js",
+	file: "sunspider-date-format-tofte.html",
 	name: "Date Formatting (2)",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Converting a date into a string representation.",
@@ -216,7 +216,7 @@
 	tags: ["date","string"]
 },
 "sunspider-math-cordic": {
-	file: "sunspider-math-cordic.js",
+	file: "sunspider-math-cordic.html",
 	name: "Trigonometric Calculation",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Calculate values from hyperbolic and trigonometric functions.",
@@ -224,7 +224,7 @@
 	tags: ["math","looping"]
 },
 "sunspider-math-partial-sums": {
-	file: "sunspider-math-partial-sums.js",
+	file: "sunspider-math-partial-sums.html",
 	name: "Partial Sum Calculation",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Calculate the partial sum of a few different number series.",
@@ -232,7 +232,7 @@
 	tags: ["math","looping"]
 },
 "sunspider-math-spectral-norm": {
-	file: "sunspider-math-spectral-norm.js",
+	file: "sunspider-math-spectral-norm.html",
 	name: "Spectral Norm of a Matrix",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Calculate the spectral norm of a matrix of numbers.",
@@ -240,7 +240,7 @@
 	tags: ["array","looping","math"]
 },
 "sunspider-regexp-dna": {
-	file: "sunspider-regexp-dna.js",
+	file: "sunspider-regexp-dna.html",
 	name: "DNA Conversion",
 	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
 	desc: "Convert one DNA sequence to another.",
@@ -248,7 +248,7 @@
 	tags: ["string","regexp"]
 },
 "sunspider-string-fasta": {
-	file: "sunspider-string-fasta.js",
+	file: "sunspider-string-fasta.html",
 	name: "DNA Sequence Alignment",
 	origin: ["Language Shootout", "http://shootout.alioth.debian.org/"],
 	desc: "Find DNA matches within a larger sequence.",
@@ -264,7 +264,7 @@
 	tags: ["string","regexp"]
 },
 "sunspider-string-unpack-code": {
-	file: "sunspider-string-unpack-code.js",
+	file: "sunspider-string-unpack-code.html",
 	name: "Script Unpacking",
 	origin: ["John Resig", "http://ejohn.org/"],
 	desc: "Decompressing scripts run through Dean Edwards' Packer.",

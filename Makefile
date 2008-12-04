@@ -11,11 +11,15 @@ all: spidermonkey rhino tamarin jscore
 web: ${TESTS}
 	@@ rm -rf ${WEB}
 	@@ cp -fR dep/web ${WEB}
-	@@ cp -fR tests/ ${WEB}/tests
+	@@ mkdir ${WEB}/tests
+	@@ cp -f tests/MANIFEST.json ${WEB}/tests/MANIFEST.json
 	@@ for i in ${TESTS}; do \
 		echo "Converting $${i} to web test..."; \
-		cat dep/web/test-head.js "$${i}" dep/web/test-tail.js | \
-			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 $${i}`-`crc32 "dep/web/webrunner.js"`'\);/" > ${WEB}"/$${i}"; \
+		cat dep/web/test-head.html "$${i}" dep/web/test-tail.html | \
+			sed "s/startTest.\(.*\).;/startTest\(\1, '`crc32 $${i}`-`crc32 "dep/web/webrunner.js"`'\);/" | \
+			sed "s/startTest/window.onload = function(){ startTest/" | \
+			sed "s/endTest..;/endTest(); };/" > \
+			${WEB}/`echo "$${i}"|sed s/.js//`.html; \
 	done
 	@@ for i in ${HTMLTESTS}; do \
 		echo "Converting $${i} to web test..."; \

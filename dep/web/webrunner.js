@@ -519,7 +519,8 @@
 			output += "<tr><td></td>";
 			for ( var run in runs )
 				output += "<th><a href='?id=" + run + "'>" + runs[run].name + "</a></th>";
-			output += "<th>Winning %</th></tr>";
+			//output += "<th>Winning %</th></tr>";
+			output += "</tr>";
 
 			for ( var result in results ) {
 				// Skip results that we're filtering out
@@ -545,7 +546,7 @@
 					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>" + runStyle + " &#177;" + ((error / mean) * 100).toFixed(2) + "%</small></td>";
 				}
 				
-				showWinner(tmp);
+				//showWinner(tmp);
 				output += "</tr>";
 
 				var _tests = results[result].tests, _data = _tests[run], _num = _data.length;
@@ -574,10 +575,10 @@
 			}
 
 			for ( var run in runs ) {
-				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + (runStyle === "runs/s" ? "" : runStyle) + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
+				output += "<th class='name " + (tmp[run] || '') + "' title='" + (tmp[run + "title"] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + (runStyle === "runs/s" ? "" : runStyle) + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
 			}
 
-			showWinner(tmp);
+			//showWinner(tmp);
 			output += "</tr>";
 
 			overview.className = "";
@@ -685,8 +686,14 @@
 		if ( ret.tie ) {
 			ret[ min ] = 'tie';
 			ret[ min2 ] = 'tie';
-		} else
+			ret[ min + 'title' ] = "Tied with another run.";
+			ret[ min2 + 'title' ] = "Tied with another run.";
+		} else {
 			ret[ min ] = 'winner';
+			if ( min2Val > -1 ) {
+				ret[ min + 'title' ] = "Won by " + ret.diff + "%.";
+			}
+		}
 
 		return ret;
 	}

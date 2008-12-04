@@ -559,7 +559,7 @@
 				for ( var i = 0; i < _num; i++ ) {
 					output += "<tr class='onetest hidden'><td><small>" + _data[i].name + "</small></td>";
 					for ( var run in runs ) {
-						output += "<td>" + (_tests[run][i].mean - 0).toFixed(2) + "<small>run/s &#177;" + (_tests[run][i].error - 0).toFixed(2) + "%</small></td>";
+						output += "<td>" + (_tests[run][i].mean - 0).toFixed(2) + "<small>" + runStyle + " &#177;" + (_tests[run][i].error - 0).toFixed(2) + "%</small></td>";
 					}
 					output += "<td></td></tr>";
 				}

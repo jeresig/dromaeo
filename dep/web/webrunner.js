@@ -207,7 +207,15 @@
 	// Queue of functions to run
 	var queue = [];
 	var queues = {};
-	
+
+	var catnames = {
+		dromaeo: "Dromaeo JavaScript Tests",
+		sunspider: "SunSpider JavaScript Tests",
+		"v8": "V8 JavaScript Tests",
+		dom: "DOM Core Tests",
+		jslib: "JavaScript Library Tests",
+		cssquery: "CSS Selector Tests"
+	};
 
 	
 	var testElems = {};
@@ -260,6 +268,16 @@
 			return;
 		} 
 
+		var cat = filter.toString().slice(1,-2);
+
+		if ( catnames[cat] ) {
+			$("#overview span:first").html( catnames[cat] );
+
+			if ( catnames[cat].length > 22 ) {
+				$("#overview span:first").css("font-size", 22);
+			}
+		}
+
 		$("#tests").hide();
 
 		jQuery.getJSON("tests/MANIFEST.json", function(json){
@@ -290,6 +308,8 @@
 
 			// Otherwise we're loading a normal set of tests
 			} else {
+				$("#wrapper").append("<center><a href='?" + names.join("|") + "'>Re-run tests</a></center>");
+
 				for ( var i = 0; i < names.length; i++ ) (function(name){
 					var test = tests[name];
 
@@ -433,6 +453,8 @@
 			}
 		}
 
+		var runTests = [];
+
 		if ( datas.length == 1 ) {
 			$("body").addClass("alldone");
 
@@ -444,6 +466,7 @@
 					continue;
 
 				if ( !testElems[result] ) {
+					runTests.push(result);
 					makeElem( result );
 					initTest( result );
 				}
@@ -497,6 +520,8 @@
 				if ( !filter.test(result) )
 					continue;
 
+				runTests.push(result);
+
 				var name = tests[result] ? tests[result].name : result;
 				var tmp = processWinner(results[result].total);
 
@@ -538,6 +563,8 @@
 			overview.className = "";
 			overview.innerHTML = "<div class='resultwrap'><table class='results'>" + output + "</table>" + (excluded.length ? "<div style='text-align:left;'><small><b>Excluded Tests:</b> " + excluded.sort().join(", ") + "</small></div>" : "") + "</div>";
 		}
+
+		$("#wrapper").append("<center><a href='?" + runTests.join("|") + "'>Re-run tests</a></center>");
 		
 		function showWinner(tmp){
 			if ( datas.length > 1 ) {

@@ -313,7 +313,7 @@
 
 			// Otherwise we're loading a normal set of tests
 			} else {
-				$("#wrapper").append("<center><a href='?" + names.join("|") + "'>Re-run tests</a></center>");
+				$("#wrapper").append("<br style='clear:both;'/><center><a href='?" + names.join("|") + "'>Re-run tests</a></center>");
 
 				for ( var i = 0; i < names.length; i++ ) (function(name){
 					var test = tests[name];

@@ -19,26 +19,32 @@ var html = document.body.innerHTML;
 	});
 	
 	test("jQuery - addClass", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.addClass("foo");
 	});
 
 	test("jQuery - removeClass", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.removeClass("foo");
 	});
 
-	test("jQuery - hasClass", function(){
+	test("jQuery - hasClass x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.hasClass("test");
 	});
 
-	test("jQuery - attr(class)", function(){
+	test("jQuery - attr(class) x100", function(){
+		for ( var i = 0; i < 1000; i++ )
 		ret = div.attr("class");
 	});
 
 	test("jQuery - attr(class,test)", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.attr("class","test");
 	});
 
 	test("jQuery - removeAttribute", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.removeAttr("id");
 	});
 

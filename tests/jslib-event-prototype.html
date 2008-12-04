@@ -21,14 +21,17 @@ function testfn(){}
 	});
 	
 	test("Prototype - observe", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.invoke("observe", "click", testfn);
 	});
 
 	test("Prototype - fire", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.invoke("fire", "click");
 	});
 
 	test("Prototype - stopObserving", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.invoke("stopObserving", "click", testfn);
 	});
 

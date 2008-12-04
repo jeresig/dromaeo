@@ -19,35 +19,43 @@ var html = document.body.innerHTML;
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - parent", function(){
+	test("jQuery - parent x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.parent().length;
 	});
 
-	test("jQuery - parents", function(){
+	test("jQuery - parents x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.parents().length;
 	});
 
-	test("jQuery - prev", function(){
+	test("jQuery - prev x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.prev().length;
 	});
 
 	test("jQuery - prevAll", function(){
+		for ( var i = 0; i < 10; i++ )
 		ret = dd.prevAll().length;
 	});
 
-	test("jQuery - next", function(){
+	test("jQuery - next x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.next().length;
 	});
 
 	test("jQuery - nextAll", function(){
+		for ( var i = 0; i < 10; i++ )
 		ret = dd.nextAll().length;
 	});
 
 	test("jQuery - siblings", function(){
+		for ( var i = 0; i < 10; i++ )
 		ret = dd.siblings().length;
 	});
 
 	test("jQuery - children", function(){
+		for ( var i = 0; i < 10; i++ )
 		ret = div.children().length;
 	});
 

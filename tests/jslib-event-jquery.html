@@ -21,14 +21,17 @@ function testfn(){}
 	});
 	
 	test("jQuery - bind", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.bind("click", testfn);
 	});
 
 	test("jQuery - trigger", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.trigger("click");
 	});
 
-	test("jQuery - unbind", function(){
+	test("jQuery - unbind x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		div.unbind("click", testfn);
 	});
 

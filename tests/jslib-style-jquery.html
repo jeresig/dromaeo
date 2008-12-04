@@ -18,31 +18,38 @@ var html = document.body.innerHTML;
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - css(color)", function(){
+	test("jQuery - css(color) x100", function(){
+		for ( var i = 0; i < 1000; i++ )
 		ret = div.css("color");
 	});
 
 	test("jQuery - css(color,red)", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.css("color","red");
 	});
 
-	test("jQuery - height()", function(){
+	test("jQuery - height() x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.height();
 	});
 
-	test("jQuery - width()", function(){
+	test("jQuery - width() x10", function(){
+		for ( var i = 0; i < 100; i++ )
 		ret = div.width();
 	});
 
 	test("jQuery - .is(:visible)", function(){
+		for ( var i = 0; i < 10; i++ )
 		ret = div.is(":visible");
 	});
 
 	test("jQuery - .show()", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.show();
 	});
 
 	test("jQuery - .hide()", function(){
+		for ( var i = 0; i < 10; i++ )
 		div.hide();
 	});
 

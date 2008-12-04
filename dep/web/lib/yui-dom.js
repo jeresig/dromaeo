@@ -1,8 +1,8 @@
 /*
-Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.1
+version: 2.6.0
 */
 /**
  * The dom module provides helper methods for manipulating Dom elements.
@@ -12,13 +12,15 @@ version: 2.4.1
 
 (function() {
     var Y = YAHOO.util,     // internal shorthand
+        lang = YAHOO.lang,
         getStyle,           // for load time browser branching
         setStyle,           // ditto
-        id_counter = 0,     // for use with generateId
         propertyCache = {}, // for faster hyphen converts
         reClassNameCache = {},          // cache regexes for className
         document = window.document;     // cache for faster lookups
     
+    YAHOO.env._id_counter = YAHOO.env._id_counter || 0;     // for use with generateId (global to save state if Dom is overwritten)
+
     // brower detection
     var isOpera = YAHOO.env.ua.opera,
         isSafari = YAHOO.env.ua.webkit, 
@@ -28,7 +30,8 @@ version: 2.4.1
     // regex cache
     var patterns = {
         HYPHEN: /(-[a-z])/i, // to normalize get/setStyle
-        ROOT_TAG: /^body|html$/i // body for quirks mode, html for standards
+        ROOT_TAG: /^body|html$/i, // body for quirks mode, html for standards,
+        OP_SCROLL:/^(?:inline|table-row)$/i
     };
 
     var toCamel = function(property) {
@@ -70,7 +73,7 @@ version: 2.4.1
                 property = 'cssFloat';
             }
 
-            var computed = document.defaultView.getComputedStyle(el, '');
+            var computed = el.ownerDocument.defaultView.getComputedStyle(el, '');
             if (computed) { // test computed before touching for safari
                 value = computed[toCamel(property)];
             }
@@ -108,7 +111,7 @@ version: 2.4.1
         setStyle = function(el, property, val) {
             switch (property) {
                 case 'opacity':
-                    if ( YAHOO.lang.isString(el.style.filter) ) { // in case not appended
+                    if ( lang.isString(el.style.filter) ) { // in case not appended
                         el.style.filter = 'alpha(opacity=' + val * 100 + ')';
                         
                         if (!el.currentStyle || !el.currentStyle.hasLayout) {
@@ -148,24 +151,28 @@ version: 2.4.1
          * @return {HTMLElement | Array} A DOM reference to an HTML element or an array of HTMLElements.
          */
         get: function(el) {
-            if (el && (el.tagName || el.item)) { // HTMLElement, or HTMLCollection
-                return el;
-            }
+            if (el) {
+                if (el.nodeType || el.item) { // Node, or NodeList
+                    return el;
+                }
 
-            if (YAHOO.lang.isString(el) || !el) { // HTMLElement or null
-                return document.getElementById(el);
-            }
-            
-            if (el.length !== undefined) { // array-like 
-                var c = [];
-                for (var i = 0, len = el.length; i < len; ++i) {
-                    c[c.length] = Y.Dom.get(el[i]);
+                if (typeof el === 'string') { // id
+                    return document.getElementById(el);
                 }
                 
-                return c;
+                if ('length' in el) { // array-like 
+                    var c = [];
+                    for (var i = 0, len = el.length; i < len; ++i) {
+                        c[c.length] = Y.Dom.get(el[i]);
+                    }
+                    
+                    return c;
+                }
+
+                return el; // some other object, just pass it back
             }
 
-            return el; // some other object, just pass it back
+            return null;
         },
     
         /**
@@ -334,7 +341,7 @@ version: 2.4.1
         getRegion: function(el) {
             var f = function(el) {
                 if ( (el.parentNode === null || el.offsetParent === null ||
-                        this.getStyle(el, 'display') == 'none') && el != document.body) {
+                        this.getStyle(el, 'display') == 'none') && el != el.ownerDocument.body) {
                     return false;
                 }
 
@@ -368,6 +375,10 @@ version: 2.4.1
         /**
          * Returns a array of HTMLElements with the given class.
          * For optimized performance, include a tag and/or root node when possible.
+         * Note: This method operates against a live collection, so modifying the 
+         * collection in the callback (removing/appending nodes, etc.) will have
+         * side effects.  Instead you should iterate the returned nodes array,
+         * as you would with the native "getElementsByTagName" method. 
          * @method getElementsByClassName
          * @param {String} className The class name to match against
          * @param {String} tag (optional) The tag name of the elements being collected
@@ -376,6 +387,7 @@ version: 2.4.1
          * @return {Array} An array of elements that have the given class name
          */
         getElementsByClassName: function(className, tag, root, apply) {
+            className = lang.trim(className);
             tag = tag || '*';
             root = (root) ? Y.Dom.get(root) : null || document; 
             if (!root) {
@@ -429,7 +441,7 @@ version: 2.4.1
                 }
                 
                 
-                el.className = YAHOO.lang.trim([el.className, className].join(' '));
+                el.className = lang.trim([el.className, className].join(' '));
                 return true;
             };
             
@@ -447,19 +459,24 @@ version: 2.4.1
             var re = getClassRegEx(className);
             
             var f = function(el) {
-                if (!this.hasClass(el, className)) {
-                    return false; // not present
+                var ret = false,
+                    current = el.className;
+
+                if (className && current && this.hasClass(el, className)) {
+                    
+                    el.className = current.replace(re, ' ');
+                    if ( this.hasClass(el, className) ) { // in case of multiple adjacent
+                        this.removeClass(el, className);
+                    }
+
+                    el.className = lang.trim(el.className); // remove any trailing spaces
+                    if (el.className === '') { // remove class attribute if empty
+                        var attr = (el.hasAttribute) ? 'class' : 'className';
+                        el.removeAttribute(attr);
+                    }
+                    ret = true;
                 }                 
-
-                
-                var c = el.className;
-                el.className = c.replace(re, ' ');
-                if ( this.hasClass(el, className) ) { // in case of multiple adjacent
-                    this.removeClass(el, className);
-                }
-
-                el.className = YAHOO.lang.trim(el.className); // remove any trailing spaces
-                return true;
+                return ret;
             };
             
             return Y.Dom.batch(el, f, Y.Dom, true);
@@ -491,10 +508,10 @@ version: 2.4.1
                 el.className = el.className.replace(re, ' ' + newClassName + ' ');
 
                 if ( this.hasClass(el, oldClassName) ) { // in case of multiple adjacent
-                    this.replaceClass(el, oldClassName, newClassName);
+                    this.removeClass(el, oldClassName);
                 }
 
-                el.className = YAHOO.lang.trim(el.className); // remove any trailing spaces
+                el.className = lang.trim(el.className); // remove any trailing spaces
                 return true;
             };
             
@@ -516,7 +533,7 @@ version: 2.4.1
                     return el.id;
                 } 
 
-                var id = prefix + id_counter++;
+                var id = prefix + YAHOO.env._id_counter++;
 
                 if (el) {
                     el.id = id;
@@ -540,22 +557,18 @@ version: 2.4.1
             haystack = Y.Dom.get(haystack);
             needle = Y.Dom.get(needle);
             
-            if (!haystack || !needle) {
-                return false;
-            }
+            var ret = false;
 
-            if (haystack.contains && needle.nodeType && !isSafari) { // safari contains is broken
-                return haystack.contains(needle);
+            if ( (haystack && needle) && (haystack.nodeType && needle.nodeType) ) {
+                if (haystack.contains && haystack !== needle) { // contains returns true when equal
+                    ret = haystack.contains(needle);
+                }
+                else if (haystack.compareDocumentPosition) { // gecko
+                    ret = !!(haystack.compareDocumentPosition(needle) & 16);
+                }
+            } else {
             }
-            else if ( haystack.compareDocumentPosition && needle.nodeType ) {
-                return !!(haystack.compareDocumentPosition(needle) & 16);
-            } else if (needle.nodeType) {
-                // fallback to crawling up (safari)
-                return !!this.getAncestorBy(needle, function(el) {
-                    return el == haystack; 
-                }); 
-            }
-            return false;
+            return ret;
         },
         
         /**
@@ -571,6 +584,10 @@ version: 2.4.1
         /**
          * Returns a array of HTMLElements that pass the test applied by supplied boolean method.
          * For optimized performance, include a tag and/or root node when possible.
+         * Note: This method operates against a live collection, so modifying the 
+         * collection in the callback (removing/appending nodes, etc.) will have
+         * side effects.  Instead you should iterate the returned nodes array,
+         * as you would with the native "getElementsByTagName" method. 
          * @method getElementsBy
          * @param {Function} method - A boolean method for testing elements which receives the element as its only argument.
          * @param {String} tag (optional) The tag name of the elements being collected
@@ -701,7 +718,7 @@ version: 2.4.1
          * @return {Object} HTMLElement or null if not found
          */
         getAncestorBy: function(node, method) {
-            while (node = node.parentNode) { // NOTE: assignment
+            while ( (node = node.parentNode) ) { // NOTE: assignment
                 if ( testElement(node, method) ) {
                     return node;
                 }
@@ -985,11 +1002,12 @@ version: 2.4.1
     var getXY = function() {
         if (document.documentElement.getBoundingClientRect) { // IE
             return function(el) {
-                var box = el.getBoundingClientRect();
+                var box = el.getBoundingClientRect(),
+                    round = Math.round;
 
                 var rootNode = el.ownerDocument;
-                return [box.left + Y.Dom.getDocumentScrollLeft(rootNode), box.top +
-                        Y.Dom.getDocumentScrollTop(rootNode)];
+                return [round(box.left + Y.Dom.getDocumentScrollLeft(rootNode)), round(box.top +
+                        Y.Dom.getDocumentScrollTop(rootNode))];
             };
         } else {
             return function(el) { // manually calculate by crawling up offsetParents
@@ -1022,8 +1040,7 @@ version: 2.4.1
                 // account for any scrolled ancestors
                 while ( parentNode.tagName && !patterns.ROOT_TAG.test(parentNode.tagName) ) 
                 {
-                   // work around opera inline/table scrollLeft/Top bug
-                   if (Y.Dom.getStyle(parentNode, 'display').search(/^inline|table-row.*$/i)) { 
+                    if (parentNode.scrollTop || parentNode.scrollLeft) {
                         pos[0] -= parentNode.scrollLeft;
                         pos[1] -= parentNode.scrollTop;
                     }
@@ -1221,4 +1238,4 @@ YAHOO.util.Point = function(x, y) {
 
 YAHOO.util.Point.prototype = new YAHOO.util.Region();
 
-YAHOO.register("dom", YAHOO.util.Dom, {version: "2.4.1", build: "742"});
+YAHOO.register("dom", YAHOO.util.Dom, {version: "2.6.0", build: "1321"});

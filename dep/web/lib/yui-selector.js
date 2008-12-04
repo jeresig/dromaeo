@@ -1,8 +1,8 @@
 /*
-Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.1
+version: 2.6.0
 */
 /**
  * The selector module provides helper methods allowing CSS3 Selectors to be used with DOM elements.
@@ -23,29 +23,8 @@ var Selector = function() {};
 
 var Y = YAHOO.util;
 
-var X = {
-    IDENT: '-?[_a-z]+[-\\w]*',
-    BEGIN: '^',
-    END: '$',
-    OR: '|',
-    SP: '\\s+'
-};
+var reNth = /^(?:([-]?\d*)(n){1}|(odd|even)$)*([-+]?\d*)$/;
 
-var CHARS = {
-    SIMPLE: '-+\\w_\\[\\]\\.\\|\\*\\\'\\(\\)#:^~=$!"',
-    COMBINATORS: ',>+~'
-};
-
-X.CAPTURE_IDENT = '(' + X.IDENT + ')';
-X.BEGIN_SPACE = '(?:' + X.BEGIN + X.OR + X.SP +')';
-X.END_SPACE = '(?:' + X.SP + X.OR + X.END + ')';
-X.SELECTOR = '^(' + X.CAPTURE_IDENT + '?([' + CHARS.SIMPLE + ']*)?\\s*([' + CHARS.COMBINATORS + ']?)?\\s*).*$';
-X.SIMPLE = '(' + X.CAPTURE_IDENT + '?([' + CHARS.SIMPLE + ']*)*)?';
-X.ATTRIBUTES = '\\[([a-z]+\\w*)+([~\\|\\^\\$\\*!=]=?)?"?([^\\]"]*)"?\\]';
-X.CAPTURE_ATTRIBUTES = '(' + X.ATTRIBUTES  + ')';
-X.PSEUDO = ':' + X.CAPTURE_IDENT + '(?:\\({1}' + X.SIMPLE + '\\){1})*';
-X.NTH_CHILD = '^(?:(\\d*)(n){1}|(odd|even)$)*([-+]?\\d*)$';
-X.URL_ATTR = '^href|url$';
 Selector.prototype = {
     /**
      * Default document for use queries 
@@ -61,8 +40,6 @@ Selector.prototype = {
      * @type object
      */
     attrAliases: {
-        'for': 'htmlFor',
-        'class': 'className'
     },
 
     /**
@@ -73,7 +50,7 @@ Selector.prototype = {
     shorthand: {
         //'(?:(?:[^\\)\\]\\s*>+~,]+)(?:-?[_a-z]+[-\\w]))+#(-?[_a-z]+[-\\w]*)': '[id=$1]',
         '\\#(-?[_a-z]+[-\\w]*)': '[id=$1]',
-        '\\.(-?[_a-z]+[-\\w]*)': '[className~=$1]'
+        '\\.(-?[_a-z]+[-\\w]*)': '[class~=$1]'
     },
 
     /**
@@ -86,13 +63,10 @@ Selector.prototype = {
         '=': function(attr, val) { return attr === val; }, // Equality
         '!=': function(attr, val) { return attr !== val; }, // Inequality
         '~=': function(attr, val) { // Match one of space seperated words 
-            var str = X.BEGIN_SPACE + val + X.END_SPACE;
-            regexCache[str] = regexCache[str] || new RegExp(str); // skip getRegExp call for perf boost
-
-            //return getRegExp(X.BEGIN_SPACE + val + X.END_SPACE).test(attr);
-            return regexCache[str].test(attr);
+            var s = ' ';
+            return (s + attr + s).indexOf((s + val + s)) > -1;
         },
-        '|=': function(attr, val) { return getRegExp(X.BEGIN + val + '[-]?').test(attr); }, // Match start with value followed by optional hyphen
+        '|=': function(attr, val) { return getRegExp('^' + val + '[-]?').test(attr); }, // Match start with value followed by optional hyphen
         '^=': function(attr, val) { return attr.indexOf(val) === 0; }, // Match starts with value
         '$=': function(attr, val) { return attr.lastIndexOf(val) === attr.length - val.length; }, // Match ends with value
         '*=': function(attr, val) { return attr.indexOf(val) > -1; }, // Match contains value as substring 
@@ -162,7 +136,8 @@ Selector.prototype = {
         },
 
         'contains': function(node, str) {
-            return node.innerHTML.indexOf(str) > -1;
+            var text = node.innerText || node.textContent || '';
+            return text.indexOf(str) > -1;
         },
         'checked': function(node) {
             return node.checked === true;
@@ -181,7 +156,12 @@ Selector.prototype = {
      */
     test: function(node, selector) {
         node = Selector.document.getElementById(node) || node;
-        var groups = selector.split(',');
+
+        if (!node) {
+            return false;
+        }
+
+        var groups = selector ? selector.split(',') : [];
         if (groups.length) {
             for (var i = 0, len = groups.length; i < len; ++i) {
                 if ( rTestNode(node, groups[i]) ) { // passes if ANY group matches
@@ -197,25 +177,24 @@ Selector.prototype = {
      * Filters a set of nodes based on a given CSS selector. 
      * @method filter
      *
-     * @param {array}  A set of nodes/ids to filter. 
+     * @param {array} nodes A set of nodes/ids to filter. 
      * @param {string} selector The selector used to test each node.
      * @return{array} An array of nodes from the supplied array that match the given selector.
      * @static
      */
-    filter: function(arr, selector) {
-        if (!arr || !selector) {
-        }
+    filter: function(nodes, selector) {
+        nodes = nodes || [];
+
         var node,
-            nodes = arr,
             result = [],
             tokens = tokenize(selector);
 
         if (!nodes.item) { // if not HTMLCollection, handle arrays of ids and/or nodes
-            for (var i = 0, len = arr.length; i < len; ++i) {
-                if (!arr[i].tagName) { // tagName limits to HTMLElements 
-                    node = Selector.document.getElementByid(arr[i]);
+            for (var i = 0, len = nodes.length; i < len; ++i) {
+                if (!nodes[i].tagName) { // tagName limits to HTMLElements 
+                    node = Selector.document.getElementById(nodes[i]);
                     if (node) { // skip IDs that return null 
-                        nodes[nodes.length] = node;
+                        nodes[i] = node;
                     } else {
                     }
                 }
@@ -243,24 +222,27 @@ Selector.prototype = {
 };
 
 var query = function(selector, root, firstOnly, deDupe) {
+    var result =  (firstOnly) ? null : [];
     if (!selector) {
-        return []; // no nodes for you
+        return result;
     }
-    var result = [];
-    var groups = selector.split(',');
+
+    var groups = selector.split(','); // TODO: handle comma in attribute/pseudo
 
     if (groups.length > 1) {
+        var found;
         for (var i = 0, len = groups.length; i < len; ++i) {
-            result = result.concat( arguments.callee(groups[i], root, firstOnly, true) ); 
+            found = arguments.callee(groups[i], root, firstOnly, true);
+            result = firstOnly ? found : result.concat(found); 
         }
         clearFoundCache();
         return result;
     }
 
-    if (root && !root.tagName) {
+    if (root && !root.nodeName) { // assume ID
         root = Selector.document.getElementById(root);
         if (!root) {
-            return [];
+            return result;
         }
     }
 
@@ -270,24 +252,26 @@ var query = function(selector, root, firstOnly, deDupe) {
         nodes = [],
         node,
         id,
-        token = tokens.pop();
+        token = tokens.pop() || {};
         
     if (idToken) {
         id = getId(idToken.attributes);
     }
-    // if no root alternate root is specified use id shortcut
+
+    // use id shortcut when possible
     if (id) {
-        if (id === token.id) { // only one target
-            nodes = [Selector.document.getElementById(id)] || root;
-        } else { // reset root to id node if passes
-            node = Selector.document.getElementById(id);
-            if (root === Selector.document || contains(node, root)) {
-                if ( node && rTestNode(node, null, idToken) ) {
+        node = Selector.document.getElementById(id);
+
+        if (node && (root.nodeName == '#document' || contains(node, root))) {
+            if ( rTestNode(node, null, idToken) ) {
+                if (idToken === token) {
+                    nodes = [node]; // simple selector
+                } else {
                     root = node; // start from here
                 }
-            } else {
-                return [];
             }
+        } else {
+            return result;
         }
     }
 
@@ -298,12 +282,13 @@ var query = function(selector, root, firstOnly, deDupe) {
     if (nodes.length) {
         result = rFilter(nodes, token, firstOnly, deDupe); 
     }
+
     clearParentCache();
     return result;
 };
 
 var contains = function() {
-    if (document.documentElement.contains && !YAHOO.env.ua.webkit < 420)  { // IE & Opera, Safari < 3 contains is broken
+    if (document.documentElement.contains && !YAHOO.env.ua.webkit < 422)  { // IE & Opera, Safari < 3 contains is broken
         return function(needle, haystack) {
             return haystack.contains(needle);
         };
@@ -326,66 +311,67 @@ var contains = function() {
 }();
 
 var rFilter = function(nodes, token, firstOnly, deDupe) {
-    var result = [],
-        node;
+    var result = firstOnly ? null : [];
 
-    for (var i = 0, len = nodes.length; i < len; ++i) {
-        node = nodes[i];
-        if ( !rTestNode(node, null, token) || (deDupe && node._found) ) {
+    for (var i = 0, len = nodes.length; i < len; i++) {
+        if (! rTestNode(nodes[i], '', token, deDupe)) {
             continue;
         }
+
         if (firstOnly) {
-            return [node];
+            return nodes[i];
         }
         if (deDupe) {
-            node._found = true;
-            foundCache[foundCache.length] = node;
+            if (nodes[i]._found) {
+                continue;
+            }
+            nodes[i]._found = true;
+            foundCache[foundCache.length] = nodes[i];
         }
 
-        result[result.length] = node;
+        result[result.length] = nodes[i];
     }
 
     return result;
 };
 
-var rTestNode = function(node, selector, token) {
-    token = token || tokenize(selector).pop();
+var rTestNode = function(node, selector, token, deDupe) {
+    token = token || tokenize(selector).pop() || {};
 
-    if (!node || node._found || (token.tag != '*' && node.tagName.toLowerCase() != token.tag)) {
-        return false; // tag match failed
-    } 
-
-    var ops = Selector.operators,
-        ps = Selector.pseudos,
-        attributes = token.attributes,
-        attr,
-        pseudos = token.pseudos,
-        prev = token.previous;
-
-    for (var i = 0, len = attributes.length; i < len; ++i) {
-        attr = (getRegExp(X.URL_ATTR).test(attributes[i][0])) ?
-                node.getAttribute(attributes[i][0], 2) : // preserve relative urls
-                node[attributes[i][0]];
-
-        if (ops[attributes[i][1]] && !ops[attributes[i][1]](attr, attributes[i][2])) {
-            return false;
-        }
+    if (!node.tagName ||
+        (token.tag !== '*' && node.tagName.toUpperCase() !== token.tag) ||
+        (deDupe && node._found) ) {
+        return false;
     }
-    for (var i = 0, len = pseudos.length; i < len; ++i) {
-        if (ps[pseudos[i][0]] &&
-                !ps[pseudos[i][0]](node, pseudos[i][1])) {
-            return false;
+
+    if (token.attributes.length) {
+        var attribute;
+        for (var i = 0, len = token.attributes.length; i < len; ++i) {
+            attribute = node.getAttribute(token.attributes[i][0], 2);
+            if (attribute === null || attribute === undefined) {
+                return false;
+            }
+            if ( Selector.operators[token.attributes[i][1]] &&
+                    !Selector.operators[token.attributes[i][1]](attribute, token.attributes[i][2])) {
+                return false;
+            }
         }
     }
 
-    if (prev) {
-        if (prev.combinator !== ',') {
-            return combinators[prev.combinator](node, token);
+    if (token.pseudos.length) {
+        for (var i = 0, len = token.pseudos.length; i < len; ++i) {
+            if (Selector.pseudos[token.pseudos[i][0]] &&
+                    !Selector.pseudos[token.pseudos[i][0]](node, token.pseudos[i][1])) {
+                return false;
+            }
         }
     }
-    return true;
 
+    return (token.previous && token.previous.combinator !== ',') ?
+            combinators[token.previous.combinator](node, token) :
+            true;
 };
+
 
 var foundCache = [];
 var parentCache = [];
@@ -421,18 +407,12 @@ var getRegExp = function(str, flags) {
     return regexCache[str + flags];
 };
 
-var trim = function(str) {
-    return str.replace(getRegExp(X.BEGIN + X.SP + X.OR + X.SP + X.END, 'g'), "");
-};
-
 var combinators = {
     ' ': function(node, token) {
-        node = node.parentNode;
-        while (node && node.tagName) {
-            if (rTestNode(node, null, token.previous)) {
+        while (node = node.parentNode) {
+            if (rTestNode(node, '', token.previous)) {
                 return true;
             }
-            node = node.parentNode;
         }  
         return false;
     },
@@ -440,6 +420,7 @@ var combinators = {
     '>': function(node, token) {
         return rTestNode(node.parentNode, null, token.previous);
     },
+
     '+': function(node, token) {
         var sib = node.previousSibling;
         while (sib && sib.nodeType !== 1) {
@@ -468,7 +449,7 @@ var combinators = {
 var getChildren = function() {
     if (document.documentElement.children) { // document for capability test
         return function(node, tag) {
-            return tag ? node.children.tags(tag) : node.children;
+            return (tag) ? node.children.tags(tag) : node.children || [];
         };
     } else {
         return function(node, tag) {
@@ -500,35 +481,38 @@ var getChildren = function() {
 */
 var getNth = function(node, expr, tag, reverse) {
     if (tag) tag = tag.toLowerCase();
-    var re = regexCache[X.NTH_CHILD] = regexCache[X.NTH_CHILD] || new RegExp(X.NTH_CHILD);
-    re.test(expr);
+    reNth.test(expr);
     var a = parseInt(RegExp.$1, 10), // include every _a_ elements (zero means no repeat, just first _a_)
         n = RegExp.$2, // "n"
         oddeven = RegExp.$3, // "odd" or "even"
         b = parseInt(RegExp.$4, 10) || 0, // start scan from element _b_
         result = [];
 
-    if ( isNaN(a) ) {
-        a = (n) ? 1 : 0;
-    }
+    var siblings = getChildren(node.parentNode, tag);
 
     if (oddeven) {
         a = 2; // always every other
         op = '+';
         n = 'n';
         b = (oddeven === 'odd') ? 1 : 0;
+    } else if ( isNaN(a) ) {
+        a = (n) ? 1 : 0; // start from the first or no repeat
     }
 
-    var siblings = getChildren(node.parentNode, tag);
-    if (!siblings) {
-        return false;
-    }
     if (a === 0) { // just the first
+        if (reverse) {
+            b = siblings.length - b + 1; 
+        }
+
         if (siblings[b - 1] === node) {
             return true;
         } else {
             return false;
         }
+
+    } else if (a < 0) {
+        reverse = !!reverse;
+        a = Math.abs(a);
     }
 
     if (!reverse) {
@@ -564,77 +548,119 @@ var getIdTokenIndex = function(tokens) {
     return -1;
 };
 
+var patterns = {
+    tag: /^((?:-?[_a-z]+[\w-]*)|\*)/i,
+    attributes: /^\[([a-z]+\w*)+([~\|\^\$\*!=]=?)?['"]?([^\]]*?)['"]?\]/i,
+    //attributes: /^\[([a-z]+\w*)+([~\|\^\$\*!=]=?)?['"]?([^'"\]]*)['"]?\]*/i,
+    pseudos: /^:([-\w]+)(?:\(['"]?(.+)['"]?\))*/i,
+    combinator: /^\s*([>+~]|\s)\s*/
+};
+
+/**
+    Break selector into token units per simple selector.
+    Combinator is attached to left-hand selector.
+ */
 var tokenize = function(selector) {
-    if (!selector) return [];
-        var token,
-        tokens = [],
-        m,
-        aliases = Selector.attrAliases,
-        attr,
-        reAttr = getRegExp(X.ATTRIBUTES, 'g'),
-        rePseudo = getRegExp(X.PSEUDO, 'g');
+    var token = {},     // one token per simple selector (left selector holds combinator)
+        tokens = [],    // array of tokens
+        id,             // unique id for the simple selector (if found)
+        found = false,  // whether or not any matches were found this pass
+        match;          // the regex match
 
-    selector = replaceShorthand(selector);
-    // break selector into simple selector units
-    while ( selector.length && getRegExp(X.SELECTOR).test(selector) ) {
-        token = {
-            previous: token,
-            simple: RegExp.$1,
-            tag: RegExp.$2.toLowerCase() || '*',
-            predicate: RegExp.$3,
-            attributes: [],
-            pseudos: [],
-            combinator: RegExp.$4
-        };
+    selector = replaceShorthand(selector); // convert ID and CLASS shortcuts to attributes
 
-        // Parse pseudos first, then strip from predicate to 
-        // avoid false positive from :not.
-        while (m = rePseudo.exec(token.predicate)) {
-            token.predicate = token.predicate.replace(m[0], '');
-            token.pseudos[token.pseudos.length] = m.slice(1);
-        }
-        
-        while (m = reAttr.exec(token.predicate)) { // parse attributes
-            if (aliases[m[1]]) { // convert reserved words, etc
-                m[1] = aliases[m[1]];
+    /*
+        Search for selector patterns, store, and strip them from the selector string
+        until no patterns match (invalid selector) or we run out of chars.
+
+        Multiple attributes and pseudos are allowed, in any order.
+        for example:
+            'form:first-child[type=button]:not(button)[lang|=en]'
+    */
+    do {
+        found = false; // reset after full pass
+        for (var re in patterns) {
+                if (!YAHOO.lang.hasOwnProperty(patterns, re)) {
+                    continue;
+                }
+                if (re != 'tag' && re != 'combinator') { // only one allowed
+                    token[re] = token[re] || [];
+                }
+            if (match = patterns[re].exec(selector)) { // note assignment
+                found = true;
+                if (re != 'tag' && re != 'combinator') { // only one allowed
+                    //token[re] = token[re] || [];
+
+                    // capture ID for fast path to element
+                    if (re === 'attributes' && match[1] === 'id') {
+                        token.id = match[3];
+                    }
+
+                    token[re].push(match.slice(1));
+                } else { // single selector (tag, combinator)
+                    token[re] = match[1];
+                }
+                selector = selector.replace(match[0], ''); // strip current match from selector
+                if (re === 'combinator' || !selector.length) { // next token or done
+                    token.attributes = fixAttributes(token.attributes);
+                    token.pseudos = token.pseudos || [];
+                    token.tag = token.tag ? token.tag.toUpperCase() : '*';
+                    tokens.push(token);
+
+                    token = { // prep next token
+                        previous: token
+                    };
+                }
             }
-            attr = m.slice(1); // capture attribute tokens
-            if (attr[1] === undefined) {
-                attr[1] = ''; // test for existence if no operator
-            }
-            token.attributes[token.attributes.length] = attr;
         }
-        
-        token.id = getId(token.attributes);
-        if (token.previous) {
-            token.previous.combinator = token.previous.combinator || ' ';
-        }
-        tokens[tokens.length] = token;
-        selector = trim(selector.substr(token.simple.length));
-    } 
+    } while (found);
+
     return tokens;
+};
+
+var fixAttributes = function(attr) {
+    var aliases = Selector.attrAliases;
+    attr = attr || [];
+    for (var i = 0, len = attr.length; i < len; ++i) {
+        if (aliases[attr[i][0]]) { // convert reserved words, etc
+            attr[i][0] = aliases[attr[i][0]];
+        }
+        if (!attr[i][1]) { // use exists operator
+            attr[i][1] = '';
+        }
+    }
+    return attr;
 };
 
 var replaceShorthand = function(selector) {
     var shorthand = Selector.shorthand;
-    var attrs = selector.match(getRegExp(X.CAPTURE_ATTRIBUTES, 'g')); // pull attributes to avoid false pos on "." and "#"
+    var attrs = selector.match(patterns.attributes); // pull attributes to avoid false pos on "." and "#"
     if (attrs) {
-        selector = selector.replace(getRegExp(X.CAPTURE_ATTRIBUTES, 'g'), 'REPLACED_ATTRIBUTE');
+        selector = selector.replace(patterns.attributes, 'REPLACED_ATTRIBUTE');
     }
     for (var re in shorthand) {
-        selector = selector.replace(getRegExp(re, 'g'), shorthand[re]);
+        if (!YAHOO.lang.hasOwnProperty(shorthand, re)) {
+            continue;
+        }
+        selector = selector.replace(getRegExp(re, 'gi'), shorthand[re]);
     }
 
-    if (attrs)
+    if (attrs) {
         for (var i = 0, len = attrs.length; i < len; ++i) {
             selector = selector.replace('REPLACED_ATTRIBUTE', attrs[i]);
         }
+    }
     return selector;
 };
 
 Selector = new Selector();
-Selector.CHARS = CHARS;
-Selector.TOKENS = X;
+Selector.patterns = patterns;
 Y.Selector = Selector;
+
+if (YAHOO.env.ua.ie) { // rewrite class for IE (others use getAttribute('class')
+    Y.Selector.attrAliases['class'] = 'className';
+    Y.Selector.attrAliases['for'] = 'htmlFor';
+}
+
 })();
-YAHOO.register("selector", YAHOO.util.Selector, {version: "2.4.1", build: "742"});
+YAHOO.register("selector", YAHOO.util.Selector, {version: "2.6.0", build: "1321"});

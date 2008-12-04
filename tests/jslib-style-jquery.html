@@ -18,11 +18,11 @@ var html = document.body.innerHTML;
 		document.body.appendChild( tmp );
 	});
 	
-	test("jQuery - css('color')", function(){
+	test("jQuery - css(color)", function(){
 		ret = div.css("color");
 	});
 
-	test("jQuery - css('color','red')", function(){
+	test("jQuery - css(color,red)", function(){
 		div.css("color","red");
 	});
 
@@ -34,7 +34,7 @@ var html = document.body.innerHTML;
 		ret = div.width();
 	});
 
-	test("jQuery - .is(':visible')", function(){
+	test("jQuery - .is(:visible)", function(){
 		ret = div.is(":visible");
 	});
 

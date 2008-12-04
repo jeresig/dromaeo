@@ -234,6 +234,11 @@
 	// Query String Parsing
 	var search = (window.location.search || "?").substr(1);
 	var parts = search.split("&");
+
+	if ( parts[0] === "recommended" ) {
+		parts[0] = "dromaeo|sunspider|v8|dom|jslib";
+	}
+
 	var none = !parts[0] || parts[0].match(/=/);
 	var filter = parts.length && !parts[0].match(/=/) && parts[0] !== "all" ?
 		new RegExp(parts.shift(), "i") :

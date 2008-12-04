@@ -104,7 +104,8 @@ h2 div.bar { font-size: 10px; width: 275px; top: -2px; right: 1%; }
 h2 input { position: absolute; top: 0px; right: 300px; }
 
 ul#tests { clear:both;width:420px;margin:0 auto;text-align:left; padding: 10px; list-style: none; }
-#tests b { background: #58bd79; color: #000; display: block; padding: 4px 0 4px 4px; margin-left: -20px; margin-bottom: 5px; font-size: 1.1em; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
+#tests b { background: #c7331d; color: #000; display: block; padding: 4px 0 4px 4px; margin-left: -20px; margin-bottom: 5px; font-size: 1.1em; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
+#tests b.recommended { background: #58bd79; }
 #tests a:first-of-type { font-size: 1.2em; }
 #tests b a { color: #000; }
 #tests li { padding-left: 10px; padding-bottom: 5px; }

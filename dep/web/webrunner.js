@@ -233,6 +233,12 @@
 	
 	// Query String Parsing
 	var search = (window.location.search || "?").substr(1);
+
+	search = search.replace(/&runStyle=([^&]+)/, function(all, type){
+		runStyle = type;
+		return "";
+	});
+
 	var parts = search.split("&");
 
 	if ( parts[0] === "recommended" ) {

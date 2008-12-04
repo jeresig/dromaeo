@@ -425,6 +425,7 @@
 
 			runs[data.id] = data;
 			runs[data.id].mean = 0;
+			runs[data.id].geomean = 0;
 			runs[data.id].error = 0;
 			runs[data.id].num = 0;
 			runs[data.id].name = (data.useragent.match(/(MSIE [\d.]+)/) ||
@@ -538,8 +539,8 @@
 					var error = results[result].total[run].error - 0;
 	
 					runs[run].num++;
-					runs[run].mean += mean;
-					runs[run].error += error;
+					runs[run].mean += runStyle === "ms" ? mean : Math.log(mean);
+					runs[run].error += runStyle === "ms" ? error : Math.log(error);
 		
 					output += "<td class='" + (tmp[run] || '') + "'>" + mean.toFixed(2) + "<small>" + runStyle + " &#177;" + ((error / mean) * 100).toFixed(2) + "%</small></td>";
 				}
@@ -556,12 +557,26 @@
 					output += "<td></td></tr>";
 				}
 			}
+
+			if ( runStyle === "runs/s" ) {
+				for ( var run in runs ) {
+					runs[run].mean = Math.pow(Math.E, runs[run].mean / runs[run].num);
+					runs[run].error = Math.pow(Math.E, runs[run].error / runs[run].num);
+				}
+			}
 	
 			var tmp = processWinner(runs);
 
-			output += "<tr><th class='name'>Total:</th>";
-			for ( var run in runs )
-				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + runStyle + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
+			if ( runStyle === "ms" ) {
+				output += "<tr><th class='name'>Total:</th>";
+			} else {
+				output += "<tr><th class='name'>Score:</th>";
+			}
+
+			for ( var run in runs ) {
+				output += "<th class='name " + (tmp[run] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + (runStyle === "runs/s" ? "" : runStyle) + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
+			}
+
 			showWinner(tmp);
 			output += "</tr>";
 

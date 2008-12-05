@@ -539,6 +539,18 @@
 
 				runTests.push(result);
 
+				if ( runStyle === "runs/s" ) {
+					for ( var run in runs ) {
+						var mean = results[result].total[run].mean - 0;
+						var error = results[result].total[run].error - 0;
+
+						mean = Math.pow(Math.E, mean / results[result].total[run].num);
+						error = Math.pow(Math.E, error / results[result].total[run].num);
+						results[result].total[run].mean = mean;
+						results[result].total[run].error = error;
+					}
+				}
+
 				var name = tests[result] ? tests[result].name : result;
 				var tmp = processWinner(results[result].total);
 
@@ -549,11 +561,6 @@
 					var mean = results[result].total[run].mean - 0;
 					var error = results[result].total[run].error - 0;
 
-					if ( runStyle === "runs/s" ) {
-						mean = Math.pow(Math.E, mean / results[result].total[run].num);
-						error = Math.pow(Math.E, error / results[result].total[run].num);
-					}
-	
 					runs[run].num++;
 					runs[run].mean += runStyle === "ms" ? mean : Math.log(mean);
 					runs[run].error += runStyle === "ms" ? error : Math.log(error);

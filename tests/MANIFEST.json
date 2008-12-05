@@ -271,6 +271,14 @@
 	category: "SunSpider JavaScript Tests",
 	tags: ["regexp","string","looping"]
 },
+"sunspider-string-validate-input": {
+	file: "sunspider-string-validate-input.html",
+	name: "Validate User Input",
+	origin: ["SunSpider", "http://www2.webkit.org/perf/sunspider-0.9/sunspider.html"],
+	desc: "Test user input against a series of rules.",
+	category: "SunSpider JavaScript Tests",
+	tags: ["string","regexp"]
+},
 "dom-attr": {
 	file: "dom-attr.html",
 	name: "DOM Attributes",

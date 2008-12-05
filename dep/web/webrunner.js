@@ -431,7 +431,6 @@
 
 			runs[data.id] = data;
 			runs[data.id].mean = 0;
-			runs[data.id].geomean = 0;
 			runs[data.id].error = 0;
 			runs[data.id].num = 0;
 			runs[data.id].name = (data.useragent.match(/(MSIE [\d.]+)/) ||
@@ -448,7 +447,7 @@
 
 				if ( results[curID].version == result.version ) {
 					if ( !results[curID].total[result.run_id] ) {
-						results[curID].total[result.run_id] = {max:0, mean:0, median:0, min:0, deviation:0, error:0};
+						results[curID].total[result.run_id] = {max:0, mean:0, median:0, min:0, deviation:0, error:0, num:0};
 						results[curID].tests[result.run_id] = [];
 					}
 					
@@ -456,10 +455,15 @@
 					results[curID].tests[result.run_id].push( result );
 
 					var total = results[curID].total[result.run_id];
+					total.num++;
+
 					for ( var type in total )
-						if ( type == "error" )
-							total.error += (parseFloat(result.error) / 100) * parseFloat(result.mean);
-						else
+						if ( type == "error" ) {
+							var error = (parseFloat(result.error) / 100) * parseFloat(result.mean);
+							total.error += (runStyle === "ms" ? error : error == 0 ? 0 : Math.log(error));
+						} else if ( type == "mean" )
+							total.mean += (runStyle === "ms" ? parseFloat(result.mean) : Math.log(parseFloat(result.mean)));
+						else if ( type !== "num" )
 							total[type] += parseFloat(result[type]);
 				}
 			}
@@ -544,6 +548,11 @@
 				for ( var run in runs ) {
 					var mean = results[result].total[run].mean - 0;
 					var error = results[result].total[run].error - 0;
+
+					if ( runStyle === "runs/s" ) {
+						mean = Math.pow(Math.E, mean / results[result].total[run].num);
+						error = Math.pow(Math.E, error / results[result].total[run].num);
+					}
 	
 					runs[run].num++;
 					runs[run].mean += runStyle === "ms" ? mean : Math.log(mean);

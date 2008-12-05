@@ -526,11 +526,11 @@
 				}
 			}
 		
-			output += "<tr><td></td>";
+			var preoutput = "<tr><td></td>";
 			for ( var run in runs )
-				output += "<th><a href='?id=" + run + "'>" + runs[run].name + "</a></th>";
-			//output += "<th>Winning %</th></tr>";
-			output += "</tr>";
+				preoutput += "<th><a href='?id=" + run + "'>" + runs[run].name + "</a></th>";
+			//preoutput += "<th>Winning %</th></tr>";
+			preoutput += "</tr>";
 
 			for ( var result in results ) {
 				// Skip results that we're filtering out
@@ -582,22 +582,23 @@
 			}
 	
 			var tmp = processWinner(runs);
+			var totaloutput = "";
 
 			if ( runStyle === "ms" ) {
-				output += "<tr><th class='name'>Total:</th>";
+				totaloutput += "<tr><th class='name'>Total:</th>";
 			} else {
-				output += "<tr><th class='name'>Score:</th>";
+				totaloutput += "<tr><th class='name'>Total Score:</th>";
 			}
 
 			for ( var run in runs ) {
-				output += "<th class='name " + (tmp[run] || '') + "' title='" + (tmp[run + "title"] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + (runStyle === "runs/s" ? "" : runStyle) + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
+				totaloutput += "<th class='name " + (tmp[run] || '') + "' title='" + (tmp[run + "title"] || '') + "'>" + runs[run].mean.toFixed(2) + "<small>" + runStyle + " &#177;" + ((runs[run].error / runs[run].mean) * 100).toFixed(2) + "%</small></th>";
 			}
 
 			//showWinner(tmp);
-			output += "</tr>";
+			totaloutput += "</tr>";
 
 			overview.className = "";
-			overview.innerHTML = "<div class='resultwrap'><table class='results'>" + output + "</table>" + (excluded.length ? "<div style='text-align:left;'><small><b>Excluded Tests:</b> " + excluded.sort().join(", ") + "</small></div>" : "") + "</div>";
+			overview.innerHTML = "<div class='resultwrap'><table class='results'>" + preoutput + totaloutput + output + totaloutput + "</table>" + (excluded.length ? "<div style='text-align:left;'><small><b>Excluded Tests:</b> " + excluded.sort().join(", ") + "</small></div>" : "") + "</div>";
 		}
 
 		$("#wrapper").append("<center><a href='?" + runTests.join("|") + "'>Re-run tests</a></center>");

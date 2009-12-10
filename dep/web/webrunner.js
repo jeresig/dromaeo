@@ -232,7 +232,7 @@
 	var nameDone = {};
 	
 	// Query String Parsing
-	var search = (window.location.search || "?").substr(1);
+	var search = window.limitSearch || (window.location.search || "?").substr(1);
 
 	search = search.replace(/&runStyle=([^&]+)/, function(all, type){
 		runStyle = type;
@@ -358,8 +358,25 @@
 			
 			$("#overview input").remove();
 			updateTimebar();
+
+			if ( window.limitSearch ) {
+				var summary = (runStyle === "runs/s" ? Math.pow(Math.E, maxTotal / maxTotalNum) : maxTotal).toFixed(2);
+
+				if ( typeof tpRecordTime !== "undefined" ) {
+					tpRecordTime( summary );
+
+				} else {
+					var pre = document.createElement("pre");
+					pre.style.display = "none";
+					pre.innerHTML = "__start_report" + summary + "__end_report";
+					document.body.appendChild( pre );
+				}
+
+				if ( typeof goQuitApplication !== "undefined" ) {
+					goQuitApplication();
+				}
 	
-			if ( dataStore && dataStore.length ) {
+			} else if ( dataStore && dataStore.length ) {
 				$("body").addClass("alldone");
 				var div = jQuery("<div class='results'>Saving...</div>").insertBefore("#overview");
 				jQuery.ajax({
@@ -403,6 +420,10 @@
 					this.value = "Pause";
 				}
 			});
+
+		if ( window.limitSearch ) {
+			$("#pause").click();
+		}
 	}
 
 	function initTest(curID){

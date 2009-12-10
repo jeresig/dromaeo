@@ -4,9 +4,22 @@ HTMLTESTS = tests/*.html
 RESULTS = results
 PERF = perf
 WEB = web
+TALOS = talos
 PERFSINGLE = perf-single
 
 all: spidermonkey rhino tamarin jscore
+
+talos: web
+	@@ rm -rf ${TALOS}
+	@@ mv ${WEB} ${TALOS}
+	@@ echo "Generating talos tests..."
+	@@ for i in talos/tests/*.html; do \
+		TEST=`echo "$${i}" | sed s/.html// | sed s/talos.tests.//`; \
+		echo "Converting $${TEST} to talos test..."; \
+		sed "s/<head>/<head><!-- MOZ_INSERT_CONTENT_HOOK --><script>var limitSearch='$${TEST}';<\/script>/" talos/index.html > \
+			"talos/$${TEST}.html"; \
+		echo "% $${TEST}.html" >> talos/dromaeo.manifest; \
+	done
 
 web: ${TESTS}
 	@@ rm -rf ${WEB}

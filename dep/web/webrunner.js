@@ -271,7 +271,7 @@
 			numTests = Number(m[1]);
 	}
 
-	jQuery(function(){
+	jQuery(window).load(function(){
 		var id = search.match(/id=([\d,]+)/);
 
 		if ( none && !id ) {

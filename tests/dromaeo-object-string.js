@@ -34,7 +34,7 @@ var num = 80000;
 		ret = str.join("");
 	});
 
-var ostr = [], tmp, num = 5000, tmpstr;
+var ostr = [], tmp, tmp2, num = 5000, tmpstr;
 
 for ( var i = 0; i < 16384; i++ )
 	ostr.push( String.fromCharCode( (25 * Math.random()) + 97 ) );
@@ -176,13 +176,18 @@ var i = 52288;
 	});
 
 	// TESTS: comparing
+	prep(function(){
+		tmp = str;
+		tmp2 = str;
+	});
 
 	test( "comparing", function(){
-		var tmp = str + "a";
+		tmp = "a" + tmp + "a";
+		tmp2 = "a" + tmp2 + "a";
 		for ( var j = 0; j < num / 1000; j++ ) {
-			ret = str == tmp;
-			ret = str < tmp;
-			ret = str > tmp;
+			ret = tmp == tmp2;
+			ret = tmp < tmp2;
+			ret = tmp > tmp2;
 		}
 	});
 

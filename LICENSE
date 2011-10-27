@@ -25,5 +25,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 ----
 
 All tests are the copyright of their respective owners.
- - Tests coming from the Computer Language Shootout are under a BSD license.
+ - Tests coming from the Computer Language Shootout are under the Revised BSD license
+    <http://shootout.alioth.debian.org/license.php>.
  - Tests coming from John Resig are under an MIT license.

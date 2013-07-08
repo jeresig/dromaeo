@@ -1,17 +1,15 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script>
 window.onload = function(){
-startTest("jslib-event-jquery");
+startTest("jslib-attr-jquery");
 
 // Try to force real results
 var ret, tmp, div;
 
 var html = document.body.innerHTML;
-
-function testfn(){}
 
 	prep(function(){
 		div = jQuery("div");
@@ -20,19 +18,34 @@ function testfn(){}
 		document.body.appendChild( tmp );
 	});
 
-	test("jQuery - bind", function(){
+	test("jQuery - addClass", function(){
 		for ( var i = 0; i < 10; i++ )
-		div.bind("click", testfn);
+		div.addClass("foo");
 	});
 
-	test("jQuery - trigger", function(){
+	test("jQuery - removeClass", function(){
 		for ( var i = 0; i < 10; i++ )
-		div.trigger("click");
+		div.removeClass("foo");
 	});
 
-	test("jQuery - unbind x10", function(){
+	test("jQuery - hasClass x10", function(){
 		for ( var i = 0; i < 100; i++ )
-		div.unbind("click", testfn);
+		ret = div.hasClass("test");
+	});
+
+	test("jQuery - attr(class) x100", function(){
+		for ( var i = 0; i < 1000; i++ )
+		ret = div.attr("class");
+	});
+
+	test("jQuery - attr(class,test)", function(){
+		for ( var i = 0; i < 10; i++ )
+		div.attr("class","test");
+	});
+
+	test("jQuery - removeAttribute", function(){
+		for ( var i = 0; i < 10; i++ )
+		div.removeAttr("id");
 	});
 
 endTest();

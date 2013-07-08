@@ -1,17 +1,15 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script>
 window.onload = function(){
-startTest("jslib-event-jquery");
+startTest("jslib-style-jquery");
 
 // Try to force real results
 var ret, tmp, div;
 
 var html = document.body.innerHTML;
-
-function testfn(){}
 
 	prep(function(){
 		div = jQuery("div");
@@ -20,19 +18,43 @@ function testfn(){}
 		document.body.appendChild( tmp );
 	});
 
-	test("jQuery - bind", function(){
-		for ( var i = 0; i < 10; i++ )
-		div.bind("click", testfn);
+	test("jQuery - css(color) x100", function(){
+		for ( var i = 0; i < 1000; i++ )
+		ret = div.css("color");
 	});
 
-	test("jQuery - trigger", function(){
+	test("jQuery - css(color,red)", function(){
 		for ( var i = 0; i < 10; i++ )
-		div.trigger("click");
+		div.css("color","red");
 	});
 
-	test("jQuery - unbind x10", function(){
+	test("jQuery - height() x10", function(){
 		for ( var i = 0; i < 100; i++ )
-		div.unbind("click", testfn);
+		ret = div.height();
+	});
+
+	test("jQuery - width() x10", function(){
+		for ( var i = 0; i < 100; i++ )
+		ret = div.width();
+	});
+
+	test("jQuery - .is(:visible)", function(){
+		for ( var i = 0; i < 10; i++ )
+		ret = div.is(":visible");
+	});
+
+	test("jQuery - .show()", function(){
+		for ( var i = 0; i < 10; i++ )
+		div.show();
+	});
+
+	test("jQuery - .hide()", function(){
+		for ( var i = 0; i < 10; i++ )
+		div.hide();
+	});
+
+	test("jQuery - .toggle()", function(){
+		div.toggle();
 	});
 
 endTest();

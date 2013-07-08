@@ -1,38 +1,164 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script>
 window.onload = function(){
-startTest("jslib-event-jquery");
+startTest("cssquery-jquery");
 
 // Try to force real results
-var ret, tmp, div;
+var ret, tmp;
 
 var html = document.body.innerHTML;
 
-function testfn(){}
-
 	prep(function(){
-		div = jQuery("div");
-		var tmp = document.createElement("div");
-		tmp.innerHTML = html;
-		document.body.appendChild( tmp );
+		var div = document.createElement("div");
+		div.innerHTML = html;
+		document.body.appendChild( div );
 	});
 
-	test("jQuery - bind", function(){
-		for ( var i = 0; i < 10; i++ )
-		div.bind("click", testfn);
+	test("jQuery - *", function(){
+		jQuery("*");
 	});
 
-	test("jQuery - trigger", function(){
-		for ( var i = 0; i < 10; i++ )
-		div.trigger("click");
+	test("jQuery - div:only-child", function(){
+		jQuery("div:only-child");
 	});
 
-	test("jQuery - unbind x10", function(){
-		for ( var i = 0; i < 100; i++ )
-		div.unbind("click", testfn);
+	test("jQuery - div:first-child", function(){
+		jQuery("div:first-child");
+	});
+
+	test("jQuery - div:nth-child(even)", function(){
+		jQuery("div:nth-child(even)");
+	});
+
+	test("jQuery - div:nth-child(2n)", function(){
+		jQuery("div:nth-child(2n)");
+	});
+
+	test("jQuery - div:nth-child(odd)", function(){
+		jQuery("div:nth-child(odd)");
+	});
+
+	test("jQuery - div:nth-child(2n+1)", function(){
+		jQuery("div:nth-child(2n+1)");
+	});
+
+	test("jQuery - div:nth-child(n)", function(){
+		jQuery("div:nth-child(n)");
+	});
+
+	test("jQuery - div:last-child", function(){
+		jQuery("div:last-child");
+	});
+
+	test("jQuery - div > div", function(){
+		jQuery("div > div");
+	});
+
+	test("jQuery - div + div", function(){
+		jQuery("div + div");
+	});
+
+	test("jQuery - div ~ div", function(){
+		jQuery("div ~ div");
+	});
+
+	test("jQuery - body", function(){
+		jQuery("body");
+	});
+
+	test("jQuery - body div", function(){
+		jQuery("body div");
+	});
+
+	test("jQuery - div", function(){
+		jQuery("div");
+	});
+
+	test("jQuery - div div", function(){
+		jQuery("div div");
+	});
+
+	test("jQuery - div div div", function(){
+		jQuery("div div div");
+	});
+
+	test("jQuery - div, div, div", function(){
+		jQuery("div, div, div");
+	});
+
+	test("jQuery - div, a, span", function(){
+		jQuery("div, a, span");
+	});
+
+	test("jQuery - .dialog", function(){
+		jQuery(".dialog");
+	});
+
+	test("jQuery - div.dialog", function(){
+		jQuery("div.dialog");
+	});
+
+	test("jQuery - div .dialog", function(){
+		jQuery("div .dialog");
+	});
+
+	test("jQuery - div.character, div.dialog", function(){
+		jQuery("div.character, div.dialog");
+	});
+
+	test("jQuery - #speech5", function(){
+		jQuery("#speech5");
+	});
+
+	test("jQuery - div#speech5", function(){
+		jQuery("div#speech5");
+	});
+
+	test("jQuery - div #speech5", function(){
+		jQuery("div #speech5");
+	});
+
+	test("jQuery - div.scene div.dialog", function(){
+		jQuery("div.scene div.dialog");
+	});
+
+	test("jQuery - div#scene1 div.dialog div", function(){
+		jQuery("div#scene1 div.dialog div");
+	});
+
+	test("jQuery - #scene1 #speech1", function(){
+		jQuery("#scene1 #speech1");
+	});
+
+	test("jQuery - div[class]", function(){
+		jQuery("div[class]");
+	});
+
+	test("jQuery - div[class=dialog]", function(){
+		jQuery("div[class=dialog]");
+	});
+
+	test("jQuery - div[class^=dia]", function(){
+		jQuery("div[class^=dia]");
+	});
+
+	test("jQuery - div[class$=log]", function(){
+		jQuery("div[class$=log]");
+	});
+
+	test("jQuery - div[class*=sce]", function(){
+		jQuery("div[class*=sce]");
+	});
+
+	test("jQuery - div[class|=dialog]", function(){
+		jQuery("div[class|=dialog]");
+	});
+
+	test("jQuery - div[class~=dialog]", function(){
+		jQuery("div[class~=dialog]");
 	});
 
 endTest();

@@ -1,39 +1,63 @@
 <html>
 <head>
 <script src="../htmlrunner.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script>
 window.onload = function(){
-startTest("jslib-event-jquery");
+startTest("jslib-modify-jquery");
 
 // Try to force real results
-var ret, tmp, div;
+var ret, tmp, div, a, dd;
 
-var html = document.body.innerHTML;
-
-function testfn(){}
+var html = document.body.innerHTML,
+	elem = document.createElement("div"),
+	elem2 = document.createElement("strong"),
+	elemStr = "<strong>some text</strong>";
 
 	prep(function(){
+		a = jQuery("a");
+		dd = jQuery("dd");
 		div = jQuery("div");
 		var tmp = document.createElement("div");
 		tmp.innerHTML = html;
 		document.body.appendChild( tmp );
 	});
 
-	test("jQuery - bind", function(){
-		for ( var i = 0; i < 10; i++ )
-		div.bind("click", testfn);
+	/* // Need to find a good way to test this
+	test("jQuery - wrap()", function(){
+		div.wrap( elem );
+	});
+	*/
+
+	test("jQuery - html()", function(){
+		dd.html( elemStr );
 	});
 
-	test("jQuery - trigger", function(){
-		for ( var i = 0; i < 10; i++ )
-		div.trigger("click");
+	test("jQuery - before()", function(){
+		div.before( elemStr );
 	});
 
-	test("jQuery - unbind x10", function(){
-		for ( var i = 0; i < 100; i++ )
-		div.unbind("click", testfn);
+	test("jQuery - after()", function(){
+		div.before( elemStr );
 	});
+
+	test("jQuery - prepend()", function(){
+		div.prepend( elemStr );
+	});
+
+	test("jQuery - append()", function(){
+		div.append( elemStr );
+	});
+
+	/* // Need a good way to test
+	test("jQuery - replaceWith()", function(){
+		div.replaceWith( elem );
+	});
+
+	test("jQuery - remove()", function(){
+		div.remove();
+	});
+	*/
 
 endTest();
 };

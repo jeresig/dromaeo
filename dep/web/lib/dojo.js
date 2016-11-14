@@ -2587,7 +2587,7 @@ dojo.Deferred = function(/*Function?*/ canceller){
 	//		|		promptUserToRecover();
 	//		|	});
 	//
-	//		Note that the caller doesn't have to change his code at all to
+	//		Note that callers don't have to change their code at all to
 	//		handle the asynchronous case.
 
 	this.chain = [];
@@ -4190,7 +4190,7 @@ if(dojo.isIE || dojo.isOpera){
 	// Opera documentation claims that Opera 9 uses border-box in BackCompat mode.
 	// but experiments (Opera 9.10.8679 on Windows Vista) indicate that it actually continues to use content-box.
 	// IIRC, earlier versions of Opera did in fact use border-box.
-	// Opera guys, this is really confusing. Opera being broken in quirks mode is not our fault.
+	// Opera people, this is really confusing. Opera being broken in quirks mode is not our fault.
 
 	if(d.isIE /*|| dojo.isOpera*/){
 		var _dcm = document.compatMode;
